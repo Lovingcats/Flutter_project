@@ -1,0 +1,549 @@
+import 'package:club_project/mission.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  static const String _title = 'Flutter Code Sample';
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: _title,
+      home: StartPage(),
+    );
+  }
+}
+
+/// This
+
+/// is the stateless widget that the main application instantiates.
+
+class StartPage extends StatefulWidget {
+  const StartPage({Key? key}) : super(key: key);
+
+  @override
+  _StartPageState createState() => _StartPageState();
+}
+
+class _StartPageState extends State<StartPage> {
+  void _showDialog1() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: Text(
+            "왜 나가냐!!!!!!!!! 게임계속해라",
+            style: TextStyle(fontSize: 20),
+          ),
+          actions: <Widget>[
+            new ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: new Text("네.."),
+            ),
+            new ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: new Text("뭐래 ㅋ"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Text(
+            "정말로 나가시겠습니까?",
+            style: TextStyle(fontSize: 30, color: const Color(0xff55CED6)),
+          ),
+          actions: <Widget>[
+            new ElevatedButton(
+              onPressed: () {
+                _showDialog1();
+              },
+              child: new Text("예"),
+            ),
+            new ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: new Text("아니요"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0.0,
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 12.0, bottom: 12, right: 8.0),
+            child: Container(
+              width: 74,
+              child: ElevatedButton(
+                onPressed: () {
+                  _showDialog();
+                },
+                child: Text(
+                  '나가기',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+                style:
+                    ElevatedButton.styleFrom(primary: const Color(0xff55CED6)),
+              ),
+            ),
+          )
+        ],
+        title: Text('지존용제나이트 8/10',
+            style: TextStyle(
+                color: const Color(0xff55CED6),
+                fontSize: 20,
+                fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        iconTheme: IconThemeData(color: const Color(0xff55CED6)),
+      ),
+      drawer: Container(
+        width: 200,
+        child: Drawer(
+          child: Container(
+              padding: EdgeInsets.only(top: 50),
+              color: const Color(0xffDCF7F9),
+              child: ListView(
+                children: <Widget>[
+                  Column(
+                    children: [
+                      Center(
+                        child: Text(
+                          "ROOM MAIN",
+                          style: TextStyle(
+                              fontSize: 26,
+                              color: const Color(0xff55CED6),
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Center(
+                        child: Container(
+                          width: 150,
+                          height: 2,
+                          color: const Color(0xff55CED6),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Center(
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          child: Text(
+                            "초대하기",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: const Color(0xff55CED6),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              minimumSize: Size(100, 35),
+                              primary: Colors.white),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        padding: EdgeInsets.only(
+                            right: 20, bottom: 12, top: 12, left: 10),
+                        height: 54,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(
+                              width: 1,
+                              color: const Color(0xff55CED6),
+                            )),
+                            color: Colors.white),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: const Color(0xff55CED6),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            right: 20, bottom: 12, top: 12, left: 10),
+                        height: 54,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(
+                              width: 1,
+                              color: const Color(0xff55CED6),
+                            )),
+                            color: Colors.white),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: const Color(0xff55CED6),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            right: 20, bottom: 12, top: 12, left: 10),
+                        height: 54,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(
+                              width: 1,
+                              color: const Color(0xff55CED6),
+                            )),
+                            color: Colors.white),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: const Color(0xff55CED6),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            right: 20, bottom: 12, top: 12, left: 10),
+                        height: 54,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(
+                              width: 1,
+                              color: const Color(0xff55CED6),
+                            )),
+                            color: Colors.white),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: const Color(0xff55CED6),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            right: 20, bottom: 12, top: 12, left: 10),
+                        height: 54,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(
+                              width: 1,
+                              color: const Color(0xff55CED6),
+                            )),
+                            color: Colors.white),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: const Color(0xff55CED6),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            right: 20, bottom: 12, top: 12, left: 10),
+                        height: 54,
+                        width: 200,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(
+                              width: 1,
+                              color: const Color(0xff55CED6),
+                            )),
+                            color: Colors.white),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: const Color(0xff55CED6),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("용제팬태영",
+                                style: TextStyle(
+                                    color: const Color(0xff55CED6),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            right: 20, bottom: 12, top: 12, left: 10),
+                        height: 54,
+                        width: 200,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(
+                              width: 1,
+                              color: const Color(0xff55CED6),
+                            )),
+                            color: Colors.white),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: const Color(0xff55CED6),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("준서나이트",
+                                style: TextStyle(
+                                    color: const Color(0xff55CED6),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Center(
+                          child: Text(
+                        "왼쪽으로",
+                        style: TextStyle(
+                            fontSize: 20, color: const Color(0xff55CED6)),
+                      )),
+                      Center(
+                          child: Text(
+                        "밀어서 닫기",
+                        style: TextStyle(
+                            fontSize: 20, color: const Color(0xff55CED6)),
+                      )),
+                    ],
+                  ),
+                ],
+              )),
+        ),
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(bottom: 1, left: 10),
+              height: 100,
+              width: 500,
+              color: const Color(0xffAEE6EA),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                          width: 90,
+                          height: 26,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white,
+                          ),
+                          child: Text(
+                            "zㅣ존용제",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: const Color(0xff444D6A),
+                                fontWeight: FontWeight.bold),
+                          )),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                          width: 90,
+                          height: 26,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white,
+                          ),
+                          child: Text(
+                            "광신도",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: const Color(0xff444D6A),
+                                fontWeight: FontWeight.bold),
+                          )),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                          width: 90,
+                          height: 26,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white,
+                          ),
+                          child: Text(
+                            "MC근찬",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: const Color(0xff444D6A),
+                                fontWeight: FontWeight.bold),
+                          )),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                          width: 90,
+                          height: 26,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white,
+                          ),
+                          child: Text(
+                            "준서나이트",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: const Color(0xff444D6A),
+                                fontWeight: FontWeight.bold),
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                          width: 90,
+                          height: 26,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white,
+                          ),
+                          child: Text(
+                            "월광현우",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: const Color(0xff444D6A),
+                                fontWeight: FontWeight.bold),
+                          )),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                          width: 90,
+                          height: 26,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white,
+                          ),
+                          child: Text(
+                            "용제팬수현",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: const Color(0xff444D6A),
+                                fontWeight: FontWeight.bold),
+                          )),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                          width: 90,
+                          height: 26,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white,
+                          ),
+                          child: Text(
+                            "용제팬가연",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: const Color(0xff444D6A),
+                                fontWeight: FontWeight.bold),
+                          )),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        width: 90,
+                        height: 26,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: Colors.white,
+                        ),
+                        child: Text(
+                          "용제팬태영",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: const Color(0xff444D6A),
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 85,
+            ),
+            OutlinedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => VotePage()));
+                },
+                child: Column(
+                  children: [
+                    Text(
+                      "GAME",
+                      style: TextStyle(
+                        fontSize: 60,
+                        color: const Color(0xffFF5C7A),
+                      ),
+                    ),
+                    Text(
+                      "START",
+                      style: TextStyle(
+                        fontSize: 85,
+                        color: const Color(0xffFF5C7A),
+                      ),
+                    ),
+                  ],
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  minimumSize: Size(350, 300),
+                  side: BorderSide(
+                    width: 8.0,
+                    color: const Color(0xffFF5C7A),
+                    style: BorderStyle.solid,
+                  ),
+                  shape: CircleBorder(),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+}
