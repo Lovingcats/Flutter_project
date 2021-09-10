@@ -35,7 +35,19 @@ bool pressed5 = false;
 
 bool pressed6 = false;
 
-bool pressed7 = false;
+bool dpressed = false;
+
+bool dpressed1 = false;
+
+bool dpressed2 = false;
+
+bool dpressed3 = false;
+
+bool dpressed4 = false;
+
+bool dpressed5 = false;
+
+bool dpressed6 = false;
 
 /// This
 
@@ -62,8 +74,6 @@ class _TermPageState extends State<TermPage> {
   int _counter5 = 0;
 
   int _counter6 = 0;
-
-
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 60;
 
@@ -109,9 +119,6 @@ class _TermPageState extends State<TermPage> {
     });
   }
 
-  
-
-
   //감소하는 카운터ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ
 
   void _incrementCounter() {
@@ -156,7 +163,6 @@ class _TermPageState extends State<TermPage> {
     });
   }
 
-
   //증가하는 카운터ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ
 
   @override
@@ -170,15 +176,6 @@ class _TermPageState extends State<TermPage> {
             padding: EdgeInsets.only(top: 12.0, bottom: 12, right: 8.0),
             child: Container(
               width: 74,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  '나가기',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-                style:
-                    ElevatedButton.styleFrom(primary: const Color(0xff55CED6)),
-              ),
             ),
           )
         ],
@@ -234,15 +231,29 @@ class _TermPageState extends State<TermPage> {
 
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               OutlinedButton(
-                  onPressed: () {
-                    if (pressed) {
-                      pressed = false;
-                      _incrementCountdown();
-                    } else {
-                      pressed = true;
-                      _incrementCounter();
-                    }
-                  },
+                  onPressed: dpressed
+                      ? null
+                      : () {
+                          if (pressed) {
+                            pressed = false;
+                            _incrementCountdown();
+                            dpressed1 = false;
+                            dpressed2 = false;
+                            dpressed3 = false;
+                            dpressed4 = false;
+                            dpressed5 = false;
+                            dpressed6 = false;
+                          } else {
+                            pressed = true;
+                            _incrementCounter();
+                            dpressed1 = true;
+                            dpressed2 = true;
+                            dpressed3 = true;
+                            dpressed4 = true;
+                            dpressed5 = true;
+                            dpressed6 = true;
+                          }
+                        },
                   child: Text(
                     '1일',
                     style: TextStyle(
@@ -274,15 +285,29 @@ class _TermPageState extends State<TermPage> {
 //1111111111111111111111111111111111111111111111111111111111111111111111111111111
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               OutlinedButton(
-                  onPressed: () {
-                    if (pressed1) {
-                      pressed1 = false;
-                      _incrementCountdown1();
-                    } else {
-                      pressed1 = true;
-                      _incrementCounter1();
-                    }
-                  },
+                  onPressed: dpressed1
+                      ? null
+                      : () {
+                          if (pressed1) {
+                            pressed1 = false;
+                            _incrementCountdown1();
+                            dpressed = false;
+                            dpressed2 = false;
+                            dpressed3 = false;
+                            dpressed4 = false;
+                            dpressed5 = false;
+                            dpressed6 = false;
+                          } else {
+                            pressed1 = true;
+                            _incrementCounter1();
+                            dpressed = true;
+                            dpressed2 = true;
+                            dpressed3 = true;
+                            dpressed4 = true;
+                            dpressed5 = true;
+                            dpressed6 = true;
+                          }
+                        },
                   child: Text(
                     '2일',
                     style: TextStyle(
@@ -316,15 +341,29 @@ class _TermPageState extends State<TermPage> {
 
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               OutlinedButton(
-                  onPressed: () {
-                    if (pressed2) {
-                      pressed2 = false;
-                      _incrementCountdown2();
-                    } else {
-                      pressed2 = true;
-                      _incrementCounter2();
-                    }
-                  },
+                  onPressed: dpressed2
+                      ? null
+                      : () {
+                          if (pressed2) {
+                            pressed2 = false;
+                            _incrementCountdown2();
+                            dpressed = false;
+                            dpressed1 = false;
+                            dpressed3 = false;
+                            dpressed4 = false;
+                            dpressed5 = false;
+                            dpressed6 = false;
+                          } else {
+                            pressed2 = true;
+                            _incrementCounter2();
+                            dpressed1 = true;
+                            dpressed = true;
+                            dpressed3 = true;
+                            dpressed4 = true;
+                            dpressed5 = true;
+                            dpressed6 = true;
+                          }
+                        },
                   child: Text(
                     '3일',
                     style: TextStyle(
@@ -358,17 +397,30 @@ class _TermPageState extends State<TermPage> {
 
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               OutlinedButton(
-                  onPressed: () {
-                    if (pressed3) {
-                      pressed3 = false;
+                  onPressed: dpressed3
+                      ? null
+                      : () {
+                          if (pressed3) {
+                            pressed3 = false;
+                            _incrementCountdown3();
+                            dpressed = false;
+                            dpressed1 = false;
+                            dpressed2 = false;
+                            dpressed4 = false;
+                            dpressed5 = false;
+                            dpressed6 = false;
+                          } else {
+                            pressed3 = true;
 
-                      _incrementCountdown3();
-                    } else {
-                      pressed3 = true;
-
-                      _incrementCounter3();
-                    }
-                  },
+                            _incrementCounter3();
+                            dpressed1 = true;
+                            dpressed2 = true;
+                            dpressed = true;
+                            dpressed4 = true;
+                            dpressed5 = true;
+                            dpressed6 = true;
+                          }
+                        },
                   child: Text(
                     '4일',
                     style: TextStyle(
@@ -402,17 +454,30 @@ class _TermPageState extends State<TermPage> {
 
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               OutlinedButton(
-                  onPressed: () {
-                    if (pressed4) {
-                      pressed4 = false;
+                  onPressed: dpressed4
+                      ? null
+                      : () {
+                          if (pressed4) {
+                            pressed4 = false;
+                            _incrementCountdown4();
+                            dpressed = false;
+                            dpressed1 = false;
+                            dpressed2 = false;
+                            dpressed3 = false;
+                            dpressed5 = false;
+                            dpressed6 = false;
+                          } else {
+                            pressed4 = true;
 
-                      _incrementCountdown4();
-                    } else {
-                      pressed4 = true;
-
-                      _incrementCounter4();
-                    }
-                  },
+                            _incrementCounter4();
+                            dpressed1 = true;
+                            dpressed2 = true;
+                            dpressed3 = true;
+                            dpressed = true;
+                            dpressed5 = true;
+                            dpressed6 = true;
+                          }
+                        },
                   child: Text(
                     '5일',
                     style: TextStyle(
@@ -442,19 +507,32 @@ class _TermPageState extends State<TermPage> {
               height: 15,
             ),
             //5555555555555555555555555555555555555555555555555555555555555555555
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               OutlinedButton(
-                  onPressed: () {
-                    if (pressed5) {
-                      pressed5 = false;
+                  onPressed: dpressed5
+                      ? null
+                      : () {
+                          if (pressed5) {
+                            pressed5 = false;
+                            _incrementCountdown5();
+                            dpressed = false;
+                            dpressed1 = false;
+                            dpressed2 = false;
+                            dpressed3 = false;
+                            dpressed4 = false;
+                            dpressed6 = false;
+                          } else {
+                            pressed5 = true;
 
-                      _incrementCountdown5(); 
-                    } else {
-                      pressed5 = true;
-
-                      _incrementCounter5();
-                    }
-                  },
+                            _incrementCounter5();
+                            dpressed1 = true;
+                            dpressed2 = true;
+                            dpressed3 = true;
+                            dpressed4 = true;
+                            dpressed = true;
+                            dpressed6 = true;
+                          }
+                        },
                   child: Text(
                     '6일',
                     style: TextStyle(
@@ -484,19 +562,32 @@ class _TermPageState extends State<TermPage> {
               height: 15,
             ),
             //666666666666666666666666666666666666666666666666666666666666666666
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               OutlinedButton(
-                  onPressed: () {
-                    if (pressed6) {
-                      pressed6 = false;
+                  onPressed: dpressed6
+                      ? null
+                      : () {
+                          if (pressed6) {
+                            pressed6 = false;
+                            _incrementCountdown6();
+                            dpressed = false;
+                            dpressed1 = false;
+                            dpressed2 = false;
+                            dpressed3 = false;
+                            dpressed4 = false;
+                            dpressed5 = false;
+                          } else {
+                            pressed6 = true;
 
-                      _incrementCountdown6();
-                    } else {
-                      pressed6 = true;
-
-                      _incrementCounter6();
-                    }
-                  },
+                            _incrementCounter6();
+                            dpressed1 = true;
+                            dpressed2 = true;
+                            dpressed3 = true;
+                            dpressed4 = true;
+                            dpressed5 = true;
+                            dpressed = true;
+                          }
+                        },
                   child: Text(
                     '7일',
                     style: TextStyle(
@@ -526,8 +617,6 @@ class _TermPageState extends State<TermPage> {
               height: 15,
             ),
             //7777777777777777777777777777777777777777777777777777777777777777777
-  
-          
           ],
         ),
       ),
