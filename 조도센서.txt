@@ -1,0 +1,88 @@
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:light/light.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String _luxString = 'Unknown';
+  late Light _light;
+  late StreamSubscription _subscription;
+  int luxValue = 0;
+  int score = 10000;
+  void onData(luxValue) async {
+    // ignore: avoid_print
+    print("현재 밝기: $luxValue");
+    setState(() {
+      _luxString = "$luxValue";
+      if (luxValue < 50) {
+        count();
+      }
+    });
+  }
+
+  void count() {
+    score = score - 10;
+  }
+
+  void stopListening() {
+    _subscription.cancel();
+  }
+
+  void startListening() {
+    _light = Light();
+    try {
+      _subscription = _light.lightSensorStream.listen(onData);
+    } on LightException catch (exception) {
+      // ignore: avoid_print
+      print(exception);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> initPlatformState() async {
+    startListening();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('현재 실내 밝기'),
+        ),
+        body: Center(
+          child: Column(
+            children: <Widget>[
+              const SizedBox(
+                height: 280,
+              ),
+              const Text(
+                "밝기가 50이하로 내려가면 진동이 울립니다!",
+                style: TextStyle(fontSize: 30),
+              ),
+              Text(
+                '현재밝기: $_luxString\n',
+                style: const TextStyle(fontSize: 30),
+              ),
+              Text("$score"),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
