@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:timer/screens/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,6 +36,7 @@ class _TimerPageState extends State<TimerPage> {
   int _timerCount2 = 0;
   bool _iconpress = false;
   late Timer _timer;
+  int _currentIndex = 0;
 
   void dispose() {
     _timer.cancel();
@@ -42,13 +44,47 @@ class _TimerPageState extends State<TimerPage> {
     super.dispose();
   }
 
-  @override                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+  void chooseIndex(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Timer", style: TextStyle(fontSize: 30)),
           centerTitle: true,
           backgroundColor: Colors.black,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.grey,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white.withOpacity(.60),
+          selectedFontSize: 14,
+          unselectedFontSize: 14,
+          onTap: chooseIndex,
+          currentIndex: _currentIndex,
+          items: const [
+            BottomNavigationBarItem(
+              label: 'Timer',
+              icon: Icon(Icons.timer),
+            ),
+            BottomNavigationBarItem(
+                label: 'notice',
+                icon: Icon(Icons.notifications_none),
+                backgroundColor: Colors.orange),
+            BottomNavigationBarItem(
+                label: 'countdown',
+                icon: Icon(Icons.hourglass_bottom),
+                backgroundColor: Colors.yellow),
+            BottomNavigationBarItem(
+                label: 'WorldTime',
+                icon: Icon(Icons.public),
+                backgroundColor: Colors.green),
+          ],
         ),
         body: Center(
           child: Column(
@@ -128,3 +164,4 @@ class _TimerPageState extends State<TimerPage> {
         ));
   }
 }
+
