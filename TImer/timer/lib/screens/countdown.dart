@@ -32,6 +32,7 @@ class _CountdownPageState extends State<CountdownPage> {
   final hour = TextEditingController();
   final min = TextEditingController();
   final sec = TextEditingController();
+  bool input = false;
 
   @override
   Widget build(BuildContext context) {
@@ -45,51 +46,52 @@ class _CountdownPageState extends State<CountdownPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(children: [
-              Container(
-                width: 100,
-                child: TextField(
-                  controller: hour,
-                  decoration: const InputDecoration(
-                      labelText: 'hour',
-                      helperText: '시간',
-                      icon: Icon(Icons.timer),
-                      border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.all(3)),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              if (input == false)
+                SizedBox(
+                  width: 100,
+                  child: TextField(
+                    controller: hour,
+                    decoration: const InputDecoration(
+                        labelText: 'hour',
+                        helperText: '시간',
+                        icon: Icon(Icons.timer),
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(3)),
+                  ),
                 ),
-              ),
-              Container(
-                width: 65,
-                child: TextField(
-                  controller: min,
-                  decoration: const InputDecoration(
-                      labelText: 'min',
-                      helperText: '분',
-                      border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.all(3)),
+              if (input == false)
+                SizedBox(
+                  width: 65,
+                  child: TextField(
+                    controller: min,
+                    decoration: const InputDecoration(
+                        labelText: 'min',
+                        helperText: '분',
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(3)),
+                  ),
                 ),
-              ),
-              Container(
-                width: 65,
-                child: TextField(
-                  controller: sec,
-                  decoration: const InputDecoration(
-                      labelText: 'sec',
-                      helperText: '초',
-                      border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.all(3)),
+              if (input == false)
+                SizedBox(
+                  width: 65,
+                  child: TextField(
+                    controller: sec,
+                    decoration: const InputDecoration(
+                        labelText: 'sec',
+                        helperText: '초',
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(3)),
+                  ),
                 ),
-              ),
             ]),
-            OutlinedButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(content: Text(hour.text));
-                      });
-                },
-                child: const Text("입력된 값 보기"))
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text(
+                "확인",
+                style: TextStyle(fontSize: 20),
+              ),
+            )
           ],
         ),
       ),
