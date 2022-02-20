@@ -7,9 +7,9 @@ class Bottom extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.black,
-      child: Container(
+      child: const SizedBox(
         height: 50,
-        child: const TabBar(
+        child: TabBar(
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white60,
           indicatorColor: Colors.transparent,
