@@ -8,7 +8,7 @@ class BoxSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(7),
+      padding: const EdgeInsets.all(7),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,10 +42,10 @@ List<Widget> makeBoxImage(BuildContext context, List<Movie> movies) {
         );
       },
       child: Container(
-          padding: EdgeInsets.only(right: 30),
+          padding: const EdgeInsets.only(right: 30),
           child: Align(
             alignment: Alignment.centerLeft,
-            child: Image.asset('images/' + movies[i].poster),
+            child: Image.network(movies[i].poster),
           )),
     ));
   }

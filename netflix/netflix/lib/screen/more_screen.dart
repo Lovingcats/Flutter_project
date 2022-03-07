@@ -7,6 +7,7 @@ class MoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: Column(
         children: [
@@ -51,6 +52,7 @@ class MoreScreen extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {},
+              // ignore: avoid_unnecessary_containers
               child: Container(
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -22,7 +22,7 @@ class _CarouseImageState extends State<CarouseImage> {
   void initState() {
     super.initState();
     movies = widget.movies;
-    images = movies.map((m) => Image.asset('images/' + m.poster)).toList();
+    images = movies.map((m) => Image.network(m.poster)).toList();
     keywords = movies.map((m) => m.keyword).toList();
     likes = movies.map((m) => m.like).toList();
     _currentKeyword = keywords[0];
@@ -46,10 +46,10 @@ class _CarouseImageState extends State<CarouseImage> {
         ),
         // ignore: avoid_unnecessary_containers
         Container(
-          padding: EdgeInsets.fromLTRB(0, 10, 0, 3),
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 3),
           child: Text(
             _currentKeyword,
-            style: TextStyle(fontSize: 11),
+            style: const TextStyle(fontSize: 11),
           ),
         ),
         Container(
@@ -61,9 +61,24 @@ class _CarouseImageState extends State<CarouseImage> {
                   children: [
                     likes[_currentPage]
                         ? IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.check))
+                            onPressed: () {
+                              setState(() {
+                                likes[_currentPage] = !likes[_currentPage];
+                                movies[_currentPage]
+                                    .reference
+                                    .updateData({'like': likes[_currentPage]});
+                              });
+                            },
+                            icon: const Icon(Icons.check))
                         : IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                likes[_currentPage] = !likes[_currentPage];
+                                movies[_currentPage]
+                                    .reference
+                                    .updateData({'like': likes[_currentPage]});
+                              });
+                            },
                             icon: const Icon(Icons.add),
                           ),
                     const Text(
