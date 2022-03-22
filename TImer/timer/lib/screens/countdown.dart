@@ -33,7 +33,6 @@ class _CountdownPageState extends State<CountdownPage> {
   final min = TextEditingController();
   final sec = TextEditingController();
   bool input = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,43 +46,40 @@ class _CountdownPageState extends State<CountdownPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              if (input == false)
-                SizedBox(
-                  width: 100,
-                  child: TextField(
-                    controller: hour,
-                    decoration: const InputDecoration(
-                        labelText: 'hour',
-                        helperText: '시간',
-                        icon: Icon(Icons.timer),
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(3)),
-                  ),
+              SizedBox(
+                width: 100,
+                child: TextField(
+                  controller: hour,
+                  decoration: const InputDecoration(
+                      labelText: 'hour',
+                      helperText: '시간',
+                      icon: Icon(Icons.timer),
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.all(3)),
                 ),
-              if (input == false)
-                SizedBox(
-                  width: 65,
-                  child: TextField(
-                    controller: min,
-                    decoration: const InputDecoration(
-                        labelText: 'min',
-                        helperText: '분',
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(3)),
-                  ),
+              ),
+              SizedBox(
+                width: 65,
+                child: TextField(
+                  controller: min,
+                  decoration: const InputDecoration(
+                      labelText: 'min',
+                      helperText: '분',
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.all(3)),
                 ),
-              if (input == false)
-                SizedBox(
-                  width: 65,
-                  child: TextField(
-                    controller: sec,
-                    decoration: const InputDecoration(
-                        labelText: 'sec',
-                        helperText: '초',
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(3)),
-                  ),
+              ),
+              SizedBox(
+                width: 65,
+                child: TextField(
+                  controller: sec,
+                  decoration: const InputDecoration(
+                      labelText: 'sec',
+                      helperText: '초',
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.all(3)),
                 ),
+              ),
             ]),
             ElevatedButton(
               onPressed: () {},

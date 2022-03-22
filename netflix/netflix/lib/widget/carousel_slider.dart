@@ -44,7 +44,6 @@ class _CarouseImageState extends State<CarouseImage> {
             });
           }),
         ),
-        // ignore: avoid_unnecessary_containers
         Container(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 3),
           child: Text(

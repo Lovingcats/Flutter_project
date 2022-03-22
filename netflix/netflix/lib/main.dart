@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/screen/home_screen.dart';
+import 'package:netflix/screen/like_screen.dart';
 import 'package:netflix/screen/more_screen.dart';
+import 'package:netflix/screen/search_screen.dart';
 import 'package:netflix/widget/bottom_bar.dart';
 
 void main() {
@@ -22,19 +24,19 @@ class _MyAppState extends State<MyApp> {
         title: 'netfilx',
         theme:
             ThemeData(brightness: Brightness.dark, primaryColor: Colors.black),
-        home: DefaultTabController(
+        home: const DefaultTabController(
             length: 4,
             child: Scaffold(
               body: TabBarView(
-                physics: const NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 children: [
-                  const HomeScreen(),
-                  Container(),
-                  Container(),
-                  const MoreScreen(),
+                  HomeScreen(),
+                  SearchScreen(),
+                  LikeScreen(),
+                  MoreScreen(),
                 ],
               ),
-              bottomNavigationBar: const Bottom(),
+              bottomNavigationBar: Bottom(),
             )));
   }
 }
