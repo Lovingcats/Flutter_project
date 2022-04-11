@@ -117,6 +117,7 @@ class Login extends StatelessWidget {
   }
 }
 
+// ignore: non_constant_identifier_names
 void LoginError() {
   Fluttertoast.showToast(
       msg: "로그인 정보를 다시 확인해주세요",
@@ -128,6 +129,7 @@ void LoginError() {
       fontSize: 16.0);
 }
 
+// ignore: non_constant_identifier_names
 void LoginSucces() {
   Fluttertoast.showToast(
       msg: "로그인 성공!",
