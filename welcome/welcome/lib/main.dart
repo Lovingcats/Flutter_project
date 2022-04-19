@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: "welcome",
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Welcome(),
+      title: 'Welcome',
+      home: const Welcome(),
+      theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF78FFBE)),
     );
   }
 }
@@ -28,31 +26,118 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-  var alignment = Alignment.bottomLeft;
-  bool _trigger = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
-      body: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          Positioned(
-            child: Text("Positioned"),
-            top: 10.0,
-          ),
-          AnimatedPositioned(
-            child: Container(
-              color: Colors.blue,
-            ),
-            top: _trigger ? 10.0 : 30.0,
-            height: _trigger ? 50.0 : 10.0,
-            width: 70.0,
-            duration: Duration(seconds: 1),
-            curve: Curves.easeIn,
-          ),
-        ],
-      ),
-    );
+        appBar: null,
+        body: Builder(builder: (context) {
+          return GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 70,
+                      ),
+                      const Icon(
+                        Icons.circle,
+                        size: 150,
+                      ),
+                      const SizedBox(height: 25),
+                      const Text(
+                        "WElBATO",
+                        style: TextStyle(
+                          fontSize: 48,
+                          fontFamily: "Grandstander",
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 35),
+                      Container(
+                        width: 300,
+                        height: 182,
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child: Column(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(40, 15, 40, 30),
+                              child: TextField(
+                                style: TextStyle(fontSize: 13),
+                                textAlign: TextAlign.left,
+                                decoration: InputDecoration(hintText: '아이디'),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(40, 0, 40, 30),
+                              child: TextField(
+                                style: TextStyle(fontSize: 13),
+                                textAlign: TextAlign.left,
+                                decoration: InputDecoration(hintText: '비밀번호'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 13),
+                        child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0),
+                              ),
+                              primary: Colors.white,
+                              minimumSize: Size(194, 30),
+                            ),
+                            child: const Text(
+                              "로그인",
+                              style: TextStyle(
+                                  fontSize: 13, color: Color(0xFFC4D3CC)),
+                            )),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 0),
+                              child: TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "회원가입",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        decoration: TextDecoration.underline,
+                                        decorationThickness: 3),
+                                  )),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 0),
+                              child: TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "비밀번호를 잊어버리셨나요?",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ));
+        }));
   }
 }

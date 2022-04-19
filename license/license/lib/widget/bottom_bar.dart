@@ -12,7 +12,7 @@ class Bottom extends StatelessWidget {
           tabs: [
             Tab(
                 icon: Icon(
-                  Iconn s.home,
+                  Icons.home,
                   size: 18,
                   color: Colors.black,
                 ),
