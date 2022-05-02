@@ -14,18 +14,18 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late TabController controller;
-  @override 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'licence',
-        theme: ThemeData(),
+        theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFD8EAFF)),
         home: DefaultTabController(
           length: 3,
           child: Scaffold(
             body: TabBarView(
               physics: const NeverScrollableScrollPhysics(),
               children: [
-               Container(
+                Container(
                   child: Text('home'),
                 ),
                 Container(
