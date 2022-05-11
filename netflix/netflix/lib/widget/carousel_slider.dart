@@ -19,7 +19,7 @@ class _CarouseImageState extends State<CarouseImage> {
   late String _currentKeyword;
 
   @override
-  void initState() {
+  void initState() {  
     super.initState();
     movies = widget.movies;
     images = movies.map((m) => Image.network(m.poster)).toList();
@@ -79,7 +79,7 @@ class _CarouseImageState extends State<CarouseImage> {
                               });
                             },
                             icon: const Icon(Icons.add),
-                          ),
+                             ),
                     const Text(
                       '내가 찜한 컨텐츠',
                       style: TextStyle(fontSize: 11),

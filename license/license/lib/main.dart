@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:license/screen/home_screen.dart';
+import 'package:license/screen/profile_screen.dart';
+import 'package:license/screen/search_screen.dart';
+import 'package:license/screen/profile_screen.dart';
 import 'package:license/widget/bottom_bar.dart';
 
 void main() {
@@ -19,24 +23,18 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         title: 'licence',
         theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFD8EAFF)),
-        home: DefaultTabController(
+        home: const DefaultTabController(
           length: 3,
           child: Scaffold(
             body: TabBarView(
-              physics: const NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               children: [
-                Container(
-                  child: Text('home'),
-                ),
-                Container(
-                  child: Text('search'),
-                ),
-                Container(
-                  child: Text('profile'),
-                ),
+                Home(),
+                Profile(),
+                Search(),
               ],
             ),
-            bottomNavigationBar: const Bottom(),
+            bottomNavigationBar: Bottom(),
           ),
         ));
   }
