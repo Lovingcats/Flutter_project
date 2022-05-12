@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:welcome/screens/picture.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -13,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Welcome',
       home: const Welcome(),
-      theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF78FFBE)),
+      theme: ThemeData(),
     );
   }
 }
@@ -29,6 +34,7 @@ class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color(0xFF78FFBE),
         appBar: null,
         body: Builder(builder: (context) {
           return GestureDetector(
@@ -86,15 +92,20 @@ class _WelcomeState extends State<Welcome> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 13),
+                        padding: const EdgeInsets.only(top: 13),
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const Picture()));
+                            },
                             style: ElevatedButton.styleFrom(
-                              shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(30.0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
                               ),
                               primary: Colors.white,
-                              minimumSize: Size(194, 30),
+                              minimumSize: const Size(194, 30),
                             ),
                             child: const Text(
                               "로그인",
@@ -102,37 +113,35 @@ class _WelcomeState extends State<Welcome> {
                                   fontSize: 13, color: Color(0xFFC4D3CC)),
                             )),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 0),
-                              child: TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    "회원가입",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        decoration: TextDecoration.underline,
-                                        decorationThickness: 3),
-                                  )),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 0),
-                              child: TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    "비밀번호를 잊어버리셨나요?",
-                                    style: TextStyle(
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 0),
+                            child: TextButton(
+                                onPressed: () {},
+                                child: const Text(
+                                  "회원가입",
+                                  style: TextStyle(
                                       color: Colors.white,
-                                    ),
-                                  )),
-                            ),
-                          ],
-                        ),
+                                      decoration: TextDecoration.underline,
+                                      decorationThickness: 3),
+                                )),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 0),
+                            child: TextButton(
+                                onPressed: () {},
+                                child: const Text(
+                                  "비밀번호를 잊어버리셨나요?",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                )),
+                          ),
+                        ],
                       ),
                     ],
                   ),
