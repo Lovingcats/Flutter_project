@@ -1,12 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_instagram_stories/flutter_instagram_stories.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:welcome/screens/instargram_story.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -32,10 +28,6 @@ class Picture extends StatefulWidget {
 }
 
 class _PictureState extends State<Picture> {
-  static String collectionDbName = 'story';
-  CollectionReference dbInstance =
-      FirebaseFirestore.instance.collection(collectionDbName);
-
   @override
   void initState() {
     super.initState();
@@ -54,33 +46,13 @@ class _PictureState extends State<Picture> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => const Home()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => StoryPageView()));
                 },
                 child: const Text("누르세요"),
               )
             ],
           ),
         ));
-  }
-
-  _backFromStoriesAlert() {
-    showDialog(
-      context: context,
-      builder: (_) => SimpleDialog(
-        title: const Text(
-          "User have looked stories and closed them.",
-          style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18.0),
-        ),
-        children: <Widget>[
-          SimpleDialogOption(
-            child: const Text("Dismiss"),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      ),
-    );
   }
 }
