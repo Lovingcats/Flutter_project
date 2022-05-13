@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:welcome/screens/picture.dart';
+import 'package:welcome/screens/signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -117,7 +118,11 @@ class _WelcomeState extends State<Welcome> {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 0),
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const SignUp()));
+               
+                                },
                                 child: const Text(
                                   "회원가입",
                                   style: TextStyle(
