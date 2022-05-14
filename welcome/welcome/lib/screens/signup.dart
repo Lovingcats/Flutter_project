@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({ Key? key }) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class SignUp extends StatefulWidget {
-  const SignUp({ Key? key }) : super(key: key);
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -38,10 +38,13 @@ class _SignUpState extends State<SignUp> {
       body: Center(
         child: Column(
           children: const [
-            Text("WELBATO", style: TextStyle(
-              fontSize: 30,
-              color: Colors.white
-            ),)
+            Text(
+              "hello",
+              style: TextStyle(
+                fontSize: 30,
+                color: Colors.white,
+              ),
+            )
           ],
         ),
       ),
