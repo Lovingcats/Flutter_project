@@ -120,7 +120,7 @@ class _WelcomeState extends State<Welcome> {
                             child: TextButton(
                                 onPressed: () {
                                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const SignUp()));
+                                      MaterialPageRoute(builder: (_) => const SignUp()));
                
                                 },
                                 child: const Text(

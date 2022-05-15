@@ -37,14 +37,23 @@ class _SignUpState extends State<SignUp> {
       appBar: null,
       body: Center(
         child: Column(
-          children: const [
-            Text(
-              "hello",
-              style: TextStyle(
-                fontSize: 30,
-                color: Colors.white,
+          children: [
+            Flexible(
+              flex: 6,
+              fit: FlexFit.tight,
+              child: Container(
+                alignment: Alignment.center,
+                color: const Color(0xffBEE3DB),
               ),
-            )
+            ),
+            Flexible(
+              flex: 4,
+              fit: FlexFit.tight,
+              child: Container(
+                alignment: Alignment.center,
+                color: Color(0xffFAF9F9),
+              ),
+            ),
           ],
         ),
       ),
