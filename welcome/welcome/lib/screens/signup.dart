@@ -31,6 +31,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  var _idController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,10 +115,28 @@ class _SignUpState extends State<SignUp> {
                         width: 260,
                         height: 25,
                         child: TextField(
+                          controller: _idController,
                           textAlign: TextAlign.start,
                           decoration: InputDecoration(
+                              suffixIcon: ElevatedButton(
+                                onPressed: () {},
+                                child: const Text(
+                                  "중복확인",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: "GrandStander",
+                                    color: Color(0xff555B6E),
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                  primary: Color(0xffFFD6BA),
+                                ),
+                              ),
                               hintText: '아이디 입력(5~10글자)',
-                              hintStyle: TextStyle(
+                              hintStyle: const TextStyle(
                                   fontSize: 10,
                                   fontFamily: "GrandStander",
                                   color: Color(0xffC4D3CC),
