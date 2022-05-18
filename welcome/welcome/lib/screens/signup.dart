@@ -31,6 +31,11 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  void _clearTextField() {
+    _idController.clear();
+    setState(() {});
+  }
+
   var _idController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -98,7 +103,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           Text(
                             "아이디",
-                            textAlign: TextAlign.start,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 11,
                                 fontFamily: "GrandStander",
@@ -106,43 +111,43 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ],
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            boxShadow: null,
-                            shape: BoxShape.rectangle,
-                            border: Border.all(
-                                color: Color(0xffC4D3CC), width: 1.0)),
-                        width: 260,
-                        height: 25,
-                        child: TextField(
-                          controller: _idController,
-                          textAlign: TextAlign.start,
-                          decoration: InputDecoration(
-                              suffixIcon: ElevatedButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  "중복확인",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontFamily: "GrandStander",
-                                    color: Color(0xff555B6E),
-                                  ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                  ),
-                                  primary: Color(0xffFFD6BA),
-                                ),
-                              ),
-                              hintText: '아이디 입력(5~10글자)',
-                              hintStyle: const TextStyle(
-                                  fontSize: 10,
-                                  fontFamily: "GrandStander",
-                                  color: Color(0xffC4D3CC),
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                      )
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 200,
+                            height: 23,
+                            child: TextField(
+                              maxLines: 1,
+                              minLines: 1,
+                              controller: _idController,
+                              textAlign: TextAlign.start,
+                              decoration: InputDecoration(
+                                  contentPadding:
+                                      EdgeInsets.symmetric(vertical: 0),
+                                  border: OutlineInputBorder(),
+                                  suffixIcon: _idController.text.isEmpty
+                                      ? null // Show nothing if the text field is empty
+                                      : IconButton(
+                                          icon: const Icon(Icons.clear),
+                                          onPressed: _clearTextField,
+                                        ),
+                                  hintText: '아이디 입력(5~10글자)',
+                                  hintStyle: const TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: "GrandStander",
+                                      color: Color(0xffC4D3CC),
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                                minimumSize: Size(35, 23)),
+                            child: Text("중복확인"),
+                          )
+                        ],
+                      ),
                     ],
                   ),
                   width: double.infinity,
