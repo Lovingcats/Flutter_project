@@ -95,11 +95,13 @@ class _SignUpState extends State<SignUp> {
                             fontFamily: "Grandstander",
                             color: Color(0xff89B0AE)),
                       ),
+
+                      //아이디
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 28,
+                            width: 18,
                           ),
                           Text(
                             "아이디",
@@ -115,7 +117,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            width: 200,
+                            width: 210,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -132,7 +134,7 @@ class _SignUpState extends State<SignUp> {
                                           icon: const Icon(Icons.clear),
                                           onPressed: _clearTextField,
                                         ),
-                                  hintText: '아이디 입력(5~10글자)',
+                                  hintText: '  아이디 입력(5~10글자)',
                                   hintStyle: const TextStyle(
                                       fontSize: 12,
                                       fontFamily: "GrandStander",
@@ -140,14 +142,95 @@ class _SignUpState extends State<SignUp> {
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                                minimumSize: Size(35, 23)),
-                            child: Text("중복확인"),
-                          )
+                          SizedBox(
+                            width: 5,
+                          ),
+                          SizedBox(
+                            width: 65,
+                            height: 23,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  primary: Color(0xffFDBFB4)),
+                              child: Text(
+                                "중복확인",
+                                style: TextStyle(
+                                    fontSize: 11.5, color: Color(0xff555B6E)),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
+                      //아이디 끝
+
+                      //비밀번호
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          SizedBox(
+                            width: 18,
+                          ),
+                          Text(
+                            "비밀번호",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 11,
+                                fontFamily: "GrandStander",
+                                color: Color(0xff555B6E)),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 210,
+                            height: 23,
+                            child: TextField(
+                              maxLines: 1,
+                              minLines: 1,
+                              controller: _idController,
+                              textAlign: TextAlign.start,
+                              decoration: InputDecoration(
+                                  contentPadding:
+                                      EdgeInsets.symmetric(vertical: 0),
+                                  border: OutlineInputBorder(),
+                                  suffixIcon: _idController.text.isEmpty
+                                      ? null // Show nothing if the text field is empty
+                                      : IconButton(
+                                          icon: const Icon(Icons.clear),
+                                          onPressed: _clearTextField,
+                                        ),
+                                  hintText: '  비밀번호(숫자,영문)',
+                                  hintStyle: const TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: "GrandStander",
+                                      color: Color(0xffC4D3CC),
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          SizedBox(
+                            width: 65,
+                            height: 23,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  primary: Color(0xffFDBFB4)),
+                              child: Text(
+                                "중복확인",
+                                style: TextStyle(
+                                    fontSize: 11.5, color: Color(0xff555B6E)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      //비밀번호 끝
                     ],
                   ),
                   width: double.infinity,
