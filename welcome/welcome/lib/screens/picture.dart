@@ -49,10 +49,40 @@ class _PictureState extends State<Picture> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (_) => StoryPageView()));
                 },
-                child: const Text("누르세요"),
-              )
+                child: const Text("스토리 기능"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  StoryDialog();
+                },
+                child: const Text("Alert 기능"),
+              ),
             ],
           ),
         ));
+  }
+
+  void StoryDialog() {
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+              insetPadding: EdgeInsets.zero,
+              contentPadding: EdgeInsets.zero,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              content: Builder(
+                builder: (context) {
+                  // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                  var height = MediaQuery.of(context).size.height;
+                  var width = MediaQuery.of(context).size.width;
+
+                  return Container(
+                    height: height - 230,
+                    width: width - 200,
+                  );
+                },
+              ),
+            ));
   }
 }

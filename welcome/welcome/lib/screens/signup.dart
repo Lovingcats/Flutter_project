@@ -513,29 +513,33 @@ class _SignUpState extends State<SignUp> {
                       const SizedBox(
                         height: 70,
                       ),
-
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text("가입하기",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xffFAF9F9),
-                            )),
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color(0xffB3E2DC),
-                          minimumSize: const Size(175, 47),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                   width: double.infinity,
                   height: double.infinity,
                   decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xffBDBDBD)),
                     color: const Color(0xffFAF9F9),
                     borderRadius: BorderRadius.circular(20.0),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 560,
+                left: 115,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text("가입하기",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color(0xffFAF9F9),
+                      )),
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xff9EC3FF),
+                    minimumSize: const Size(175, 47),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                   ),
                 ),
               ),
@@ -554,4 +558,6 @@ class _SignUpState extends State<SignUp> {
           ),
         ));
   }
+
+  
 }
