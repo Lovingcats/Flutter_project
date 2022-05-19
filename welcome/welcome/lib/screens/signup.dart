@@ -87,7 +87,7 @@ class _SignUpState extends State<SignUp> {
               Container(
                 height: 380,
                 width: double.infinity,
-                decoration: const BoxDecoration(color: Color(0xffBEE3DB)),
+                decoration: const BoxDecoration(color: Color(0xff9EC3FF)),
               ),
               const Positioned(
                 child: Padding(
@@ -118,14 +118,14 @@ class _SignUpState extends State<SignUp> {
                         style: TextStyle(
                             fontSize: 24,
                             fontFamily: "Grandstander",
-                            color: Color(0xff89B0AE)),
+                            color: Color(0xff0C264B)),
                       ),
                       const Text(
                         "아래 정보를 입력하세요.",
                         style: TextStyle(
                             fontSize: 14,
                             fontFamily: "Grandstander",
-                            color: Color(0xff89B0AE)),
+                            color: Color(0xff0C264B)),
                       ),
 
                       //아이디
@@ -166,7 +166,7 @@ class _SignUpState extends State<SignUp> {
                                           icon: const Icon(Icons.cancel),
                                           onPressed: _idClearTextField,
                                         ),
-                                  hintText: '  아이디 입력(5~10글자)',
+                                  hintText: ' 아이디 입력(5~10글자)',
                                   hintStyle: const TextStyle(
                                       fontSize: 12,
                                       fontFamily: "GrandStander",
@@ -184,7 +184,7 @@ class _SignUpState extends State<SignUp> {
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                   padding: EdgeInsets.zero,
-                                  primary: const Color(0xffFDBFB4)),
+                                  primary: const Color(0xffFFEE95)),
                               child: const Text(
                                 "중복확인",
                                 style: TextStyle(
@@ -236,7 +236,7 @@ class _SignUpState extends State<SignUp> {
                                           icon: const Icon(Icons.clear),
                                           onPressed: _pwdClearTextField,
                                         ),
-                                  hintText: '  비밀번호(숫자,영문, 특수문자 조합 최소 8자)',
+                                  hintText: ' 비밀번호(숫자,영문, 특수문자 조합 최소 8자)',
                                   hintStyle: const TextStyle(
                                       fontSize: 12,
                                       fontFamily: "GrandStander",
@@ -288,7 +288,7 @@ class _SignUpState extends State<SignUp> {
                                           icon: const Icon(Icons.clear),
                                           onPressed: _pwd1ClearTextField,
                                         ),
-                                  hintText: '  비밀번호(숫자,영문, 특수문자 조합 최소 8자)',
+                                  hintText: ' 비밀번호(숫자,영문, 특수문자 조합 최소 8자)',
                                   hintStyle: const TextStyle(
                                       fontSize: 12,
                                       fontFamily: "GrandStander",
@@ -340,7 +340,7 @@ class _SignUpState extends State<SignUp> {
                                           icon: const Icon(Icons.clear),
                                           onPressed: _nameClearTextField,
                                         ),
-                                  hintText: '  이름(닉네임) 입력',
+                                  hintText: ' 이름(닉네임) 입력',
                                   hintStyle: const TextStyle(
                                       fontSize: 12,
                                       fontFamily: "GrandStander",
@@ -358,7 +358,7 @@ class _SignUpState extends State<SignUp> {
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                   padding: EdgeInsets.zero,
-                                  primary: const Color(0xffFDBFB4)),
+                                  primary: const Color(0xffFFEE95)),
                               child: const Text(
                                 "중복확인",
                                 style: TextStyle(
@@ -411,7 +411,7 @@ class _SignUpState extends State<SignUp> {
                                           icon: const Icon(Icons.clear),
                                           onPressed: _emailClearTextField,
                                         ),
-                                  hintText: '  이메일 입력',
+                                  hintText: ' 이메일 입력',
                                   hintStyle: const TextStyle(
                                       fontSize: 12,
                                       fontFamily: "GrandStander",
@@ -429,7 +429,7 @@ class _SignUpState extends State<SignUp> {
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                   padding: EdgeInsets.zero,
-                                  primary: const Color(0xffFDBFB4)),
+                                  primary: const Color(0xffFFEE95)),
                               child: const Text(
                                 "인증받기",
                                 style: TextStyle(
@@ -481,7 +481,7 @@ class _SignUpState extends State<SignUp> {
                                           icon: const Icon(Icons.clear),
                                           onPressed: _email1ClearTextField,
                                         ),
-                                  hintText: '  이메일 인증번호 인증',
+                                  hintText: ' 이메일 인증번호 인증',
                                   hintStyle: const TextStyle(
                                       fontSize: 12,
                                       fontFamily: "GrandStander",
@@ -499,7 +499,7 @@ class _SignUpState extends State<SignUp> {
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                   padding: EdgeInsets.zero,
-                                  primary: const Color(0xffFDBFB4)),
+                                  primary: const Color(0xffFFEE95)),
                               child: const Text(
                                 "확인",
                                 style: TextStyle(

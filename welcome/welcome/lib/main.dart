@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:welcome/screens/picture.dart';
 import 'package:welcome/screens/signup.dart';
 
@@ -31,7 +32,7 @@ class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFF78FFBE),
+        backgroundColor: const Color(0xFF9EC3FF),
         appBar: null,
         body: Builder(builder: (context) {
           return GestureDetector(
@@ -71,18 +72,46 @@ class _WelcomeState extends State<Welcome> {
                           children: const [
                             Padding(
                               padding: EdgeInsets.fromLTRB(40, 15, 40, 30),
-                              child: TextField(
-                                style: TextStyle(fontSize: 13),
-                                textAlign: TextAlign.left,
-                                decoration: InputDecoration(hintText: '아이디'),
+                              child: Padding(
+                                padding: EdgeInsets.zero,
+                                child: TextField(
+                                  style: TextStyle(fontSize: 15),
+                                  textAlign: TextAlign.left,
+                                  decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Color(0xff9EC3FF)),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Color(0xff9EC3FF)),
+                                      ),
+                                      hintText: '아이디',
+                                      hintStyle:
+                                          TextStyle(color: Color(0xff9EC3FF))),
+                                ),
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(40, 0, 40, 30),
-                              child: TextField(
-                                style: TextStyle(fontSize: 13),
-                                textAlign: TextAlign.left,
-                                decoration: InputDecoration(hintText: '비밀번호'),
+                              child: Padding(
+                                padding: EdgeInsets.zero,
+                                child: TextField(
+                                  style: TextStyle(fontSize: 15),
+                                  textAlign: TextAlign.left,
+                                  decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Color(0xff9EC3FF)),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Color(0xff9EC3FF)),
+                                      ),
+                                      hintText: '비밀번호',
+                                      hintStyle:
+                                          TextStyle(color: Color(0xff9EC3FF))),
+                                ),
                               ),
                             ),
                           ],
@@ -107,7 +136,7 @@ class _WelcomeState extends State<Welcome> {
                             child: const Text(
                               "로그인",
                               style: TextStyle(
-                                  fontSize: 13, color: Color(0xFFC4D3CC)),
+                                  fontSize: 13, color: Color(0xFF9EC3FF)),
                             )),
                       ),
                       const SizedBox(
@@ -115,13 +144,14 @@ class _WelcomeState extends State<Welcome> {
                       ),
                       Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 0),
+                          Container(
+                            padding: EdgeInsets.all(0.0),
                             child: TextButton(
                                 onPressed: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) => const SignUp()));
-               
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => const SignUp()));
                                 },
                                 child: const Text(
                                   "회원가입",
@@ -131,8 +161,8 @@ class _WelcomeState extends State<Welcome> {
                                       decorationThickness: 3),
                                 )),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 0),
+                          Container(
+                            padding: EdgeInsets.all(0.0),
                             child: TextButton(
                                 onPressed: () {},
                                 child: const Text(
