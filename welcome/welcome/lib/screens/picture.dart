@@ -65,24 +65,54 @@ class _PictureState extends State<Picture> {
   void StoryDialog() {
     showDialog(
         context: context,
-        builder: (_) => new AlertDialog(
-              insetPadding: EdgeInsets.zero,
-              contentPadding: EdgeInsets.zero,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              content: Builder(
-                builder: (context) {
-                  // Get available height and width of the build area of this widget. Make a choice depending on the size.
-                  var height = MediaQuery.of(context).size.height;
-                  var width = MediaQuery.of(context).size.width;
-
-                  return Container(
-                    height: height - 230,
-                    width: width - 200,
-                  );
-                },
-              ),
-            ));
+        builder: (_) => Dialog(
+            backgroundColor: Colors.transparent,
+            insetPadding: const EdgeInsets.all(10),
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: const Color(0xffEDDD8A)),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 100,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30)),
+                      color: Color(0xffF29E60)),
+                ),
+                Positioned(
+                  top: 20,
+                  right: 30,
+                  left: 0.01,
+                  child: Container(
+                    width: 530,
+                    height: 620,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: const Color(0xffFFEE95)),
+                  ),
+                ),
+                Positioned(
+                  top: 20,
+                  right: 30,
+                  left: 0.01,
+                  child: Container(
+                    width: 500,
+                    height: 80,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30)),
+                        color: Color(0xffFFAD71)),
+                  ),
+                ),
+              ],
+            )));
   }
 }
