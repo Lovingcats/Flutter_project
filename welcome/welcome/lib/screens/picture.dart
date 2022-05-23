@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:welcome/screens/instargram_story.dart';
+import 'package:welcome/screens/joystick.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,6 +57,13 @@ class _PictureState extends State<Picture> {
                   StoryDialog();
                 },
                 child: const Text("Alert 기능"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => JoyStick()));
+                },
+                child: const Text("조이스틱 이동 기능"),
               ),
             ],
           ),
