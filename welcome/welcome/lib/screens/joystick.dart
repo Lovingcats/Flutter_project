@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_joystick/flutter_joystick.dart';
+import 'package:welcome/screens/instargram_story.dart';
 
 const step = 10;
 const ballSize = 20.0;
@@ -25,11 +26,13 @@ class JoyStick extends StatefulWidget {
 }
 
 class _JoyStickState extends State<JoyStick> {
-  double _x = 201;
-  double _y = 250;
+  double _x = 200;
+  double _y = 200;
   final JoystickMode _joystickMode = JoystickMode.all;
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: null,
       body: SafeArea(
@@ -38,6 +41,11 @@ class _JoyStickState extends State<JoyStick> {
             Container(
               color: Colors.white,
             ),
+            Positioned(
+              left: 100,
+              top: 200,
+              child: Container(width: 20, height: 20, color: Colors.black),
+            ),
             Ball(_x, _y),
             Align(
               alignment: const Alignment(0, 0.8),
@@ -45,8 +53,13 @@ class _JoyStickState extends State<JoyStick> {
                 mode: _joystickMode,
                 listener: (details) {
                   setState(() {
-                    _x = _x + step * details.x;
-                    _y = _y + step * details.y;
+                    if (_x == 100 && _y == 200) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => StoryPageView()));
+                    } else {
+                      _x = _x + step * details.x;
+                      _y = _y + step * details.y;
+                    }
                   });
                 },
               ),
