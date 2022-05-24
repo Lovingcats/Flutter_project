@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:welcome/screens/camera.dart';
 import 'package:welcome/screens/instargram_story.dart';
 import 'package:welcome/screens/joystick.dart';
 
@@ -64,6 +65,13 @@ class _PictureState extends State<Picture> {
                       context, MaterialPageRoute(builder: (_) => JoyStick()));
                 },
                 child: const Text("조이스틱 이동 기능"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => Camera()));
+                },
+                child: const Text("카메라 기능"),
               ),
             ],
           ),

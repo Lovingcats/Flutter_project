@@ -27,12 +27,10 @@ class JoyStick extends StatefulWidget {
 }
 
 class _JoyStickState extends State<JoyStick> {
-  bool isfind = false;
   double _x = 200;
   double _y = 200;
   late Timer timer = timer;
   final JoystickMode _joystickMode = JoystickMode.all;
-  int _timerCount = 0;
 
   @override
   void initState() {
@@ -48,8 +46,6 @@ class _JoyStickState extends State<JoyStick> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: null,
       body: SafeArea(
@@ -71,21 +67,11 @@ class _JoyStickState extends State<JoyStick> {
                 listener: (details) {
                   setState(() {
                     if (((_x >= 95) && (_x <= 105)) &&
-                        ((_y >= 195) && (_y <= 205)) &&
-                        isfind == false) {
+                        ((_y >= 195) && (_y <= 205))) {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (_) => StoryPageView()));
-                      isfind = true;
-                      _timerCount = 0;
-                      timer = Timer.periodic(const Duration(milliseconds: 1000),
-                          (timer) {
-                        setState(() {
-                          _timerCount++;
-                          if (_timerCount == 3) {
-                            isfind = false;
-                          }
-                        });
-                      });
+                      _x = 120;
+                      _y = 200;
                     }
                     _x = _x + step * details.x;
                     _y = _y + step * details.y;
