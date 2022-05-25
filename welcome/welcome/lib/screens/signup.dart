@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp1());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp1 extends StatefulWidget {
+  const MyApp1({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MyApp1> createState() => _MyApp1State();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyApp1State extends State<MyApp1> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -558,6 +558,4 @@ class _SignUpState extends State<SignUp> {
           ),
         ));
   }
-
-  
 }

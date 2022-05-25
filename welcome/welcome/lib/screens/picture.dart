@@ -68,8 +68,8 @@ class _PictureState extends State<Picture> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => Camera()));
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => MyHomePage()));
                 },
                 child: const Text("카메라 기능"),
               ),
