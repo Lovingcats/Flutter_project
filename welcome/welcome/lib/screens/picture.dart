@@ -2,23 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:welcome/screens/camera.dart';
 import 'package:welcome/screens/instargram_story.dart';
 import 'package:welcome/screens/joystick.dart';
-Future<void> main() async {
-  // 디바이스에서 이용가능한 카메라 목록을 받아옵니다.
-  final cameras = await availableCameras();
-
-  // 이용가능한 카메라 목록에서 특정 카메라를 얻습니다.
-  final firstCamera = cameras.first;
-
-  runApp(
-    MaterialApp(
-      theme: ThemeData.dark(),
-      home: TakePictureScreen(
-        // 적절한 카메라를 TakePictureScreen 위젯에게 전달합니다.
-        camera: firstCamera,
-      ),
-    ),
-  );
-}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -86,7 +69,7 @@ class _PictureState extends State<Picture> {
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => TakePictureScreen(camera: ,)));
+                      context, MaterialPageRoute(builder: (_) => MyHomePage()));
                 },
                 child: const Text("카메라 기능"),
               ),
