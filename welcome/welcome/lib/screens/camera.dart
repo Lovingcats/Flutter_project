@@ -12,11 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
-
 void main() {
   runApp(const MyApp1());
 }
-
 
 class MyApp1 extends StatelessWidget {
   const MyApp1({Key? key}) : super(key: key);
