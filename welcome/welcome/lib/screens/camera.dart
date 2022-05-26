@@ -12,9 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
+
 void main() {
   runApp(const MyApp1());
 }
+
 
 class MyApp1 extends StatelessWidget {
   const MyApp1({Key? key}) : super(key: key);
@@ -66,11 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
         controller = VideoPlayerController.file(File(file.path));
       }
       _controller = controller;
-      // In web, most browsers won't honor a programmatic call to .play
-      // if the video has a sound track (and is not muted).
-      // Mute the video so it auto-plays in web!
-      // This is not needed if the call to .play is the result of user
-      // interaction (clicking on a "play" button, for example).
       const double volume = kIsWeb ? 0.0 : 1.0;
       await controller.setVolume(volume);
       await controller.initialize();
