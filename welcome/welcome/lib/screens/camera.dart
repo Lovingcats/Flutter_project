@@ -22,8 +22,8 @@ class MyApp1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Image Picker Demo',
-      home: MyHomePage(title: 'Image Picker Example'),
+      title: '사진등록',
+      home: MyHomePage(title: '사진등록'),
     );
   }
 }
@@ -157,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     if (_controller == null) {
       return const Text(
-        'You have not yet picked a video',
+        'asdasd', //보여지는 화면
         textAlign: TextAlign.center,
       );
     }
@@ -174,12 +174,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     if (_imageFileList != null) {
       return Semantics(
-        label: 'image_picker_example_picked_images',
+        label: '사진등록',
         child: ListView.builder(
           key: UniqueKey(),
           itemBuilder: (BuildContext context, int index) {
             return Semantics(
-              label: 'image_picker_example_picked_image',
+              label: '사진등록',
               child: kIsWeb
                   ? Image.network(_imageFileList![index].path)
                   : Image.file(File(_imageFileList![index].path)),
@@ -195,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     } else {
       return const Text(
-        'You have not yet picked an image.',
+        '사진을 등록해주세요!',
         textAlign: TextAlign.center,
       );
     }
