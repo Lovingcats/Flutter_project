@@ -54,8 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final ImagePicker _picker = ImagePicker();
   final TextEditingController maxWidthController = TextEditingController();
   final TextEditingController maxHeightController = TextEditingController();
-  final TextEditingController qualityController = TextEditingController();
-
   Future<void> _playVideo(XFile? file) async {
     if (file != null && mounted) {
       await _disposeVideoController();
@@ -91,12 +89,11 @@ class _MyHomePageState extends State<MyHomePage> {
       await _playVideo(file);
     } else if (isMultiImage) {
       await _displayPickImageDialog(context!,
-          (double? maxWidth, double? maxHeight, int? quality) async {
+          (double? maxWidth, double? maxHeight) async {
         try {
           final List<XFile>? pickedFileList = await _picker.pickMultiImage(
             maxWidth: maxWidth,
             maxHeight: maxHeight,
-            imageQuality: quality,
           );
           setState(() {
             _imageFileList = pickedFileList;
@@ -109,13 +106,12 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     } else {
       await _displayPickImageDialog(context!,
-          (double? maxWidth, double? maxHeight, int? quality) async {
+          (double? maxWidth, double? maxHeight) async {
         try {
           final XFile? pickedFile = await _picker.pickImage(
             source: source,
             maxWidth: maxWidth,
             maxHeight: maxHeight,
-            imageQuality: quality,
           );
           setState(() {
             _setImageFileListFromFile(pickedFile);
@@ -143,7 +139,6 @@ class _MyHomePageState extends State<MyHomePage> {
     _disposeVideoController();
     maxWidthController.dispose();
     maxHeightController.dispose();
-    qualityController.dispose();
     super.dispose();
   }
 
@@ -327,21 +322,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   controller: maxWidthController,
                   keyboardType:
                       const TextInputType.numberWithOptions(decimal: true),
-                  decoration: const InputDecoration(
-                      hintText: '최대 넓이를 입력해주세요'),
+                  decoration: const InputDecoration(hintText: '최대 넓이를 입력해주세요'),
                 ),
                 TextField(
                   controller: maxHeightController,
                   keyboardType:
                       const TextInputType.numberWithOptions(decimal: true),
-                  decoration: const InputDecoration(
-                      hintText: '최대 높이를 입력해주세요'),
-                ),
-                TextField(
-                  controller: qualityController,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                      hintText: 'Enter quality if desired'),
+                  decoration: const InputDecoration(hintText: '최대 높이를 입력해주세요'),
                 ),
               ],
             ),
@@ -361,10 +348,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     final double? height = maxHeightController.text.isNotEmpty
                         ? double.parse(maxHeightController.text)
                         : null;
-                    final int? quality = qualityController.text.isNotEmpty
-                        ? int.parse(qualityController.text)
-                        : null;
-                    onPick(width, height, quality);
+                    onPick(width, height);
                     Navigator.of(context).pop();
                   }),
             ],
@@ -374,7 +358,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 typedef OnPickImageCallback = void Function(
-    double? maxWidth, double? maxHeight, int? quality);
+    double? maxWidth, double? maxHeight);
 
 class AspectRatioVideo extends StatefulWidget {
   const AspectRatioVideo(this.controller, {Key? key}) : super(key: key);
