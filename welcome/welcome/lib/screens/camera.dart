@@ -246,7 +246,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     case ConnectionState.none:
                     case ConnectionState.waiting:
                       return const Text(
-                        'You have not yet picked an image.',
+                        '사진을 등록해주세요',
                         textAlign: TextAlign.center,
                       );
                     case ConnectionState.done:
@@ -259,7 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         );
                       } else {
                         return const Text(
-                          'You have not yet picked an image.',
+                          '사진을 등록해주세요!',
                           textAlign: TextAlign.center,
                         );
                       }
@@ -315,7 +315,7 @@ class _MyHomePageState extends State<MyHomePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Add optional parameters'),
+            title: const Text('옵션설정'),
             content: Column(
               children: <Widget>[
                 TextField(
