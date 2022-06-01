@@ -335,7 +335,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   keyboardType:
                       const TextInputType.numberWithOptions(decimal: true),
                   decoration: const InputDecoration(
-                      hintText: 'Enter maxHeight if desired'),
+                      hintText: '최대 높이를 입력해주세요'),
                 ),
                 TextField(
                   controller: qualityController,
