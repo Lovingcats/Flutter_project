@@ -51,8 +51,12 @@ class _JoyStickState extends State<JoyStick> {
       body: SafeArea(
         child: Stack(
           children: [
-            Container(
-              color: Colors.white,
+            AnimatedPositioned(
+              left: _x,
+              top: _y,
+              height: 1000,
+              child: Image.asset("images/mapExample.png"),
+              duration: Duration(microseconds: 200),
             ),
             Positioned(
               left: 100,
