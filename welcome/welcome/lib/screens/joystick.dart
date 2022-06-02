@@ -3,7 +3,7 @@ import 'package:flutter_joystick/flutter_joystick.dart';
 import 'package:welcome/screens/instargram_story.dart';
 import 'dart:async';
 
-const step = 10;
+const step = 3;
 const ballSize = 20.0;
 double position = 0;
 
@@ -47,20 +47,25 @@ class _JoyStickState extends State<JoyStick> {
 
   @override
   Widget build(BuildContext context) {
+    double _bx = MediaQuery.of(context).size.width / 2;
+    double _by = MediaQuery.of(context).size.height / 2;
     return Scaffold(
       appBar: null,
       body: SafeArea(
         child: Stack(
           children: [
-            Container(
-              color: Colors.white,
+            AnimatedPositioned(
+              left: _x,
+              top: _y,
+              child: Image.asset("images/mapExample.png"),
+              duration: Duration(milliseconds: 200),
             ),
             Positioned(
               left: 100,
               top: 200,
               child: Container(width: 20, height: 20, color: Colors.black),
             ),
-            Ball(_x, _y),
+            Ball(_bx, _by),
             Align(
               alignment: const Alignment(0, 0.8),
               child: Joystick(
