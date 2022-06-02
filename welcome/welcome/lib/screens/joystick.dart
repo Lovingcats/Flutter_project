@@ -28,8 +28,8 @@ class JoyStick extends StatefulWidget {
 }
 
 class _JoyStickState extends State<JoyStick> {
-  double _x = 200;
-  double _y = 200;
+  double _x = 100;
+  double _y = 100;
   late Timer timer = timer;
   final JoystickMode _joystickMode = JoystickMode.all;
 

@@ -144,7 +144,7 @@ class _WelcomeState extends State<Welcome> {
                       Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.all(0.0),
+                            padding: const EdgeInsets.all(0.0),
                             child: TextButton(
                                 onPressed: () {
                                   Navigator.push(
@@ -161,7 +161,7 @@ class _WelcomeState extends State<Welcome> {
                                 )),
                           ),
                           Container(
-                            padding: EdgeInsets.all(0.0),
+                            padding: const EdgeInsets.all(0.0),
                             child: TextButton(
                                 onPressed: () {},
                                 child: const Text(
@@ -179,4 +179,4 @@ class _WelcomeState extends State<Welcome> {
               ));
         }));
   }
-}
+}//주석달기
