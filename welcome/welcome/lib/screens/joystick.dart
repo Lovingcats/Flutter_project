@@ -5,6 +5,7 @@ import 'dart:async';
 
 const step = 10;
 const ballSize = 20.0;
+double position = 0;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -51,12 +52,8 @@ class _JoyStickState extends State<JoyStick> {
       body: SafeArea(
         child: Stack(
           children: [
-            AnimatedPositioned(
-              left: _x,
-              top: _y,
-              height: 1000,
-              child: Image.asset("images/mapExample.png"),
-              duration: Duration(microseconds: 200),
+            Container(
+              color: Colors.white,
             ),
             Positioned(
               left: 100,
