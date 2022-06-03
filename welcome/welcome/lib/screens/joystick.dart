@@ -55,8 +55,8 @@ class _JoyStickState extends State<JoyStick> {
         child: Stack(
           children: [
             AnimatedPositioned(
-              left: _x,
-              top: _y,
+              left: _x * -1,
+              top: _y * -1,
               child: Image.asset("images/mapExample.png"),
               duration: Duration(milliseconds: 200),
             ),
