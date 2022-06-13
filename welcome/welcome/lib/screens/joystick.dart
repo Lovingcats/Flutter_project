@@ -3,10 +3,11 @@ import 'package:flutter_joystick/flutter_joystick.dart';
 import 'package:welcome/screens/instargram_story.dart';
 import 'dart:async';
 
-const step = 3;
-const ballSize = 20.0;
+const step = 3; //한번 이동할때 얼마나 이동할것인가?
+const ballSize = 20.0; //이동할 주체의 크기
 double position = 0;
 
+//title과 debug표시를 없애고 Joystick 불러옴
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//상태변화가 있는 위젯이라 stateful 위젯으로 선언
 class JoyStick extends StatefulWidget {
   const JoyStick({Key? key}) : super(key: key);
 
@@ -28,20 +30,28 @@ class JoyStick extends StatefulWidget {
 }
 
 class _JoyStickState extends State<JoyStick> {
+  //움직이는 주체의 처음 위치
   double _x = 100;
   double _y = 100;
-  late Timer timer = timer;
   final JoystickMode _joystickMode = JoystickMode.all;
+
+  //GlobalKey 선언(위젯의 크기를 구하기 위함)
+  GlobalKey _viewkey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
+
+    //위젯이 그려진 후 _getSize가 실행 됨
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      _getSize();
+    });
   }
+
+  _getSize() {}
 
   @override
   void dispose() {
-    timer.cancel();
-
     super.dispose();
   }
 
