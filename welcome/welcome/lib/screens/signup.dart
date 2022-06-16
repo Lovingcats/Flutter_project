@@ -452,7 +452,7 @@ class _SignUpState extends State<SignUp> {
                         ],
                       ),
                       //이름 (닉네임) 끝
-                      Column(
+                      Co`lumn(
                         children: [
                           ListTile(
                             title: Text('재학생'),
