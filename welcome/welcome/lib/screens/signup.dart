@@ -51,16 +51,6 @@ class _SignUpState extends State<SignUp> {
     setState(() {});
   }
 
-  void _emailClearTextField() {
-    _emailController.clear();
-    setState(() {});
-  }
-
-  void _email1ClearTextField() {
-    _email1Controller.clear();
-    setState(() {});
-  }
-
   final _idController = TextEditingController();
   final _pwdController = TextEditingController();
   final _pwd1Controller = TextEditingController();
@@ -127,13 +117,17 @@ class _SignUpState extends State<SignUp> {
                             fontFamily: "Grandstander",
                             color: Color(0xff0C264B)),
                       ),
+                      SizedBox(
+                        height: 15,
+                      ),
 
                       //아이디
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 18,
+                            width: 20,
                           ),
                           Text(
                             "아이디",
@@ -148,8 +142,9 @@ class _SignUpState extends State<SignUp> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: 210,
+                          Container(
+                            margin: EdgeInsets.fromLTRB(15, 3, 15, 5),
+                            width: 220,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -168,42 +163,22 @@ class _SignUpState extends State<SignUp> {
                                         ),
                                   hintText: ' 아이디 입력(5~10글자)',
                                   hintStyle: const TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 10,
                                       fontFamily: "GrandStander",
                                       color: Color(0xffC4D3CC),
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          SizedBox(
-                            width: 65,
-                            height: 23,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.zero,
-                                  primary: const Color(0xffFFEE95)),
-                              child: const Text(
-                                "중복확인",
-                                style: TextStyle(
-                                    fontSize: 11.5, color: Color(0xff555B6E)),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                       //아이디 끝
-                      const SizedBox(
-                        height: 10,
-                      ),
+
                       //비밀번호
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 18,
+                            width: 20,
                           ),
                           Text(
                             "비밀번호",
@@ -218,8 +193,9 @@ class _SignUpState extends State<SignUp> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: 280,
+                          Container(
+                            margin: EdgeInsets.fromLTRB(15, 3, 15, 5),
+                            width: 220,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -233,12 +209,12 @@ class _SignUpState extends State<SignUp> {
                                       ? null // Show nothing if the text field is empty
                                       : IconButton(
                                           padding: EdgeInsets.only(left: 40),
-                                          icon: const Icon(Icons.clear),
+                                          icon: const Icon(Icons.cancel),
                                           onPressed: _pwdClearTextField,
                                         ),
-                                  hintText: ' 비밀번호(숫자,영문, 특수문자 조합 최소 8자)',
+                                  hintText: ' 비밀번호(숫자,영문,특수문자 조합 최소 8자)',
                                   hintStyle: const TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 10,
                                       fontFamily: "GrandStander",
                                       color: Color(0xffC4D3CC),
                                       fontWeight: FontWeight.bold)),
@@ -247,15 +223,12 @@ class _SignUpState extends State<SignUp> {
                         ],
                       ),
                       //비밀번호 끝
-                      const SizedBox(
-                        height: 10,
-                      ),
                       //비밀번호 확인
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 18,
+                            width: 20,
                           ),
                           Text(
                             "비밀번호 다시 입력",
@@ -270,8 +243,9 @@ class _SignUpState extends State<SignUp> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: 280,
+                          Container(
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 5),
+                            width: 220,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -285,12 +259,12 @@ class _SignUpState extends State<SignUp> {
                                       ? null // Show nothing if the text field is empty
                                       : IconButton(
                                           padding: EdgeInsets.only(left: 40),
-                                          icon: const Icon(Icons.clear),
+                                          icon: const Icon(Icons.cancel),
                                           onPressed: _pwd1ClearTextField,
                                         ),
-                                  hintText: ' 비밀번호(숫자,영문, 특수문자 조합 최소 8자)',
+                                  hintText: ' 비밀번호(숫자,영문,특수문자 조합 최소 8자)',
                                   hintStyle: const TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 10,
                                       fontFamily: "GrandStander",
                                       color: Color(0xffC4D3CC),
                                       fontWeight: FontWeight.bold)),
@@ -299,18 +273,15 @@ class _SignUpState extends State<SignUp> {
                         ],
                       ),
                       //비밀번호 확인 끝
-                      const SizedBox(
-                        height: 10,
-                      ),
                       //이름 (닉네임)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 18,
+                            width: 20,
                           ),
                           Text(
-                            "이름 (닉네임)",
+                            "이름",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 11,
@@ -322,8 +293,9 @@ class _SignUpState extends State<SignUp> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: 210,
+                          Container(
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 5),
+                            width: 220,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -337,48 +309,27 @@ class _SignUpState extends State<SignUp> {
                                       ? null // Show nothing if the text field is empty
                                       : IconButton(
                                           padding: EdgeInsets.only(left: 40),
-                                          icon: const Icon(Icons.clear),
+                                          icon: const Icon(Icons.cancel),
                                           onPressed: _nameClearTextField,
                                         ),
                                   hintText: ' 이름(닉네임) 입력',
                                   hintStyle: const TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 10,
                                       fontFamily: "GrandStander",
                                       color: Color(0xffC4D3CC),
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          SizedBox(
-                            width: 65,
-                            height: 23,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.zero,
-                                  primary: const Color(0xffFFEE95)),
-                              child: const Text(
-                                "중복확인",
-                                style: TextStyle(
-                                    fontSize: 11.5, color: Color(0xff555B6E)),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                       //이름 (닉네임) 끝
-                      const SizedBox(
-                        height: 10,
-                      ),
 
                       //이메일
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 18,
+                            width: 20,
                           ),
                           Text(
                             "이메일",
@@ -393,8 +344,9 @@ class _SignUpState extends State<SignUp> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: 210,
+                          Container(
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 5),
+                            width: 220,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -404,51 +356,43 @@ class _SignUpState extends State<SignUp> {
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 3),
                                   border: const OutlineInputBorder(),
+                                  suffixIconConstraints: BoxConstraints(
+                                      minHeight: 17,
+                                      maxHeight: 17,
+                                      maxWidth: 55,
+                                      minWidth: 55),
                                   suffixIcon: _emailController.text.isEmpty
                                       ? null // Show nothing if the text field is empty
-                                      : IconButton(
-                                          padding: EdgeInsets.only(left: 40),
-                                          icon: const Icon(Icons.clear),
-                                          onPressed: _emailClearTextField,
+                                      : ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                              padding: EdgeInsets.zero,
+                                              primary: const Color(0xffFFEE95)),
+                                          child: const Text(
+                                            "인증받기",
+                                            style: TextStyle(
+                                                fontSize: 11.5,
+                                                color: Color(0xff555B6E)),
+                                          ),
                                         ),
                                   hintText: ' 이메일 입력',
                                   hintStyle: const TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 10,
                                       fontFamily: "GrandStander",
                                       color: Color(0xffC4D3CC),
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          SizedBox(
-                            width: 65,
-                            height: 23,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.zero,
-                                  primary: const Color(0xffFFEE95)),
-                              child: const Text(
-                                "인증받기",
-                                style: TextStyle(
-                                    fontSize: 11.5, color: Color(0xff555B6E)),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                       //이메일 끝
-                      const SizedBox(
-                        height: 10,
-                      ),
+
                       //인증번호
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 18,
+                            width: 20,
                           ),
                           Text(
                             "인증번호",
@@ -463,8 +407,9 @@ class _SignUpState extends State<SignUp> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: 210,
+                          Container(
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 5),
+                            width: 220,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -474,37 +419,31 @@ class _SignUpState extends State<SignUp> {
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 3),
                                   border: const OutlineInputBorder(),
+                                  suffixIconConstraints: BoxConstraints(
+                                      minHeight: 17,
+                                      maxHeight: 17,
+                                      maxWidth: 55,
+                                      minWidth: 55),
                                   suffixIcon: _email1Controller.text.isEmpty
                                       ? null // Show nothing if the text field is empty
-                                      : IconButton(
-                                          padding: EdgeInsets.only(left: 40),
-                                          icon: const Icon(Icons.clear),
-                                          onPressed: _email1ClearTextField,
+                                      : ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                              padding: EdgeInsets.zero,
+                                              primary: const Color(0xffFFEE95)),
+                                          child: const Text(
+                                            "확인",
+                                            style: TextStyle(
+                                                fontSize: 11.5,
+                                                color: Color(0xff555B6E)),
+                                          ),
                                         ),
-                                  hintText: ' 이메일 인증번호 인증',
+                                  hintText: ' 이메일 인증번호 입력',
                                   hintStyle: const TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 10,
                                       fontFamily: "GrandStander",
                                       color: Color(0xffC4D3CC),
                                       fontWeight: FontWeight.bold)),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          SizedBox(
-                            width: 65,
-                            height: 23,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.zero,
-                                  primary: const Color(0xffFFEE95)),
-                              child: const Text(
-                                "확인",
-                                style: TextStyle(
-                                    fontSize: 11.5, color: Color(0xff555B6E)),
-                              ),
                             ),
                           ),
                         ],
