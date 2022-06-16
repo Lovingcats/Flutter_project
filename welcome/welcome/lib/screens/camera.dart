@@ -23,7 +23,7 @@ class MyApp1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: '사진등록',
-      home: MyHomePage(title: '사진등록'),
+      home: MyHomePage(title: '사진등록 '),
     );
   }
 }

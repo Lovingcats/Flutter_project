@@ -30,7 +30,7 @@ class SignUp extends StatefulWidget {
   State<SignUp> createState() => _SignUpState();
 }
 
-enum type { student, graduater, parents, normal }
+enum Type { student, graduater, parents, normal }
 
 class _SignUpState extends State<SignUp> {
   void _idClearTextField() {
@@ -53,7 +53,7 @@ class _SignUpState extends State<SignUp> {
     setState(() {});
   }
 
-  type _type = type.student;
+  Type _type = Type.student;
   final _idController = TextEditingController();
   final _pwdController = TextEditingController();
   final _pwd1Controller = TextEditingController();
@@ -452,40 +452,62 @@ class _SignUpState extends State<SignUp> {
                         ],
                       ),
                       //이름 (닉네임) 끝
-                      Row(
+                      Column(
                         children: [
-                           ListTile(
-               title: Text('남자'),
-               leading: Radio(
-                 value: _type.,
-                 groupValue: _gender,
-                 onChanged: (value) {
-                   setState(() {
-                     _gender = value;
-                   });
-                 },
-               ),
-             ),
-              ListTile(
-                title: Text('여자'),
-                leading: Radio(
-                  value: Gender.WOMEN,
-                  groupValue: _gender,
-                  onChanged: (value) {
-                    setState(() {
-                      _gender = value;
-                    });
-                  },
-                ),
-              )
+                          ListTile(
+                            title: Text('재학생'),
+                            leading: Radio(
+                              value: Type.student,
+                              groupValue: _type,
+                              onChanged: (value) {
+                                setState(() {
+                                  _type = value as Type;
+                                });
+                              },
+                            ),
+                          ),
+                          ListTile(
+                            title: Text('졸업생'),
+                            leading: Radio(
+                              value: Type.graduater,
+                              groupValue: _type,
+                              onChanged: (value) {
+                                setState(() {
+                                  _type = value as Type;
+                                });
+                              },
+                            ),
+                          ),
+                          ListTile(
+                            title: Text('학부모'),
+                            leading: Radio(
+                              value: Type.parents,
+                              groupValue: _type,
+                              onChanged: (value) {
+                                setState(() {
+                                  _type = value as Type;
+                                });
+                              },
+                            ),
+                          ),
+                          ListTile(
+                            title: Text('일반'),
+                            leading: Radio(
+                              value: Type.normal,
+                              groupValue: _type,
+                              onChanged: (value) {
+                                setState(() {
+                                  _type = value as Type;
+                                });
+                              },
+                            ),
+                          ),
                         ],
-                      )
+                      ),
 
                       const SizedBox(
                         height: 70,
                       ),
-
-                      
                     ],
                   ),
                   width: double.infinity,

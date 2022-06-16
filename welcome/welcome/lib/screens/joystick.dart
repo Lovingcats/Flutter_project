@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_joystick/flutter_joystick.dart';
 import 'package:welcome/screens/instargram_story.dart';
 
-const step = 5; //한번 이동할때 얼마나 이동할것인가?
-const ballSize = 20.0; //이동할 주체의 크기
+const step = 5;
+const ballSize = 20.0;
 double position = 0;
 
-//title과 debug표시를 없애고 Joystick 불러옴
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//상태변화가 있는 위젯이라 stateful 위젯으로 선언
 class JoyStick extends StatefulWidget {
   const JoyStick({Key? key}) : super(key: key);
 
@@ -29,13 +27,11 @@ class JoyStick extends StatefulWidget {
 }
 
 class _JoyStickState extends State<JoyStick> {
-  //캐릭터가 아닌 맵을 움직임
   double _x = 1900;
   double _y = 1100;
 
   final JoystickMode _joystickMode = JoystickMode.all;
 
-  //GlobalKey 선언(위젯의 크기를 구하기 위함)
   GlobalKey _mapkey = GlobalKey();
 
   @override
@@ -50,7 +46,6 @@ class _JoyStickState extends State<JoyStick> {
 
   @override
   Widget build(BuildContext context) {
-    //공의 처음 위치
     double _bx = MediaQuery.of(context).size.width / 2;
     double _by = MediaQuery.of(context).size.height / 2;
     return Scaffold(
@@ -59,7 +54,6 @@ class _JoyStickState extends State<JoyStick> {
         child: Stack(
           children: [
             AnimatedPositioned(
-              //맵의 처음 위치(반응형)
               left: _x * -1,
               top: _y * -1,
               child: Image.asset("images/map.png"),
