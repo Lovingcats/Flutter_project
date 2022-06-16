@@ -3,7 +3,7 @@ import 'package:flutter_joystick/flutter_joystick.dart';
 import 'package:welcome/screens/instargram_story.dart';
 import 'dart:async';
 
-const step = 10; //한번 이동할때 얼마나 이동할것인가?
+const step = 5; //한번 이동할때 얼마나 이동할것인가?
 const ballSize = 20.0; //이동할 주체의 크기
 double position = 0;
 
@@ -31,8 +31,9 @@ class JoyStick extends StatefulWidget {
 
 class _JoyStickState extends State<JoyStick> {
   //캐릭터가 아닌 맵을 움직임
-  double _x = 2100;
-  double _y = 1000;
+  double _x = 1900;
+  double _y = 1100;
+
   final JoystickMode _joystickMode = JoystickMode.all;
 
   //GlobalKey 선언(위젯의 크기를 구하기 위함)
@@ -66,8 +67,8 @@ class _JoyStickState extends State<JoyStick> {
               duration: Duration(milliseconds: 200),
             ),
             Positioned(
-              left: 100,
-              top: 200,
+              left: (_x - 1800) * -1,
+              top: (_y - 900) * -1,
               child: Container(width: 20, height: 20, color: Colors.black),
             ),
             Ball(_bx, _by),
@@ -77,12 +78,13 @@ class _JoyStickState extends State<JoyStick> {
                 mode: _joystickMode,
                 listener: (details) {
                   setState(() {
-                    if (((_x >= 95) && (_x <= 105)) &&
-                        ((_y >= 195) && (_y <= 205))) {
+                    if (((_x >= (_x - 1795) * -1) &&
+                            (_x <= (_x - 1805) * -1)) &&
+                        ((_y >= (_y - 895) * -1) && (_y <= (_y - 905) * -1))) {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (_) => StoryPageView()));
-                      _x = 120;
-                      _y = 200;
+                      _x = (_x - 1830) * -1;
+                      _y = (_y - 920) * -1;
                     }
                     _x = _x + step * details.x;
                     _y = _y + step * details.y;
