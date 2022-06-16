@@ -30,6 +30,8 @@ class SignUp extends StatefulWidget {
   State<SignUp> createState() => _SignUpState();
 }
 
+enum type { student, graduater, parents, normal }
+
 class _SignUpState extends State<SignUp> {
   void _idClearTextField() {
     _idController.clear();
@@ -51,6 +53,7 @@ class _SignUpState extends State<SignUp> {
     setState(() {});
   }
 
+  type _type = type.student;
   final _idController = TextEditingController();
   final _pwdController = TextEditingController();
   final _pwd1Controller = TextEditingController();
@@ -118,7 +121,7 @@ class _SignUpState extends State<SignUp> {
                             color: Color(0xff0C264B)),
                       ),
                       SizedBox(
-                        height: 15,
+                        height: 25,
                       ),
 
                       //아이디
@@ -143,7 +146,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 3, 15, 5),
+                            margin: EdgeInsets.fromLTRB(15, 3, 15, 17),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -194,7 +197,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 3, 15, 5),
+                            margin: EdgeInsets.fromLTRB(15, 3, 15, 17),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -244,7 +247,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 2, 15, 5),
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 17),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -294,7 +297,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 2, 15, 5),
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 17),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -345,7 +348,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 2, 15, 5),
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 17),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -408,7 +411,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 2, 15, 5),
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 17),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -449,9 +452,40 @@ class _SignUpState extends State<SignUp> {
                         ],
                       ),
                       //이름 (닉네임) 끝
+                      Row(
+                        children: [
+                           ListTile(
+               title: Text('남자'),
+               leading: Radio(
+                 value: _type.,
+                 groupValue: _gender,
+                 onChanged: (value) {
+                   setState(() {
+                     _gender = value;
+                   });
+                 },
+               ),
+             ),
+              ListTile(
+                title: Text('여자'),
+                leading: Radio(
+                  value: Gender.WOMEN,
+                  groupValue: _gender,
+                  onChanged: (value) {
+                    setState(() {
+                      _gender = value;
+                    });
+                  },
+                ),
+              )
+                        ],
+                      )
+
                       const SizedBox(
                         height: 70,
                       ),
+
+                      
                     ],
                   ),
                   width: double.infinity,
@@ -464,8 +498,8 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               Positioned(
-                top: 560,
-                left: 115,
+                top: 630,
+                left: 91,
                 child: ElevatedButton(
                   onPressed: () {},
                   child: const Text("가입하기",
@@ -483,8 +517,8 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               const Positioned(
-                top: 620,
-                left: 53,
+                top: 700,
+                left: 30,
                 child: Text(
                   "welbato choigo jjangjjangman wooju daebag michin app",
                   style: TextStyle(

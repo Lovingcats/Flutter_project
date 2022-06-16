@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_joystick/flutter_joystick.dart';
 import 'package:welcome/screens/instargram_story.dart';
-import 'dart:async';
 
 const step = 5; //한번 이동할때 얼마나 이동할것인가?
 const ballSize = 20.0; //이동할 주체의 크기
