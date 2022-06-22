@@ -48,7 +48,7 @@ class _WelcomeState extends State<Welcome> {
                       const Icon(
                         Icons.circle,
                         size: 150,
-                      ),
+                        ),
                       const SizedBox(height: 25),
                       const Text(
                         "WElBATO",
