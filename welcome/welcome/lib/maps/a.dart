@@ -14,19 +14,19 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Welcome',
-      home: JoyStick(),
+      home: AJoyStick(),
     );
   }
 }
 
-class JoyStick extends StatefulWidget {
-  const JoyStick({Key? key}) : super(key: key);
+class AJoyStick extends StatefulWidget {
+  const AJoyStick({Key? key}) : super(key: key);
 
   @override
-  State<JoyStick> createState() => _JoyStickState();
+  State<AJoyStick> createState() => _AJoyStickState();
 }
 
-class _JoyStickState extends State<JoyStick> {
+class _AJoyStickState extends State<AJoyStick> {
   double _x = 1900;
   double _y = 1100;
 
@@ -56,7 +56,7 @@ class _JoyStickState extends State<JoyStick> {
             AnimatedPositioned(
               left: _x * -1,
               top: _y * -1,
-              child: Image.asset("images/map.png"),
+              child: Image.asset("images/map3.png"),
               duration: Duration(milliseconds: 200),
             ),
             Positioned(

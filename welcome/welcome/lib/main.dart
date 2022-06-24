@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:welcome/screens/picture.dart';
 import 'package:welcome/screens/signup.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // 아래처럼 원하는 화면 방향을 지정해보자
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const MyApp());
 }
 
@@ -48,7 +54,7 @@ class _WelcomeState extends State<Welcome> {
                       const Icon(
                         Icons.circle,
                         size: 150,
-                        ),
+                      ),
                       const SizedBox(height: 25),
                       const Text(
                         "WElBATO",
