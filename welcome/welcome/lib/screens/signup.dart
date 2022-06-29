@@ -455,7 +455,8 @@ class _SignUpState extends State<SignUp> {
                       Column(
                         children: [
                           ListTile(
-                            title: Text('재학생'),
+                            title: Text('재학'),
+                            
                             leading: Radio(
                               value: Type.student,
                               groupValue: _type,
@@ -467,7 +468,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                           ListTile(
-                            title: Text('졸업생'),
+                            title: Text('졸업'),
                             leading: Radio(
                               value: Type.graduater,
                               groupValue: _type,
@@ -479,7 +480,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                           ListTile(
-                            title: Text('학부모'),
+                            title: Text('학부'),
                             leading: Radio(
                               value: Type.parents,
                               groupValue: _type,
