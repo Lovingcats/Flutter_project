@@ -480,7 +480,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                           ListTile(
-                            title: Text('학부ah'), 
+                            title: Text('학부모'), 
                             leading: Radio(
                               value: Type.parents,
                               groupValue: _type,
