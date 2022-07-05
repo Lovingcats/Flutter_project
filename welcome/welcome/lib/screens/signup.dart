@@ -84,7 +84,7 @@ class _SignUpState extends State<SignUp> {
               ),
               const Positioned(
                 child: Padding(
-                  padding: EdgeInsets.all(25),
+                  padding: EdgeInsets.fromLTRB(25, 25, 25, 10),
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Text(
@@ -121,7 +121,7 @@ class _SignUpState extends State<SignUp> {
                             color: Color(0xff0C264B)),
                       ),
                       SizedBox(
-                        height: 25,
+                        height: 10,
                       ),
 
                       //아이디
@@ -130,7 +130,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 20,
+                            width: 45,
                           ),
                           Text(
                             "아이디",
@@ -146,7 +146,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 3, 15, 17),
+                            margin: EdgeInsets.fromLTRB(15, 3, 15, 10),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -168,7 +168,7 @@ class _SignUpState extends State<SignUp> {
                                   hintStyle: const TextStyle(
                                       fontSize: 10,
                                       fontFamily: "GrandStander",
-                                      color: Color(0xffC4D3CC),
+                                      color: Color(0xffCFCFCF),
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
@@ -181,7 +181,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 20,
+                            width: 45,
                           ),
                           Text(
                             "비밀번호",
@@ -197,7 +197,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 3, 15, 17),
+                            margin: EdgeInsets.fromLTRB(15, 3, 15, 10),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -219,7 +219,7 @@ class _SignUpState extends State<SignUp> {
                                   hintStyle: const TextStyle(
                                       fontSize: 10,
                                       fontFamily: "GrandStander",
-                                      color: Color(0xffC4D3CC),
+                                      color: Color(0xffCFCFCF),
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
@@ -231,7 +231,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 20,
+                            width: 45,
                           ),
                           Text(
                             "비밀번호 다시 입력",
@@ -247,7 +247,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 2, 15, 17),
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 10),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -269,7 +269,7 @@ class _SignUpState extends State<SignUp> {
                                   hintStyle: const TextStyle(
                                       fontSize: 10,
                                       fontFamily: "GrandStander",
-                                      color: Color(0xffC4D3CC),
+                                      color: Color(0xffCFCFCF),
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
@@ -281,7 +281,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 20,
+                            width: 45,
                           ),
                           Text(
                             "이름",
@@ -297,7 +297,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 2, 15, 17),
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 10),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -319,7 +319,7 @@ class _SignUpState extends State<SignUp> {
                                   hintStyle: const TextStyle(
                                       fontSize: 10,
                                       fontFamily: "GrandStander",
-                                      color: Color(0xffC4D3CC),
+                                      color: Color(0xffCFCFCF),
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
@@ -332,7 +332,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 20,
+                            width: 45,
                           ),
                           Text(
                             "이메일",
@@ -348,7 +348,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 2, 15, 17),
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 10),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -382,7 +382,7 @@ class _SignUpState extends State<SignUp> {
                                   hintStyle: const TextStyle(
                                       fontSize: 10,
                                       fontFamily: "GrandStander",
-                                      color: Color(0xffC4D3CC),
+                                      color: Color(0xffCFCFCF),
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
@@ -395,7 +395,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           SizedBox(
-                            width: 20,
+                            width: 45,
                           ),
                           Text(
                             "인증번호",
@@ -411,7 +411,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 2, 15, 17),
+                            margin: EdgeInsets.fromLTRB(15, 2, 15, 10),
                             width: 220,
                             height: 23,
                             child: TextField(
@@ -445,66 +445,13 @@ class _SignUpState extends State<SignUp> {
                                   hintStyle: const TextStyle(
                                       fontSize: 10,
                                       fontFamily: "GrandStander",
-                                      color: Color(0xffC4D3CC),
+                                      color: Color(0xffCFCFCF),
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
                         ],
                       ),
                       //이름 (닉네임) 끝
-                      Column(
-                        children: [
-                          ListTile(
-                            title: Text('재학'),
-                            
-                            leading: Radio(
-                              value: Type.student,
-                              groupValue: _type,
-                              onChanged: (value) {
-                                setState(() {
-                                  _type = value as Type;
-                                });
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            title: Text('졸업'),
-                            leading: Radio(
-                              value: Type.graduater,
-                              groupValue: _type,
-                              onChanged: (value) {
-                                setState(() {
-                                  _type = value as Type;
-                                });
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            title: Text('학부모'), 
-                            leading: Radio(
-                              value: Type.parents,
-                              groupValue: _type,
-                              onChanged: (value) {
-                                setState(() {
-                                  _type = value as Type;
-                                });
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            title: Text('일반'),
-                            leading: Radio(
-                              value: Type.normal,
-                              groupValue: _type,
-                              onChanged: (value) {
-                                setState(() {
-                                  _type = value as Type;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
 
                       const SizedBox(
                         height: 70,
@@ -521,11 +468,11 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               Positioned(
-                top: 630,
-                left: 91,
+                top: 557,
+                left: 115,
                 child: ElevatedButton(
                   onPressed: () {},
-                  child: const Text("가입하기",
+                  child: const Text("다음",
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xffFAF9F9),
@@ -539,17 +486,6 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-              const Positioned(
-                top: 700,
-                left: 30,
-                child: Text(
-                  "welbato choigo jjangjjangman wooju daebag michin app",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Color(0xffC4C4C4),
-                  ),
-                ),
-              )
             ],
           ),
         ));

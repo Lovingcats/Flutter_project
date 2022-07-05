@@ -36,6 +36,7 @@ dependencies:
   flutter_joystick: ^0.0.2
   image_picker: ^0.8.5+3
   carousel_slider: ^4.1.1
+  group_radio_button: ^1.2.0
 
 dev_dependencies:
   flutter_test:
