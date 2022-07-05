@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp1());
@@ -30,8 +32,6 @@ class SignUp extends StatefulWidget {
   State<SignUp> createState() => _SignUpState();
 }
 
-enum Type { student, graduater, parents, normal }
-
 class _SignUpState extends State<SignUp> {
   void _idClearTextField() {
     _idController.clear();
@@ -53,13 +53,32 @@ class _SignUpState extends State<SignUp> {
     setState(() {});
   }
 
-  Type _type = Type.student;
+  void _postRequest() async {
+    final url = Uri.parse('http://10.150.149.119/login/register');
+
+    http.Response response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: <String, String>{
+        'name': '$_nameController',
+        'id': '$_idController',
+        'pwd': '$_pwdController',
+        'email': '$_emailController',
+        'status': '$_status',
+        'grade': '2021'
+      },
+    );
+  }
+
   final _idController = TextEditingController();
   final _pwdController = TextEditingController();
   final _pwd1Controller = TextEditingController();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _email1Controller = TextEditingController();
+  late String _status;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +103,7 @@ class _SignUpState extends State<SignUp> {
               ),
               const Positioned(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(25, 25, 25, 10),
+                  padding: EdgeInsets.fromLTRB(25, 25, 25, 25),
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Text(
@@ -99,7 +118,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(50, 100, 50, 100),
+                padding: const EdgeInsets.fromLTRB(40, 80, 40, 80),
                 child: Container(
                   child: Column(
                     children: [
@@ -147,7 +166,7 @@ class _SignUpState extends State<SignUp> {
                         children: [
                           Container(
                             margin: EdgeInsets.fromLTRB(15, 3, 15, 10),
-                            width: 220,
+                            width: 245,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -198,7 +217,7 @@ class _SignUpState extends State<SignUp> {
                         children: [
                           Container(
                             margin: EdgeInsets.fromLTRB(15, 3, 15, 10),
-                            width: 220,
+                            width: 245,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -248,7 +267,7 @@ class _SignUpState extends State<SignUp> {
                         children: [
                           Container(
                             margin: EdgeInsets.fromLTRB(15, 2, 15, 10),
-                            width: 220,
+                            width: 245,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -298,7 +317,7 @@ class _SignUpState extends State<SignUp> {
                         children: [
                           Container(
                             margin: EdgeInsets.fromLTRB(15, 2, 15, 10),
-                            width: 220,
+                            width: 245,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -349,7 +368,7 @@ class _SignUpState extends State<SignUp> {
                         children: [
                           Container(
                             margin: EdgeInsets.fromLTRB(15, 2, 15, 10),
-                            width: 220,
+                            width: 245,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -412,7 +431,7 @@ class _SignUpState extends State<SignUp> {
                         children: [
                           Container(
                             margin: EdgeInsets.fromLTRB(15, 2, 15, 10),
-                            width: 220,
+                            width: 245,
                             height: 23,
                             child: TextField(
                               maxLines: 1,
@@ -451,8 +470,43 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ],
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          SizedBox(
+                            width: 45,
+                          ),
+                          Text(
+                            "신분",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 11,
+                                fontFamily: "GrandStander",
+                                color: Color(0xff555B6E)),
+                          ),
+                        ],
+                      ),
                       //이름 (닉네임) 끝
-
+                      CustomRadioButton(
+                        margin: EdgeInsets.fromLTRB(15, 2, 0, 1.1),
+                        height: 30,
+                        width: 80,
+                        elevation: 0,
+                        absoluteZeroSpacing: true,
+                        unSelectedColor: Theme.of(context).canvasColor,
+                        buttonLables: const ['재학생', '졸업생', '학부모', '일반'],
+                        buttonValues: const ["재학생", "졸업생", "학부모", "일반"],
+                        buttonTextStyle: const ButtonTextStyle(
+                            selectedColor: Color(0xff000000),
+                            unSelectedColor: Color(0xffBDBDBD),
+                            textStyle: TextStyle(fontSize: 14)),
+                        radioButtonValue: (value) {
+                          setState(() {
+                            _status = value as String;
+                          });
+                        },
+                        selectedColor: Color(0xffFFEE95),
+                      ),
                       const SizedBox(
                         height: 70,
                       ),
@@ -468,11 +522,13 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               Positioned(
-                top: 557,
+                top: 575,
                 left: 115,
                 child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text("다음",
+                  onPressed: () {
+                    _postRequest();
+                  },
+                  child: const Text("회원가입",
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xffFAF9F9),

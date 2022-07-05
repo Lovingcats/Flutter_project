@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Test</title>
+</head>
+
+<body>
+    <h1>Node.js Test</h1>
+    <div>
+        <form action="/login/register" method="post">
+            <input type="text" name="name" id="name" placeholder="이름 입력">
+            <input type="button" onclick="uniqueCheck()" value="중복 확인" />
+            <p><input type="text" name="id" placeholder="아이디"></p>
+            <p><input type="text" name="pwd" placeholder="비밀번호"></p>
+            <p><input type="text" name="email" id="email" placeholder="이메일">
+                <input type="button" onclick="emailAuth()" value="인증"/></p>
+            <p><input type="text" name="checkCode" id="checkcode" placeholder="인증코드"/>
+            <input type="button" onclick="checkCode()" value="코드 확인"/></p>
+            <P><input type="submit" value="회원가입"></P>
+        </form>
+    <div>
+    <div>
+        <form action="/login/signin" method="post">
+            <p><input type="text" name="id" placeholder="아이디"></p>
+            <p><input type="text" name="pwd" placeholder="비밀번호"></p>
+            <P><input type="submit" value="로그인"></P>
+        </form>
+    <div>
+    <button type="button" onclick="logout()">로그아웃</button>
+    <button type="button" onclick="image_upload()">이미지 업로드</button>
+    <script type="text/javascript">
+        const name = document.getElementById("name");
+        const emali = document.getElementById("emali");
+        const checkcode = document.getElementById("checkcode");
+        function logout() {
+            window.location = 'login/logout'
+        }
+        function image_upload() {
+            window.location = 'image'
+        }
+        function emailAuth() {
+            window.location = `login/mail?email=${email.value}`
+        }
+        function uniqueCheck() {
+            window.location = `login/check?name=${name.value}`
+        }
+        function checkCode() {
+            window.location = `login/checkCode?code=${checkcode.value}`
+        }
+    </script>
+</body>
+
+</html>
