@@ -126,9 +126,9 @@ void LoginError() {
       timeInSecForIosWeb: 1,
       backgroundColor: Colors.red,
       textColor: Colors.white,
-      fontSize: 16.0);
+fontSize: 16.0);
 }
-
+      
 // ignore: non_constant_identifier_names
 void LoginSucces() {
   Fluttertoast.showToast(

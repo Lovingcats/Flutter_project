@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:welcome/maps/b.dart';
 import 'package:welcome/screens/camera.dart';
 import 'package:welcome/screens/instargram_story.dart';
-import 'package:welcome/screens/select.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +39,7 @@ class _PictureState extends State<Picture> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("병준쌤을 위한 구현"),
+          title: const Text("기능"),
           centerTitle: true,
         ),
         body: Center(
@@ -61,8 +61,8 @@ class _PictureState extends State<Picture> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => Select()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => JoystickExample()));
                 },
                 child: const Text("조이스틱 이동 기능"),
               ),

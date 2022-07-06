@@ -1,6 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:welcome/main.dart';
 
 void main() {
   runApp(const MyApp1());
@@ -53,23 +56,15 @@ class _SignUpState extends State<SignUp> {
     setState(() {});
   }
 
-  void _postRequest() async {
-    final url = Uri.parse('http://10.150.149.119/login/register');
-
-    http.Response response = await http.post(
-      url,
-      headers: <String, String>{
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: <String, String>{
-        'name': '$_nameController',
-        'id': '$_idController',
-        'pwd': '$_pwdController',
-        'email': '$_emailController',
-        'status': '$_status',
-        'grade': '2021'
-      },
-    );
+  void SignupSucces() {
+    Fluttertoast.showToast(
+        msg: "회원가입 성공!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.blue,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 
   final _idController = TextEditingController();
@@ -78,8 +73,15 @@ class _SignUpState extends State<SignUp> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _email1Controller = TextEditingController();
+  String id = '';
+  String pwd = '';
+  String pwd1 = '';
+  String name = '';
+  String email = '';
+  String email1 = '';
   late String _status;
 
+  final String _url = "http://10.150.149.119:8888/login/register";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -525,10 +527,37 @@ class _SignUpState extends State<SignUp> {
                 top: 575,
                 left: 115,
                 child: ElevatedButton(
-                  onPressed: () {
-                    _postRequest();
+                  onPressed: () async {
+                    // setState(() {
+                    //   id = _idController.text;
+                    //   pwd = _pwdController.text;
+                    //   pwd1 = _pwd1Controller.text;
+                    //   name = _nameController.text;
+                    //   email = _emailController.text;
+                    //   email1 = _email1Controller.text;
+                    // });
+                    // print(_status);
+                    // print("$email");
+
+                    // http.Response response = await http.post(
+                    //   Uri.parse(_url),
+                    //   headers: <String, String>{
+                    //     'Content-Type': 'application/x-www-form-urlencoded',
+                    //   },
+                    //   body: <String, String>{
+                    //     'name': "$name",
+                    //     'id': "$id",
+                    //     'pwd': "$pwd",
+                    //     'email': "$email",
+                    //     'status': "$_status",
+                    //     'grade': "2021"
+                    //   },
+                    // );
+                    SignupSucces();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => const Welcome()));
                   },
-                  child: const Text("회원가입",
+                  child: const Text("완료",
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xffFAF9F9),
