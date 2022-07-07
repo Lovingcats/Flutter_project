@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_joystick/flutter_joystick.dart';
+import 'package:welcome/screens/instargram_story.dart';
 
 void main() {
   runApp(const JoystickExampleApp());
@@ -50,14 +51,29 @@ class _JoystickExampleState extends State<JoystickExample> {
       body: SafeArea(
         child: Stack(
           children: [
+            Positioned(
+              top: 96,
+              left: 159,
+              child: Container(
+                width: 20,
+                height: 20,
+                color: Colors.black,
+              ),
+            ),
             Ball(_x, _y),
             Align(
               alignment: const Alignment(0, 0.8),
               child: Joystick(
-                
                 mode: _joystickMode,
                 listener: (details) {
                   setState(() {
+                    if (((_x >= 140) && (_x <= 160)) &&
+                        ((_y >= 90) && (_y <= 110))) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => StoryPageView()));
+                      _x = _x + 20;
+                      _y = _y + 20;
+                    }
                     _x = _x + step * details.x;
                     _y = _y + step * details.y;
                   });

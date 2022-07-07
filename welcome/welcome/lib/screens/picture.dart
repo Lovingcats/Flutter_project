@@ -53,12 +53,12 @@ class _PictureState extends State<Picture> {
                 },
                 child: const Text("스토리 기능"),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  StoryDialog();
-                },
-                child: const Text("Alert 기능"),
-              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     StoryDialog();
+              //   },
+              //   child: const Text("Alert 기능"),
+              // ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
@@ -66,13 +66,13 @@ class _PictureState extends State<Picture> {
                 },
                 child: const Text("조이스틱 이동 기능"),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => MyHomePage()));
-                },
-                child: const Text("카메라 기능"),
-              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.push(
+              //         context, MaterialPageRoute(builder: (_) => MyHomePage()));
+              //   },
+              //   child: const Text("카메라 기능"),
+              // ),
             ],
           ),
         ));
