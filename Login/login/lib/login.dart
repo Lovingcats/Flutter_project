@@ -1,20 +1,39 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:login/success.dart';
 
 class Login extends StatelessWidget {
-  const Login({ Key? key }) : super(key: key);
+  const Login({Key? key}) : super(key: key);
 
   void _showButtonPressDialog(BuildContext context, String provider) {
-  Scaffold.of(context).showSnackBar(SnackBar(
-    content: Text('$provider Button Pressed!'),
-    backgroundColor: Colors.black26,
-    duration: Duration(milliseconds: 400),
-  ));
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text('$provider Button Pressed!'),
+      backgroundColor: Colors.black26,
+      duration: Duration(milliseconds: 400),
+    ));
   }
-  
+
   @override
   Widget build(BuildContext context) {
+    Future<Null> _login() async {
+      GoogleSignIn _googleSignIn = GoogleSignIn(
+        scopes: <String>[
+          'email',
+        ],
+      );
+
+      try {
+        var data = await _googleSignIn.signIn();
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Success()),
+        );
+      } catch (error) {
+        print(error);
+      }
+    }
+
     return Scaffold(
         backgroundColor: Color.fromRGBO(50, 50, 50, 1.0),
         appBar: null,
@@ -23,34 +42,12 @@ class Login extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SignInButtonBuilder(
-                  text: 'Get going with Email',
-                  icon: Icons.email,
-                  onPressed: () {
-                    _showButtonPressDialog(context, 'Email');
-                  },
-                  backgroundColor: Colors.blueGrey[700]!,
-                  width: 220.0,
-                ),
                 const Divider(),
                 SignInButton(
                   Buttons.Google,
                   onPressed: () {
+                    _login();
                     _showButtonPressDialog(context, 'Google');
-                  },
-                ),
-                const Divider(),
-                SignInButton(
-                  Buttons.FacebookNew,
-                  onPressed: () {
-                    _showButtonPressDialog(context, 'FacebookNew');
-                  },
-                ),
-                const Divider(),
-                SignInButton(
-                  Buttons.Apple,
-                  onPressed: () {
-                    _showButtonPressDialog(context, 'Apple');
                   },
                 ),
                 const Divider(),
@@ -72,7 +69,7 @@ class Login extends StatelessWidget {
                 const Divider(),
                 SignInButton(
                   Buttons.Twitter,
-                  text: "Use Twitter",
+                  text: "Sign up with Twitter",
                   onPressed: () {
                     _showButtonPressDialog(context, 'Twitter');
                   },
