@@ -557,7 +557,7 @@ class _SignUpState extends State<SignUp> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (_) => const Welcome()));
                   },
-                  child: const Text("완료",
+                  child: const Text("다음",
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xffFAF9F9),
