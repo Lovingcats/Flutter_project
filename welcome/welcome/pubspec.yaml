@@ -39,7 +39,9 @@ dependencies:
   custom_radio_grouped_button: ^2.1.2
   http: ^0.13.4
   fluttertoast: ^8.0.9
-
+  flutter_screenutil: ^5.5.3
+  dropdown_button2: ^1.7.1
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

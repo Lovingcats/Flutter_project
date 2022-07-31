@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:welcome/common/common.dart';
 import 'package:welcome/screens/picture.dart';
 import 'package:welcome/screens/signup.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/services.dart';
+import 'package:welcome/screens/signup/id_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,11 +17,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Welcome',
-      home: const Welcome(),
-      theme: ThemeData(),
+    // ignore: deprecated_member_use
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    return ScreenUtilInit(
+      designSize: const Size(414, 736),
+      builder: (BuildContext context, Widget? child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Welcome',
+        home: const Welcome(),
+        theme: ThemeData(),
+      ),
     );
   }
 }
@@ -39,8 +48,8 @@ class _WelcomeState extends State<Welcome> {
   final String _url = "http://10.150.149.119:8888/login/signin";
 
   void LoginSucces() {
-    Fluttertoast.showToast( 
-        msg: "로그인 성공!",
+    Fluttertoast.showToast(
+        msg: "로그인에 성공하셨습니다",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
@@ -48,181 +57,173 @@ class _WelcomeState extends State<Welcome> {
         textColor: Colors.white,
         fontSize: 16.0);
   }
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-          backgroundColor: const Color(0xFF9EC3FF),
-          appBar: null,
-          body: Builder(builder: (context) {
-            return GestureDetector(
-                onTap: () {
-                  FocusScope.of(context).unfocus();
-                },
-                child: SingleChildScrollView(
-                  child: Center(
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 70,
-                        ),
-                        const Icon(
-                          Icons.circle,
-                          size: 150,
-                        ),
-                        const SizedBox(height: 25),
-                        const Text(
-                          "WElBATO",
-                          style: TextStyle(
-                            fontSize: 48,
-                            fontFamily: "Grandstander",
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 35),
-                        Container(
-                          width: 300,
-                          height: 182,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(40, 15, 40, 30),
-                                child: Padding(
-                                  padding: EdgeInsets.zero,
-                                  child: TextField(
-                                    controller: _idController,
-                                    style: TextStyle(fontSize: 15),
-                                    textAlign: TextAlign.left,
-                                    decoration: const InputDecoration(
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Color(0xff9EC3FF)),
-                                        ),
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Color(0xff9EC3FF)),
-                                        ),
-                                        hintText: '아이디',
-                                        hintStyle: TextStyle(
-                                            color: Color(0xff9EC3FF))),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(40, 0, 40, 30),
-                                child: Padding(
-                                  padding: EdgeInsets.zero,
-                                  child: TextField(
-                                    controller: _pwdController,
-                                    style: TextStyle(fontSize: 15),
-                                    textAlign: TextAlign.left,
-                                    decoration: const InputDecoration(
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Color(0xff9EC3FF)),
-                                        ),
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Color(0xff9EC3FF)),
-                                        ),
-                                        hintText: '비밀번호',
-                                        hintStyle: TextStyle(
-                                            color: Color(0xff9EC3FF))),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 13),
-                          child: ElevatedButton(
-                              onPressed: () async {
-                                // setState(() {
-                                //   id = _idController.text;
-                                //   pwd = _pwdController.text;
-                                // });
-                                // http.Response response = await http.post(
-                                //   Uri.parse(_url),
-                                //   headers: <String, String>{
-                                //     'Content-Type':
-                                //         'application/x-www-form-urlencoded',
-                                //   },
-                                //   body: <String, String>{
-                                //     'id': "$id",
-                                //     'pwd': "$pwd",
-                                //   },
-                                // );
-                                LoginSucces();
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => const Picture()));
-                              },
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                primary: Colors.white,
-                                minimumSize: const Size(194, 30),
-                              ),
-                              child: const Text(
-                                "로그인",
-                                style: TextStyle(
-                                    fontSize: 13, color: Color(0xFF9EC3FF)),
-                              )),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(0.0),
-                              child: TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => const SignUp()));
-                                  },
-                                  child: const Text(
-                                    "회원가입",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        decoration: TextDecoration.underline,
-                                        decorationThickness: 3),
-                                  )),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.all(0.0),
-                              child: TextButton(
-                                  onPressed: () {},
-                                  child: const Text(
-                                    "비밀번호를 잊어버리셨나요?",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ));
-          }));
-      // ignore: non_constant_identifier_names
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+        backgroundColor: CommonColor.blue,
+        appBar: null,
+        body: Builder(builder: (context) {
+          return GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 70.h,
+                      ),
+                      Icon(
+                        Icons.circle,
+                        size: 150.h,
+                      ),
+                      SizedBox(height: 24.h),
+                      Text(
+                        "WElBATO",
+                        style: TextStyle(
+                          fontSize: 50.sp,
+                          fontFamily: "Grandstander",
+                          color: Colors.white,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      SizedBox(height: 28.h),
+                      Container(
+                        width: 321.w,
+                        height: 182.h,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25.r))),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsets.fromLTRB(48.w, 10.h, 48.w, 10.h),
+                              child: TextField(
+                                controller: _idController,
+                                decoration: InputDecoration(
+                                  labelText: 'ID',
+                                  enabledBorder: const UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: CommonColor.blue, width: 1),
+                                  ),
+                                  focusedErrorBorder:
+                                      const UnderlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.red, width: 5),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsets.fromLTRB(48.w, 0.h, 48.w, 10.h),
+                              child: TextField(
+                                controller: _pwdController,
+                                decoration: InputDecoration(
+                                  labelText: 'PW',
+                                  enabledBorder: const UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: CommonColor.blue, width: 1),
+                                  ),
+                                  focusedErrorBorder:
+                                      const UnderlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.red, width: 5),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 13),
+                        child: ElevatedButton(
+                            onPressed: () async {
+                              // setState(() {
+                              //   id = _idController.text;
+                              //   pwd = _pwdController.text;
+                              // });
+                              // http.Response response = await http.post(
+                              //   Uri.parse(_url),
+                              //   headers: <String, String>{
+                              //     'Content-Type':
+                              //         'application/x-www-form-urlencoded',
+                              //   },
+                              //   body: <String, String>{
+                              //     'id': "$id",
+                              //     'pwd': "$pwd",
+                              //   },
+                              // );
+                              LoginSucces();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const Picture()));
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              primary: Colors.white,
+                              minimumSize: Size(194.w, 40.h),
+                            ),
+                            child: Text(
+                              "로그인",
+                              style: TextStyle(
+                                  fontSize: 14.sp, color: CommonColor.blue),
+                            )),
+                      ),
+                      SizedBox(
+                        height: 27.h,
+                      ),
+                      Column(
+                        children: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => const ID()));
+                              },
+                              child: const Text(
+                                "회원가입",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    decoration: TextDecoration.underline,
+                                    decorationThickness: 3),
+                              )),
+                          TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "비밀번호를 잊어버리셨나요?",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ));
+        }));
+    // ignore: non_constant_identifier_names
   }
+}
 
+@override
+Widget build(BuildContext context) {
+  // TODO: implement build
+  throw UnimplementedError();
+}
