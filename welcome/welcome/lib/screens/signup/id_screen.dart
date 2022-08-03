@@ -43,7 +43,23 @@ class _IDState extends State<ID> {
         body: Center(
           child: Column(
             children: [
-              
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 12.h, left: 11.w),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        size: 22.h,
+                      ),
+                    ),
+                  )
+                ],
+              ),
               Padding(
                 padding: EdgeInsets.only(
                     top: 25.h, left: 22.w, bottom: 27.h, right: 131.w),
