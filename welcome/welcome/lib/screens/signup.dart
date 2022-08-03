@@ -553,9 +553,9 @@ class _SignUpState extends State<SignUp> {
                     //     'grade': "2021"
                     //   },
                     // );
-                    SignupSucces();
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const Welcome()));
+                    // SignupSucces();
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (_) => const Welcome()));
                   },
                   child: const Text("다음",
                       style: TextStyle(
