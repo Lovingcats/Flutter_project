@@ -36,7 +36,7 @@ class _NewCharacterState extends State<NewCharacter> {
                     IconButton(
                       onPressed: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => const Welcome()));
+                            MaterialPageRoute(builder: (_) => const Login()));
                       },
                       icon: Icon(
                         Icons.arrow_forward_ios,
