@@ -41,7 +41,8 @@ dependencies:
   fluttertoast: ^8.0.9
   flutter_screenutil: ^5.5.3
   dropdown_button2: ^1.7.1
-  
+  flutter_image_slideshow: ^0.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -74,6 +75,11 @@ flutter:
     - images/character/character6.png
     - images/character/character7.png
     - images/character/character8.png
+    - images/slideshow/show1.png
+    - images/buttonIcon/calender.png
+    - images/buttonIcon/eat.png
+    - images/buttonIcon/meta.png
+    - images/buttonIcon/time.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
