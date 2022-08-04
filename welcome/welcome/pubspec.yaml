@@ -42,6 +42,7 @@ dependencies:
   flutter_screenutil: ^5.5.3
   dropdown_button2: ^1.7.1
   flutter_image_slideshow: ^0.1.2
+  carousel_indicator: ^1.0.6
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/map3.png
+    - images/community.png
     - images/character/character1.png
     - images/character/character2.png
     - images/character/character3.png
