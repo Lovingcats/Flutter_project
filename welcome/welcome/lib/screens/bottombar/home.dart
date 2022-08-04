@@ -1,9 +1,8 @@
-
+import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:welcome/common/common.dart';
-
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,6 +13,97 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int count = 1;
+  int pageIndex = 2;
+  List<Widget> containers = [
+    GestureDetector(
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10.h))),
+        margin: EdgeInsets.fromLTRB(61.w, 22.h, 61.w, 22.h),
+        width: 292.w,
+        height: 265.h,
+        child: Padding(
+          padding: EdgeInsets.all(23.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "뜨끈 조언",
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 30.sp),
+              ),
+              Text(
+                "서로 조언을 주고 받을 수 있는\n커뮤니티",
+                style: TextStyle(fontSize: 18.sp),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+    GestureDetector(
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10.h))),
+        margin: EdgeInsets.fromLTRB(61.w, 22.h, 61.w, 22.h),
+        width: 292.w,
+        height: 265.h,
+        child: Padding(
+          padding: EdgeInsets.all(23.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "일반 커뮤니티",
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 30.sp),
+              ),
+              Text(
+                "사람들과\n소통할 수 있는 커뮤니티",
+                style: TextStyle(fontSize: 18.sp),
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [Image.asset("images/community.png")],
+              )
+            ],
+          ),
+        ),
+      ),
+    ),
+    GestureDetector(
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10.h))),
+        margin: EdgeInsets.fromLTRB(61.w, 22.h, 61.w, 22.h),
+        width: 292.w,
+        height: 265.h,
+        child: Padding(
+          padding: EdgeInsets.all(23.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "익명 커뮤니티",
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 30.sp),
+              ),
+              Text(
+                "사람들과 익명으로\n소통할 수 있는 공간",
+                style: TextStyle(fontSize: 18.sp),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -197,6 +287,27 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
+          Stack(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 311.h,
+                color: CommonColor.blue,
+                child: PageView(
+                  children: containers,
+                  onPageChanged: (index) {
+                    setState(() {
+                      pageIndex = index;
+                    });
+                  },
+                ),
+              ),
+              CarouselIndicator(
+                count: containers.length,
+                index: pageIndex,
+              )
+            ],
+          )
         ]));
   }
 }
