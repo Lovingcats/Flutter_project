@@ -291,7 +291,7 @@ class _HomeState extends State<Home> {
             children: [
               Container(
                 width: double.infinity,
-                height: 311.h,
+                height: 316.h,
                 color: CommonColor.blue,
                 child: PageView(
                   children: containers,
