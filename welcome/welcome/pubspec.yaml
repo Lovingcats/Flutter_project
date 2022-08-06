@@ -69,6 +69,7 @@ flutter:
   assets:
     - images/map3.png
     - images/community.png
+    - images/chat.png
     - images/character/character1.png
     - images/character/character2.png
     - images/character/character3.png
