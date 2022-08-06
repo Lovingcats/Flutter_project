@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
         width: 292.w,
         height: 265.h,
         child: Padding(
-          padding: EdgeInsets.all(23.h),
+          padding: EdgeInsets.only(top: 23.h, left: 23.w, right: 23.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -65,7 +65,7 @@ class _HomeState extends State<Home> {
                 style: TextStyle(fontSize: 18.sp),
               ),
               SizedBox(
-                height: 15.h,
+                height: 45.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
