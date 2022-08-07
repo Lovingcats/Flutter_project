@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:welcome/common/common.dart';
-
 import 'package:flutter/services.dart';
 import 'package:welcome/screens/bottombar/chat.dart';
 import 'package:welcome/screens/bottombar/community.dart';
