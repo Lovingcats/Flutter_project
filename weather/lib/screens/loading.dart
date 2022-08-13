@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather/data/my_location.dart';
 import 'package:weather/data/network.dart';
 import 'package:weather/screens/weather_screen.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const apiKey = '0d0cc1131b44cd6ea0027e60e69dc007';
 
@@ -34,20 +35,17 @@ class _LoadingState extends State<Loading> {
     var weatherData = await network.getJsonData();
 
     // ignore: use_build_context_synchronously
-    Navigator.push(context, MaterialPageRoute(builder: (context){
-      return Weather(parseWeatherData: weatherData,);
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return Weather(
+        parseWeatherData: weatherData,
+      );
     }));
   }
-
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text(
-          '로딩중..'
-        )
-      ),
+      body: Center(child: SpinKitWave(color: Colors.yellow)),
     );
   }
 }
