@@ -35,7 +35,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   geolocator: ^9.0.1
   http: ^0.13.5
-  
+  flutter_screenutil: ^5.5.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
