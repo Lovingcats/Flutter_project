@@ -38,7 +38,11 @@ class _MyHomePageState extends State<MyHomePage> {
   bool pressed1 = false;
   bool pressed2 = true;
   bool pressed3 = false;
-  int LeftPadding = 155;
+  int textSize1 = 18;
+  int textSize2 = 24;
+  int textSize3 = 18;
+
+  int leftPadding = 155;
   int boxSize = 85;
 
   @override
@@ -138,8 +142,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             pressed1 = true;
                             pressed2 = false;
                             pressed3 = false;
-                            LeftPadding = 35;
-                            boxSize = 116;
+                            textSize1 = 24;
+                            textSize2 = 18;
+                            textSize3 = 18;
+                            leftPadding = 35;
+                            boxSize = 136;
                           });
                         },
                         style: ElevatedButton.styleFrom(
@@ -152,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             "Yesterday",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20.sp,
+                              fontSize: textSize1.sp,
                               fontWeight: FontWeight.w300,
                             ),
                           ),
@@ -163,8 +170,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             pressed2 = true;
                             pressed1 = false;
                             pressed3 = false;
-                            LeftPadding = 155;
-                            boxSize = 85;
+                            textSize2 = 24;
+                            textSize1 = 18;
+                            textSize3 = 18;
+                            leftPadding = 152;
+                            boxSize = 95;
                           });
                         },
                         style: ElevatedButton.styleFrom(
@@ -177,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             "Today",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20.sp,
+                                fontSize: textSize2.sp,
                                 fontWeight: FontWeight.w300),
                           ),
                         )),
@@ -187,9 +197,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             pressed3 = true;
                             pressed1 = false;
                             pressed2 = false;
-
-                            LeftPadding = 243;
-                            boxSize = 122;
+                            textSize1 = 18;
+                            textSize2 = 18;
+                            textSize3 = 24;
+                            leftPadding = 226;
+                            boxSize = 138;
                           });
                         },
                         style: ElevatedButton.styleFrom(
@@ -202,7 +214,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             "Tomorrow",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20.sp,
+                                fontSize: textSize3.sp,
                                 fontWeight: FontWeight.w300),
                           ),
                         )),
@@ -218,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   AnimatedPadding(
                     duration: const Duration(microseconds: 100000),
-                    padding: EdgeInsets.only(left: LeftPadding.w),
+                    padding: EdgeInsets.only(left: leftPadding.w),
                     child: Container(
                       width: boxSize.w,
                       height: 1.h,
