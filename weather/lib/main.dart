@@ -35,153 +35,197 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool pressed1 = false;
+  bool pressed2 = true;
+  bool pressed3 = false;
+  int LeftPadding = 155;
+  int boxSize = 85;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.center,
-              colors: [Color(0xffFC8984), Color(0xffFCB563)])),
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xffE5AB79), Color(0xffC65072)])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: SafeArea(
+        appBar: AppBar(
+          bottomOpacity: 0.0,
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          leading: Padding(
+            padding: EdgeInsets.only(left: 20.w),
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                )),
+          ),
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(right: 30.w),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "11:37",
+                    style: TextStyle(color: Colors.white, fontSize: 20.sp),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+        body: Center(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 100.h,
+                height: 15.h,
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 60.w),
-                child: Text(
-                  '83°',
-                  style:
-                      TextStyle(fontSize: 60.sp, fontWeight: FontWeight.w400),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 60.w),
-                child: Text(
-                  'sunny',
-                  style:
-                      TextStyle(fontSize: 37.sp, fontWeight: FontWeight.w400),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: 10.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      color: Colors.yellow[200],
-                      size: 180.h,
-                    )
-                  ],
-                ),
+              Text(
+                "Tuesday, 16nd Oct",
+                style: TextStyle(
+                    fontSize: 20.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w300),
               ),
               SizedBox(
-                height: 52.h,
+                height: 40.h,
               ),
-              Container(
-                padding: EdgeInsets.only(left: 55.w, top: 30.h),
-                width: double.infinity,
-                height: 274.8.h,
+              Text(
+                "London",
+                style: TextStyle(
+                    fontSize: 45.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400),
+              ),
+              Text(
+                "Sun and Cloud",
+                style: TextStyle(
+                    fontSize: 25.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w300),
+              ),
+              SizedBox(
+                height: 50.h,
+              ),
+              Icon(
+                Icons.water_drop_outlined,
                 color: Colors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                size: 130.h,
+              ),
+              Text(
+                "22°",
+                style: TextStyle(
+                    fontSize: 45.h,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400),
+              ),
+              SizedBox(
+                height: 30.h,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 35.w, right: 35.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          "Miami",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 30.sp,
-                              fontWeight: FontWeight.w500),
+                    ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            pressed1 = true;
+                            pressed2 = false;
+                            pressed3 = false;
+                            LeftPadding = 35;
+                            boxSize = 116;
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          elevation: 0.0,
                         ),
-                      ],
-                    ),
-                    Container(
-                      height: 1.h,
-                      margin: EdgeInsets.only(top: 10.h, bottom: 10.h),
-                      color: Colors.black,
-                      width: 125.w,
-                    ),
-                    Text(
-                      "July 20",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 40.sp,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10.h, bottom: 30.h),
-                      child: Text(
-                        "7:32pm",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25.sp,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "CHANCE OF RAIN",
-                              style: TextStyle(
-                                  fontSize: 17.sp,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400),
+                        child: Opacity(
+                          opacity: pressed1 ? 1.0 : 0.3,
+                          child: Text(
+                            "Yesterday",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w300,
                             ),
-                            SizedBox(
-                              height: 3.h,
-                            ),
-                            Text(
-                              "0%",
-                              style: TextStyle(
-                                  fontSize: 21.sp,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 11.w, right: 11.w),
-                          child: Container(
-                            width: 1.w,
-                            height: 35.h,
-                            color: Colors.black,
                           ),
+                        )),
+                    ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            pressed2 = true;
+                            pressed1 = false;
+                            pressed3 = false;
+                            LeftPadding = 155;
+                            boxSize = 85;
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          elevation: 0.0,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "HUMIDITY",
-                              style: TextStyle(
-                                  fontSize: 17.sp, color: Colors.black),
-                            ),
-                            SizedBox(
-                              height: 3.h,
-                            ),
-                            Text(
-                              "84%",
-                              style: TextStyle(
-                                  fontSize: 21.sp,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
-                        )
-                      ],
-                    )
+                        child: Opacity(
+                          opacity: pressed2 ? 1.0 : 0.3,
+                          child: Text(
+                            "Today",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        )),
+                    ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            pressed3 = true;
+                            pressed1 = false;
+                            pressed2 = false;
+
+                            LeftPadding = 243;
+                            boxSize = 122;
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          elevation: 0.0,
+                        ),
+                        child: Opacity(
+                          opacity: pressed3 ? 1.0 : 0.3,
+                          child: Text(
+                            "Tomorrow",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        )),
                   ],
                 ),
+              ),
+
+              //yesterday Padding -> left: 35.w, size -> 116.w
+              //today Padding -> left: 155.w, size -> 85.w,
+              //tomorrow Padding -> left: 243.w, size -> 122.w
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  AnimatedPadding(
+                    duration: const Duration(microseconds: 100000),
+                    padding: EdgeInsets.only(left: LeftPadding.w),
+                    child: Container(
+                      width: boxSize.w,
+                      height: 1.h,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               )
             ],
           ),
