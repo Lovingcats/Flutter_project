@@ -16,7 +16,6 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
   late double latitude3;
   late double longitude3;
-
   @override
   void initState() {
     super.initState();
