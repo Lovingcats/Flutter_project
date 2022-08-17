@@ -38,6 +38,7 @@ dependencies:
   flutter_screenutil: ^5.5.0
   flutter_spinkit: ^5.1.0
   dropdown_search: ^5.0.2
+  line_icons: ^2.0.1
 
 dev_dependencies:
   flutter_test:
