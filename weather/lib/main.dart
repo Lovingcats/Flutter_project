@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weather/model/time_weather.dart';
 import 'package:weather/screens/loading.dart';
 import 'package:flutter/services.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:weather/widget/time_weather_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,6 +47,44 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int leftPadding = 155;
   int boxSize = 85;
+  int pageIndex = 2;
+
+  var yesterdayOpacity = 0.0;
+  var todayOpacity = 1.0;
+  var tomorrowOpacity = 0.0;
+
+  List<TimeWeather> yesterdayWeather = <TimeWeather>[];
+  List<TimeWeather> todayWeather = <TimeWeather>[];
+  List<TimeWeather> tomorrowWeather = <TimeWeather>[];
+
+  List<Widget> weatherInformaitons = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    yesterdayWeather.add(TimeWeather("10:00", "24°"));
+    yesterdayWeather.add(TimeWeather("12:00", "25°"));
+    yesterdayWeather.add(TimeWeather("14:00", "26°"));
+    yesterdayWeather.add(TimeWeather("16:00", "27°"));
+    yesterdayWeather.add(TimeWeather("18:00", "28°"));
+
+    todayWeather.add(TimeWeather("10:00", "16°"));
+    todayWeather.add(TimeWeather("12:00", "17°"));
+    todayWeather.add(TimeWeather("14:00", "18°"));
+    todayWeather.add(TimeWeather("16:00", "19°"));
+    todayWeather.add(TimeWeather("18:00", "20°"));
+
+    tomorrowWeather.add(TimeWeather("10:00", "12°"));
+    tomorrowWeather.add(TimeWeather("12:00", "13°"));
+    tomorrowWeather.add(TimeWeather("14:00", "14°"));
+    tomorrowWeather.add(TimeWeather("16:00", "15°"));
+    tomorrowWeather.add(TimeWeather("18:00", "16°"));
+
+    weatherInformaitons.add(TimeWeaterWidget(timeweather: yesterdayWeather));
+    weatherInformaitons.add(TimeWeaterWidget(timeweather: todayWeather));
+    weatherInformaitons.add(TimeWeaterWidget(timeweather: tomorrowWeather));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,14 +143,14 @@ class _MyHomePageState extends State<MyHomePage> {
               Text(
                 "London",
                 style: TextStyle(
-                    fontSize: 45.sp,
+                    fontSize: 40.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.w400),
               ),
               Text(
                 "Sun and Cloud",
                 style: TextStyle(
-                    fontSize: 25.sp,
+                    fontSize: 23.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.w300),
               ),
@@ -117,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 50.h,
               ),
               Icon(
-                Icons.water_drop_outlined,
+                LineIcons.cloudWithSun,
                 color: Colors.white,
                 size: 130.h,
               ),
@@ -237,6 +278,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Colors.white,
                     ),
                   ),
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Stack(
+                children: [
+                  weatherInformaitons[0],
+                  weatherInformaitons[1],
+                  weatherInformaitons[2]
                 ],
               )
             ],
