@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather/model/time_weather.dart';
-import 'package:weather/screens/loading.dart';
 import 'package:flutter/services.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:weather/widget/time_weather_widget.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,6 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
   List<TimeWeather> tomorrowWeather = <TimeWeather>[];
 
   List<Widget> weatherInformaitons = [];
+
+  var now = DateTime.now();
+  late String formatDate1 = DateFormat('MMMM, dd').format(now);
+  late String formatDate2 = DateFormat(' MMM').format(now);
 
   @override
   void initState() {
@@ -114,12 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.only(right: 30.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "11:37",
-                    style: TextStyle(color: Colors.white, fontSize: 20.sp),
-                  ),
-                ],
+                children: const [],
               ),
             )
           ],
@@ -131,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 15.h,
               ),
               Text(
-                "Tuesday, 16nd Oct",
+                "${formatDate1}nd${formatDate2}",
                 style: TextStyle(
                     fontSize: 20.sp,
                     color: Colors.white,
@@ -188,6 +187,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             textSize3 = 18;
                             leftPadding = 35;
                             boxSize = 136;
+                            yesterdayOpacity = 1.0;
+                            todayOpacity = 0.0;
+                            tomorrowOpacity = 0.0;
                           });
                         },
                         style: ElevatedButton.styleFrom(
@@ -216,6 +218,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             textSize3 = 18;
                             leftPadding = 152;
                             boxSize = 95;
+                            yesterdayOpacity = 0.0;
+                            todayOpacity = 1.0;
+                            tomorrowOpacity = 0.0;
                           });
                         },
                         style: ElevatedButton.styleFrom(
@@ -243,6 +248,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             textSize3 = 24;
                             leftPadding = 226;
                             boxSize = 138;
+
+                            yesterdayOpacity = 0.0;
+                            todayOpacity = 0.0;
+                            tomorrowOpacity = 1.0;
                           });
                         },
                         style: ElevatedButton.styleFrom(
@@ -285,9 +294,21 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Stack(
                 children: [
-                  weatherInformaitons[0],
-                  weatherInformaitons[1],
-                  weatherInformaitons[2]
+                  AnimatedOpacity(
+                    opacity: yesterdayOpacity,
+                    duration: const Duration(microseconds: 1000000),
+                    child: weatherInformaitons[0],
+                  ),
+                  AnimatedOpacity(
+                    opacity: todayOpacity,
+                    duration: const Duration(microseconds: 1000000),
+                    child: weatherInformaitons[1],
+                  ),
+                  AnimatedOpacity(
+                    opacity: tomorrowOpacity,
+                    duration: const Duration(microseconds: 1000000),
+                    child: weatherInformaitons[2],
+                  ),
                 ],
               )
             ],
