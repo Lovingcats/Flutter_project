@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:weather/data/my_location.dart';
 import 'package:weather/data/network.dart';
 import 'package:weather/screens/weather_screen.dart';
@@ -19,8 +20,9 @@ class _LoadingState extends State<Loading> {
   @override
   void initState() {
     super.initState();
-    getLocation();
+    getLocation();  
   }
+
 
   void getLocation() async {
     MyLocation myLocation = MyLocation();
@@ -28,8 +30,8 @@ class _LoadingState extends State<Loading> {
     latitude3 = myLocation.latitude2;
     longitude3 = myLocation.longitude2;
 
-    Network network = Network('https://api.openweathermap.org/data/2.5/weather'
-        '?lat=$latitude3&lon=$longitude3&appid=$apiKey&units=metric&units=metric');
+    Network network = Network(
+        'https://api.openweathermap.org/data/2.5/weather?lat=$latitude3&lon=$longitude3&appid=$apiKey');
 
     var weatherData = await network.getJsonData();
 
