@@ -73,8 +73,10 @@ class _WeatherState extends State<Weather> {
     weatherInformaitons.add(TimeWeaterWidget(timeweather: todayWeather));
     weatherInformaitons.add(TimeWeaterWidget(timeweather: tomorrowWeather));
 
-    print(unixTimeStamp);
     updateData(widget.parseWeatherData);
+    updateIcon(widget.parseWeatherData);
+
+    print("${widget.parseWeatherData['weather'][0]['icon']}");
   }
 
   void updateData(dynamic weatherData) {
@@ -84,9 +86,44 @@ class _WeatherState extends State<Weather> {
     description = weatherData['weather'][0]['description'];
   }
 
-  void iconSelet(dynamic weatherData) {
-    if (weatherData['weather'][0]['description'] == "clear sky") {}
-    else if(weatherData['weather'][0]['description'] == "clear sky"){}
+  void updateIcon(dynamic weatherData) {
+    if (weatherData['weather'][0]['icon'] == "01d") {
+      weatherIcon = Icons.wb_sunny_outlined;
+    } else if (weatherData['weather'][0]['icon'] == "02d") {
+      weatherIcon = LineIcons.cloudWithSun;
+    } else if (weatherData['weather'][0]['icon'] == "03d") {
+      weatherIcon = LineIcons.cloud;
+    } else if (weatherData['weather'][0]['icon'] == "04d") {
+      weatherIcon = Icons.filter_drama_outlined;
+    } else if (weatherData['weather'][0]['icon'] == "09d") {
+      weatherIcon = LineIcons.cloudWithRain;
+    } else if (weatherData['weather'][0]['icon'] == "10d") {
+      weatherIcon = LineIcons.cloudWithSunAndRain;
+    } else if (weatherData['weather'][0]['icon'] == "11d") {
+      weatherIcon = Icons.thunderstorm_outlined;
+    } else if (weatherData['weather'][0]['icon'] == "13d") {
+      weatherIcon = Icons.ac_unit_outlined;
+    } else if (weatherData['weather'][0]['icon'] == "50d") {
+      weatherIcon = Icons.format_align_center_outlined;
+    } else if (weatherData['weather'][0]['icon'] == "02n") {
+      weatherIcon = LineIcons.cloudWithMoon;
+    } else if (weatherData['weather'][0]['icon'] == "03n") {
+      weatherIcon = LineIcons.cloud;
+    } else if (weatherData['weather'][0]['icon'] == "04n") {
+      weatherIcon = Icons.filter_drama_outlined;
+    } else if (weatherData['weather'][0]['icon'] == "09n") {
+      weatherIcon = LineIcons.cloudWithRain;
+    } else if (weatherData['weather'][0]['icon'] == "10n") {
+      weatherIcon = LineIcons.cloudWithMoonAndRain;
+    } else if (weatherData['weather'][0]['icon'] == "11n") {
+      weatherIcon = Icons.thunderstorm_outlined;
+    } else if (weatherData['weather'][0]['icon'] == "13n") {
+      weatherIcon = Icons.ac_unit_outlined;
+    } else if (weatherData['weather'][0]['icon'] == "50n") {
+      weatherIcon = Icons.format_align_center_outlined;
+    } else {
+      weatherIcon = LineIcons.moon;
+    }
   }
 
   @override
@@ -156,12 +193,12 @@ class _WeatherState extends State<Weather> {
                 height: 50.h,
               ),
               Icon(
-                LineIcons.cloudWithSun,
+                weatherIcon,
                 color: Colors.white,
                 size: 130.h,
               ),
               Text(
-                "22°",
+                "$temp°",
                 style: TextStyle(
                     fontSize: 45.h,
                     color: Colors.white,
