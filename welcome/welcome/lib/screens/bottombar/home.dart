@@ -65,11 +65,16 @@ class _HomeState extends State<Home> {
                 style: TextStyle(fontSize: 18.sp),
               ),
               SizedBox(
-                height: 45.h,
+                height: 55.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [Image.asset("images/community.png")],
+                children: [
+                  Image.asset(
+                    "images/community.png",
+                    scale: 1.3,
+                  )
+                ],
               )
             ],
           ),
@@ -291,7 +296,7 @@ class _HomeState extends State<Home> {
             children: [
               Container(
                 width: double.infinity,
-                height: 316.h,
+                height: 310.h,
                 color: CommonColor.blue,
                 child: PageView(
                   children: containers,
