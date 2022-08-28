@@ -1,9 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:welcome/common/common.dart';
 import 'package:welcome/model/post.dart';
+import 'package:welcome/widget/post_widget.dart';
 
 class Community extends StatefulWidget {
   const Community({Key? key}) : super(key: key);
@@ -19,6 +18,9 @@ class _CommunityState extends State<Community> {
 
   int count = 1;
   int view = 20;
+
+  var firstOpacity = 1.0;
+
 
   @override
   void initState() {
@@ -139,24 +141,12 @@ class _CommunityState extends State<Community> {
                   ],
                 ),
               ),
-              Container(
-                height: 70.w,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 27.w, right: 27.w),
-                  child: ListTile(
-                    leading: Image.asset("images/buttonIcon/fire.png"),
-                    tileColor: Colors.white,
-                    title: Text("1 post"),
-                    subtitle: Padding(
-                        padding: EdgeInsets.only(left: 200.w),
-                        child: Text(
-                          "조회수 20",
-                          style: TextStyle(fontSize: 12.sp),
-                        )),
-                  ),
-                ),
-              )
-            ],
+              SizedBox(
+                height: 15.h,
+              ),
+              Post_widget(posts: normalPosts)
+            
+              ],
           ),
         ));
   }
