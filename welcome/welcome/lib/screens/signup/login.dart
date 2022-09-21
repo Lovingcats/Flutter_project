@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:welcome/common/common.dart';
-import 'package:welcome/screens/picture.dart';
 import 'package:welcome/screens/signup.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:http/http.dart' as http;
@@ -24,7 +23,7 @@ class _LoginState extends State<Login> {
 
   final String _url = "http://10.150.149.119:8888/login/signin";
 
-  void LoginSucces() {
+  void LoginSucces() { //toast메세지 띄워주는 함수
     Fluttertoast.showToast(
         msg: "로그인에 성공하셨습니다",
         toastLength: Toast.LENGTH_SHORT,
@@ -143,10 +142,6 @@ class _LoginState extends State<Login> {
                               //   },
                               // );
                               LoginSucces();
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => const Picture()));
                             },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(

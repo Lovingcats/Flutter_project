@@ -11,14 +11,14 @@ class PW extends StatefulWidget {
 }
 
 class _PWState extends State<PW> {
-  final _pwdController = TextEditingController();
+  final _pwdController = TextEditingController(); // Textfield를 위한 컨트롤러
   String pwd = '';
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus();
+        FocusScope.of(context).unfocus();  // 화면을 클릭하면 키보드 내려감
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,

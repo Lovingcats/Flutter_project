@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_joystick/flutter_joystick.dart';
-import 'package:welcome/screens/instargram_story.dart';
+import 'package:welcome/widget/instargram_story.dart';
 
 const step = 5;
 const ballSize = 20.0;

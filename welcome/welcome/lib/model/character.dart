@@ -1,4 +1,5 @@
 class Character {
+  
   final String url;
   final String name;
   final String feature;

@@ -11,14 +11,14 @@ class Name extends StatefulWidget {
 }
 
 class _NameState extends State<Name> {
-  final _nameController = TextEditingController();
+  final _nameController = TextEditingController(); //textfield를 위한 컨트롤러
   String name = '';
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus();
+        FocusScope.of(context).unfocus(); // 화면을 클릭하면 키보드 내려감
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,

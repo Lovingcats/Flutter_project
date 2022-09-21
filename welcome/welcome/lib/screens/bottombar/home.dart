@@ -12,9 +12,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int count = 1;
-  int pageIndex = 2;
-  List<Widget> containers = [
+  int count = 1;  //ImageSlideShow를 위한 변수 count
+  int pageIndex = 2;  // List<Widget> container의 배열을 이용하기 위한 변수 count
+
+  List<Widget> containers = [ // container들의 list, 익명커뮤, 뜨근 조언등등을 list로 정리 
     GestureDetector(
       onTap: () {},
       child: Container(
@@ -132,7 +133,7 @@ class _HomeState extends State<Home> {
           ),
           Stack(
             children: [
-              ImageSlideshow(
+              ImageSlideshow( //이미지가 자동으로 넘어가는 위젯
                 width: double.infinity,
                 height: 205.h,
                 initialPage: 0,
@@ -143,7 +144,7 @@ class _HomeState extends State<Home> {
                     count = value + 1;
                   });
                 },
-                autoPlayInterval: 6000,
+                autoPlayInterval: 6000, //넘어가는 시간
                 isLoop: true,
                 children: [
                   Image.asset(
@@ -298,7 +299,7 @@ class _HomeState extends State<Home> {
                 width: double.infinity,
                 height: 310.h,
                 color: CommonColor.blue,
-                child: PageView(
+                child: PageView( //pageview로 슬라이드 하면 넘어갈수 있게
                   children: containers,
                   onPageChanged: (index) {
                     setState(() {
@@ -307,7 +308,7 @@ class _HomeState extends State<Home> {
                   },
                 ),
               ),
-              CarouselIndicator(
+              CarouselIndicator( //현 위젯이 어느 위치에 있는 알려주는 위젯, pageindex사용
                 count: containers.length,
                 index: pageIndex,
               )

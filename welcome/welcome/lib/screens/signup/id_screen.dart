@@ -11,14 +11,14 @@ class ID extends StatefulWidget {
 }
 
 class _IDState extends State<ID> {
-  final _idController = TextEditingController();
+  final _idController = TextEditingController(); //textfield를 위한 컨트롤러
   String id = '';
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus();
+        FocusScope.of(context).unfocus(); //화면을 클릭하면 키보드가 내려감
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,

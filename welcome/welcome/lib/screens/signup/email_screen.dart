@@ -11,21 +11,21 @@ class Email extends StatefulWidget {
 }
 
 class _EmailState extends State<Email> {
-  final _emailController = TextEditingController();
+  final _emailController = TextEditingController(); //textfield를 이용하기 위한 controller
   String email = '';
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus();
+        FocusScope.of(context).unfocus(); //화면 밖을 클릭하면 키보드가 내려가게
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         bottomSheet: SafeArea(
           child: Padding(
               padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
+                  bottom: MediaQuery.of(context).viewInsets.bottom), //위 상태바 없애기
               child: ElevatedButton(
                 onPressed: () {
                   setState(() {

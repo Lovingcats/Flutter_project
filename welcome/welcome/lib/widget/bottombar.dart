@@ -5,14 +5,14 @@ import 'package:welcome/common/common.dart';
 class Bottom {
   static Widget bottomBar() {
     return SizedBox(
-      height: 60.h,
+      height: 60.h, // 바텀바 높이
       child: Material(
-        color: Colors.transparent,
+        color: Colors.transparent, //바텀바의 색깔을 부모 위젯의 색과 같게 만들어주는 코드
         child: TabBar(
           labelColor: CommonColor.blue,
           unselectedLabelColor: Colors.black,
           indicatorColor: Colors.transparent,
-          tabs: [
+          tabs: [ //tab 5개
             Tab(
               icon: Icon(
                 Icons.home,

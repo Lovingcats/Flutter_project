@@ -14,14 +14,14 @@ class NewCharacter extends StatefulWidget {
 }
 
 class _NewCharacterState extends State<NewCharacter> {
-  final _nicknameController = TextEditingController();
+  final _nicknameController = TextEditingController(); //textfield를 위한 컨트롤러
   String nickname = '';
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus();
+        FocusScope.of(context).unfocus(); //화면을 클릭하면 키보드가 내려감
       },
       child: Scaffold(
         backgroundColor: CommonColor.blue,
@@ -78,7 +78,7 @@ class _NewCharacterState extends State<NewCharacter> {
               SizedBox(
                 height: 50.h,
               ),
-              const showCharacter()
+              const showCharacter() //캐릭터 목록 보여주는 위젯, widget/showCharacter에 코드있음
             ],
           ),
         ),

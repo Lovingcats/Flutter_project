@@ -16,6 +16,8 @@ void main() {
   runApp(const MyApp1());
 }
 
+//이해하기 어려우니까 보지 마세요
+
 class MyApp1 extends StatelessWidget {
   const MyApp1({Key? key}) : super(key: key);
 

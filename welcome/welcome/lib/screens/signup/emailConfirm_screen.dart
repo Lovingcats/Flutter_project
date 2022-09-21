@@ -4,7 +4,7 @@ import 'package:welcome/common/common.dart';
 import 'package:welcome/screens/signup/status_screen.dart';
 
 class EmailConfirm extends StatelessWidget {
-  final _confirmController = TextEditingController();
+  final _confirmController = TextEditingController(); //textfield를 위한 컨트롤러
   String confirm = '';
 
   @override
