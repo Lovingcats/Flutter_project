@@ -79,6 +79,7 @@ class EmailConfirm extends StatelessWidget {
               SizedBox(
                 height: 490.h,
               ),
+              
             ],
           ),
         ),
