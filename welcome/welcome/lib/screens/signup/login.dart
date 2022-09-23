@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/services.dart';
+import 'package:welcome/screens/signup/id_pw/idtodart.dart';
 import 'package:welcome/screens/signup/id_screen.dart';
 
 class Login extends StatefulWidget {
@@ -176,9 +177,13 @@ class _LoginState extends State<Login> {
                                     decorationThickness: 3),
                               )),
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const IdToEmail()));
+                                
+                              },
                               child: const Text(
-                                "비밀번호를 잊어버리셨나요?",
+                                "아이디/비밀번호를 잊어버리셨나요?",
                                 style: TextStyle(
                                   color: Colors.white,
                                 ),
