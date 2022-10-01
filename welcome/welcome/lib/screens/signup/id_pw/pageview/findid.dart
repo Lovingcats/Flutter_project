@@ -11,7 +11,7 @@ class FindId extends StatefulWidget {
 }
 
 class _FindIdState extends State<FindId> {
-  late PageController _pageController;
+  late PageController  _pageController;
 
   final emailController = TextEditingController();
   final confirmController = TextEditingController();
