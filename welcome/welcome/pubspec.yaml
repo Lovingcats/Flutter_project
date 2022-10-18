@@ -43,6 +43,8 @@ dependencies:
   dropdown_button2: ^1.7.1
   flutter_image_slideshow: ^0.1.2
   carousel_indicator: ^1.0.6
+  provider: ^6.0.4
+  flutter_progress_hud: ^2.0.2
 
 dev_dependencies:
   flutter_test:
