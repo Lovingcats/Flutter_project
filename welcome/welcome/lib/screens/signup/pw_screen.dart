@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:welcome/common/common.dart';
+import 'package:welcome/provider/signupproivder.dart';
 import 'package:welcome/screens/signup/name_screen.dart';
 
 class PW extends StatefulWidget {
@@ -16,9 +18,10 @@ class _PWState extends State<PW> {
 
   @override
   Widget build(BuildContext context) {
+    var signupData = Provider.of<SignupData>(context);
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus();  // 화면을 클릭하면 키보드 내려감
+        FocusScope.of(context).unfocus(); // 화면을 클릭하면 키보드 내려감
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -30,6 +33,8 @@ class _PWState extends State<PW> {
                 onPressed: () {
                   setState(() {
                     pwd = _pwdController.text;
+                    signupData.inputPw(pwd);
+                    print(pwd);
                   });
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => const Name()));
@@ -48,13 +53,14 @@ class _PWState extends State<PW> {
                   Padding(
                     padding: EdgeInsets.only(top: 12.h, left: 11.w),
                     child: IconButton(
-                      onPressed: (){
+                      onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      icon: Icon(Icons.arrow_back_ios,
-                      size: 22.h,
-                    ),
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        size: 22.h,
                       ),
+                    ),
                   )
                 ],
               ),
