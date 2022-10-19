@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:welcome/common/common.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:welcome/screens/signup/newCharacter_screen.dart';
+import 'package:welcome/provider/signupproivder.dart';
+import 'package:welcome/screens/signup/login.dart';
+import 'package:http/http.dart' as http;
 
 class Status extends StatefulWidget {
   const Status({Key? key}) : super(key: key);
@@ -12,6 +15,26 @@ class Status extends StatefulWidget {
 }
 
 class _StatusState extends State<Status> {
+  void postequest(var signupData) async {
+    print("실행됨");
+    String url = 'http://13.125.225.199:8003/login/register';
+    http.Response response =
+        await http.post(Uri.parse(url), body: <String, String>{
+      "name": signupData.name,
+      "id": signupData.id,
+      "pwd": signupData.pw,
+      "email": signupData.email,
+      "status": signupData.status,
+      "grade": signupData.grade
+    });
+    print(response.body);
+    print('실행되었습ㄴ디ㅏ');
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
+    }
+  }
+
   int id = 0;
   final List<String> items = [
     '2021',
@@ -27,6 +50,8 @@ class _StatusState extends State<Status> {
 
   @override
   Widget build(BuildContext context) {
+    var signupData = Provider.of<SignupData>(context);
+
     return GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -39,14 +64,11 @@ class _StatusState extends State<Status> {
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => const NewCharacter()));
+                    postequest(signupData);
                   },
                   child: Text("다음", style: TextStyle(fontSize: 24.sp)),
                   style: ElevatedButton.styleFrom(
-                      primary: CommonColor.blue,
+                      backgroundColor: CommonColor.blue,
                       minimumSize: Size(414.w, 59.h)),
                 )),
           ),
@@ -89,6 +111,7 @@ class _StatusState extends State<Status> {
                       onChanged: (val) {
                         setState(() {
                           id = 1;
+                          signupData.inputStatus("재학생");
                         });
                       },
                     ),
@@ -102,6 +125,7 @@ class _StatusState extends State<Status> {
                       onChanged: (val) {
                         setState(() {
                           id = 2;
+                          signupData.inputStatus("졸업생");
                         });
                       },
                     ),
@@ -115,6 +139,7 @@ class _StatusState extends State<Status> {
                       onChanged: (val) {
                         setState(() {
                           id = 3;
+                          signupData.inputStatus("학부모");
                         });
                       },
                     ),
@@ -128,6 +153,7 @@ class _StatusState extends State<Status> {
                       onChanged: (val) {
                         setState(() {
                           id = 4;
+                          signupData.inputStatus("일반");
                         });
                       },
                     ),
@@ -178,6 +204,7 @@ class _StatusState extends State<Status> {
                     onChanged: (value) {
                       setState(() {
                         selectedValue = value as String;
+                        signupData.inputGrade(selectedValue as String);
                       });
                     },
                     icon: const Icon(
