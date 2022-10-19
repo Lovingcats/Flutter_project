@@ -1,12 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:story_view/utils.dart';
 import 'package:welcome/common/common.dart';
-import 'package:welcome/screens/signup.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter/services.dart';
+import 'package:welcome/main.dart';
+import 'package:welcome/screens/bottombar/home.dart';
 import 'package:welcome/screens/signup/id_pw/idtodart.dart';
 import 'package:welcome/screens/signup/id_screen.dart';
+import 'package:http/http.dart' as http;
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -22,22 +26,52 @@ class _LoginState extends State<Login> {
   String id = '';
   String pwd = '';
 
-  final String _url = "http://10.150.149.119:8888/login/signin";
+  void postrequest(String id1, String pw1) async {
+    print("실행됨");
+    String url = 'http://13.125.225.199:8003/login/signin';
+    print("실행됨2");
 
-  void LoginSucces() { //toast메세지 띄워주는 함수
+    http.Response response = await http
+        .post(Uri.parse(url), body: <String, String>{
+          "id": id1,
+          "pwd": pw1});
+    print(response.body);
+    print('실행되었습ㄴ디ㅏ');
+    if (response.statusCode == 200) {
+      LoginSucces();
+      Navigator.push(context, MaterialPageRoute(builder: (_) => MyApp()));
+    } else {
+      LoginError();
+    }
+  }
+
+  void LoginSucces() {
+    //toast메세지 띄워주는 함수
     Fluttertoast.showToast(
         msg: "로그인에 성공하셨습니다",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
-        backgroundColor: Colors.blue,
-        textColor: Colors.white,
+        backgroundColor: Colors.white,
+        textColor: Colors.grey,
+        fontSize: 16.0);
+  }
+
+  void LoginError() {
+    //toast메세지 띄워주는 함수
+    Fluttertoast.showToast(
+        msg: "로그인에 실패하셨습니다",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.white,
+        textColor: Colors.red.withOpacity(0.4),
         fontSize: 16.0);
   }
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
         backgroundColor: CommonColor.blue,
         appBar: null,
         body: Builder(builder: (context) {
@@ -127,21 +161,11 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.only(top: 13),
                         child: ElevatedButton(
                             onPressed: () async {
-                              // setState(() {
-                              //   id = _idController.text;
-                              //   pwd = _pwdController.text;
-                              // });
-                              // http.Response response = await http.post(
-                              //   Uri.parse(_url),
-                              //   headers: <String, String>{
-                              //     'Content-Type':
-                              //         'application/x-www-form-urlencoded',
-                              //   },
-                              //   body: <String, String>{
-                              //     'id': "$id",
-                              //     'pwd': "$pwd",
-                              //   },
-                              // );
+                              setState(() {
+                                id = _idController.text;
+                                pwd = _pwdController.text;
+                              });
+                              postrequest(id, pwd);
                               LoginSucces();
                             },
                             style: ElevatedButton.styleFrom(
@@ -178,9 +202,10 @@ class _LoginState extends State<Login> {
                               )),
                           TextButton(
                               onPressed: () {
-                                Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const IdToEmail()));
-                                
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => const IdToEmail()));
                               },
                               child: const Text(
                                 "아이디/비밀번호를 잊어버리셨나요?",
