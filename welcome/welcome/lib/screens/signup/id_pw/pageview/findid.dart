@@ -3,8 +3,8 @@ import 'package:welcome/common/common.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FindId extends StatefulWidget {
-  final initialPage;
-  const FindId({Key? key, this.initialPage}) : super(key: key);
+  final int initialPage;
+  const FindId({Key? key, required this.initialPage}) : super(key: key);
 
   @override
   State<FindId> createState() => _FindIdState();
