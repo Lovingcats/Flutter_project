@@ -149,7 +149,7 @@ class _IdToEmailState extends State<IdToEmail> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => FindId(selectedPage),
+        builder: (context) => FindId(initialPage: selectedPage),
       ),
     );
   }
