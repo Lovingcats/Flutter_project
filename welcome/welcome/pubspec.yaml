@@ -45,6 +45,8 @@ dependencies:
   carousel_indicator: ^1.0.6
   provider: ^6.0.4
   flutter_progress_hud: ^2.0.2
+  email_validator: ^2.1.17
+  flutter_swiper: ^1.1.6
 
 dev_dependencies:
   flutter_test:
