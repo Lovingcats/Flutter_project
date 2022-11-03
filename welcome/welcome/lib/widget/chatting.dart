@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:welcome/model/message.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:welcome/screens/inchat.dart';
 
 class Chatting extends StatefulWidget {
   const Chatting({Key? key}) : super(key: key);
@@ -40,7 +41,8 @@ class _ChattingState extends State<Chatting> {
             padding: EdgeInsets.only(bottom: 20.h),
             child: ListTile(
               onTap: () {
-                //push
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => const InChat()));
               },
               leading: Icon(
                 Icons.circle,
