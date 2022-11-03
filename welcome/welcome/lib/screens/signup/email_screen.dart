@@ -17,6 +17,8 @@ class _EmailState extends State<Email> {
   final _emailController =
       TextEditingController(); //textfield를 이용하기 위한 controller
   String email = '';
+  bool error = false;
+  late bool isValid;
 
   void postrequest(String email) async {
     print("실행됨");
@@ -29,9 +31,8 @@ class _EmailState extends State<Email> {
     print('실행되었습ㄴ디ㅏ');
     print(response.statusCode);
     if (response.statusCode == 200) {
-
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const EmailConfirm()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const EmailConfirm()));
     }
   }
 
@@ -53,8 +54,17 @@ class _EmailState extends State<Email> {
                 onPressed: () {
                   setState(() {
                     email = _emailController.text;
-                    signupData.inputEmail(email);
-                    postrequest(email);
+                    if (email == "") {
+                      error = true;
+                    } else {
+                      error = false;
+                    }
+                    if (error) {
+                      print("에러발생");
+                    } else {
+                      signupData.inputId(email);
+                      postrequest(email);
+                    }
                   });
                 },
                 child: Text("인증받기", style: TextStyle(fontSize: 24.sp)),
@@ -97,12 +107,21 @@ class _EmailState extends State<Email> {
                   controller: _emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: CommonColor.blue, width: 1),
-                    ),
+                    enabledBorder: error
+                        ? const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 1),
+                          )
+                        : const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                    focusedBorder: error
+                        ? const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 1),
+                          )
+                        : UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: CommonColor.blue, width: 1),
+                          ),
                     focusedErrorBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.red, width: 5),
                     ),
