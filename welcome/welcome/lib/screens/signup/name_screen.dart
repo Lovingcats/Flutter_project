@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,6 +20,7 @@ class _NameState extends State<Name> {
   final _nameController = TextEditingController(); //textfield를 위한 컨트롤러
   String name = '';
   bool error = false;
+  bool isempty = false;
   bool ispressed = false;
 
   void toastmessage() {
@@ -67,9 +67,18 @@ class _NameState extends State<Name> {
                 onPressed: () {
                   setState(() {
                     name = _nameController.text;
-                    signupData.inputName(name);
-                    getrequest(name);
-                    print(name);
+
+                    if (name == "") {
+                      isempty = true;
+                    } else {
+                      isempty = false;
+                    }
+                    if (isempty) {
+                      print("에러발생");
+                    } else {
+                      signupData.inputId(name);
+                      getrequest(name);
+                    }
                   });
                 },
                 child: Text("다음", style: TextStyle(fontSize: 24.sp)),
@@ -79,7 +88,6 @@ class _NameState extends State<Name> {
               )),
         ),
         body: ProgressHUD(
-          
           child: Center(
             child: Column(
               children: [
@@ -114,22 +122,34 @@ class _NameState extends State<Name> {
                   child: TextField(
                     controller: _nameController,
                     decoration: InputDecoration(
-                      labelText: 'ID',
-                      enabledBorder: error
+                      labelText: 'Name',
+                      enabledBorder: isempty
                           ? const UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red, width: 1),
-                            )
-                          : const UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
-                      focusedBorder: error
-                          ? const UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red, width: 1),
-                            )
-                          : UnderlineInputBorder(
                               borderSide:
-                                  BorderSide(color: CommonColor.blue, width: 1),
-                            ),
+                                  BorderSide(color: Colors.red, width: 1),
+                            )
+                          : error
+                              ? const UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 1),
+                                )
+                              : const UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey),
+                                ),
+                      focusedBorder: isempty
+                          ? const UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
+                            )
+                          : error
+                              ? const UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 1),
+                                )
+                              : UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CommonColor.blue, width: 1),
+                                ),
                     ),
                   ),
                 ),
