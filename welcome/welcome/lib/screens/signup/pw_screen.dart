@@ -15,6 +15,7 @@ class PW extends StatefulWidget {
 class _PWState extends State<PW> {
   final _pwdController = TextEditingController(); // Textfield를 위한 컨트롤러
   String pwd = '';
+  bool error = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +34,24 @@ class _PWState extends State<PW> {
                 onPressed: () {
                   setState(() {
                     pwd = _pwdController.text;
-                    signupData.inputPw(pwd);
-                    print(pwd);
+                    if (pwd == "") {
+                      error = true;
+                    } else {
+                      error = false;
+                    }
+                    if (error) {
+                      print("에러발생");
+                    } else {
+                      signupData.inputId(pwd);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => const Name()));
+                    }
                   });
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => const Name()));
                 },
                 child: Text("다음", style: TextStyle(fontSize: 24.sp)),
                 style: ElevatedButton.styleFrom(
-                    primary: CommonColor.blue, minimumSize: Size(414.w, 59.h)),
+                    backgroundColor: CommonColor.blue,
+                    minimumSize: Size(414.w, 59.h)),
               )),
         ),
         body: Center(
@@ -74,22 +84,33 @@ class _PWState extends State<PW> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 28.w, right: 28.w),
+                padding: EdgeInsets.only(left: 28.w, right: 28.w, bottom: 8.h),
                 child: TextField(
+                  obscureText: true,
                   controller: _pwdController,
                   decoration: InputDecoration(
                     labelText: 'PW',
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: CommonColor.blue, width: 1),
-                    ),
-                    focusedErrorBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red, width: 5),
-                    ),
+                    enabledBorder: error
+                        ? const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 1),
+                          )
+                        : const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                    focusedBorder: error
+                        ? const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 1),
+                          )
+                        : UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: CommonColor.blue, width: 1),
+                          ),
                   ),
                 ),
+              ),
+              Text(
+                error ? "비밀번호를 입력해주세요" : "",
+                style: TextStyle(fontSize: 12.sp, color: Colors.red),
               ),
               SizedBox(
                 height: 490.h,
