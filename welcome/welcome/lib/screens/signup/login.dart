@@ -32,20 +32,22 @@ class _LoginState extends State<Login> {
     print("실행됨2");
 
     http.Response response = await http
-        .post(Uri.parse(url), body: <String, String>{
-          "id": id1,
-          "pwd": pw1});
-    print(response.body);
-    print('실행되었습ㄴ디ㅏ');
+        .post(Uri.parse(url), body: <String, String>{"id": id1, "pwd": pw1});
+    var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+    print(parsingData);
     if (response.statusCode == 200) {
-      LoginSucces();
-      Navigator.push(context, MaterialPageRoute(builder: (_) => MyApp()));
+      if (parsingData["success"] == true) {
+        LoginSuccess();
+        Navigator.push(context, MaterialPageRoute(builder: (_) => MyApp()));
+      } else {
+        LoginError();
+      }
     } else {
       LoginError();
     }
   }
 
-  void LoginSucces() {
+  void LoginSuccess() {
     //toast메세지 띄워주는 함수
     Fluttertoast.showToast(
         msg: "로그인에 성공하셨습니다",
@@ -136,6 +138,7 @@ class _LoginState extends State<Login> {
                               padding:
                                   EdgeInsets.fromLTRB(48.w, 0.h, 48.w, 10.h),
                               child: TextField(
+                                obscureText: true,
                                 controller: _pwdController,
                                 decoration: InputDecoration(
                                   labelText: 'PW',
@@ -166,7 +169,6 @@ class _LoginState extends State<Login> {
                                 pwd = _pwdController.text;
                               });
                               postrequest(id, pwd);
-                              LoginSucces();
                             },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
