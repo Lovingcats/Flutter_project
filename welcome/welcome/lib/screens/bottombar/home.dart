@@ -1,4 +1,4 @@
-import 'package:carousel_indicator/carousel_indicator.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,18 +12,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int count = 1;  //ImageSlideShow를 위한 변수 count
-  int pageIndex = 2;  // List<Widget> container의 배열을 이용하기 위한 변수 count
+  int count = 1; //ImageSlideShow를 위한 변수 count
+  int pageIndex = 2; // List<Widget> container의 배열을 이용하기 위한 변수 count
 
-  List<Widget> containers = [ // container들의 list, 익명커뮤, 뜨근 조언등등을 list로 정리 
+  List<Widget> containers = [
+    // container들의 list, 익명커뮤, 뜨근 조언등등을 list로 정리
     GestureDetector(
       onTap: () {},
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(10.h))),
-        margin: EdgeInsets.fromLTRB(61.w, 22.h, 61.w, 22.h),
-        width: 292.w,
+        margin: EdgeInsets.only(top: 22.h, bottom: 22.h),
+        width: 300.w,
         height: 265.h,
         child: Padding(
           padding: EdgeInsets.all(23.h),
@@ -133,7 +134,8 @@ class _HomeState extends State<Home> {
           ),
           Stack(
             children: [
-              ImageSlideshow( //이미지가 자동으로 넘어가는 위젯
+              ImageSlideshow(
+                //이미지가 자동으로 넘어가는 위젯
                 width: double.infinity,
                 height: 205.h,
                 initialPage: 0,
@@ -293,26 +295,18 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          Stack(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 310.h,
-                color: CommonColor.blue,
-                child: PageView( //pageview로 슬라이드 하면 넘어갈수 있게
-                  children: containers,
-                  onPageChanged: (index) {
-                    setState(() {
-                      pageIndex = index;
-                    });
-                  },
-                ),
-              ),
-              CarouselIndicator( //현 위젯이 어느 위치에 있는 알려주는 위젯, pageindex사용
-                count: containers.length,
-                index: pageIndex,
-              )
-            ],
+          Container(
+            color: CommonColor.background,
+            width: double.infinity,
+            height: 311.h,
+            child: Swiper(
+              itemBuilder: (BuildContext context, int index) {
+                return containers[0];
+              },
+              itemCount: containers.length,
+              viewportFraction: 0.8,
+              scale: 0.9,
+            ),
           )
         ]));
   }
