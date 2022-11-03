@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:welcome/common/common.dart';
 import 'package:welcome/provider/signupproivder.dart';
 import 'package:welcome/screens/signup/pw_screen.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ID extends StatefulWidget {
   const ID({Key? key}) : super(key: key);
@@ -17,6 +19,36 @@ class _IDState extends State<ID> {
   final _idController = TextEditingController(); //textfield를 위한 컨트롤러
   String id = '';
   bool error = false;
+  bool isEmpty = false;
+
+  void toastmessage() {
+    Fluttertoast.showToast(
+        msg: "이름이 중복입니다. 다시 입력해주세요",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.sp);
+  }
+
+  void getrequest(var id) async {
+    print("실행됨");
+    String url = 'http://13.125.225.199:8003/login/idCheck?userId=$id';
+    http.Response response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+      print(parsingData);
+      setState(() {
+        error = !parsingData["success"];
+        print(error);
+      });
+      error
+          ? toastmessage()
+          : Navigator.push(
+              context, MaterialPageRoute(builder: (_) => const PW()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +68,16 @@ class _IDState extends State<ID> {
                   setState(() {
                     id = _idController.text;
 
-                    signupData.inputId(id);
                     if (id == "") {
-                      error = true;
+                      isEmpty = true;
                     } else {
-                      error = false;
+                      isEmpty = false;
                     }
-                    if (error) {
+                    if (isEmpty) {
                       print("에러발생");
                     } else {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => const PW()));
+                      signupData.inputId(id);
+                      getrequest(id);
                     }
                   });
                 },
@@ -86,19 +117,19 @@ class _IDState extends State<ID> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 28.w, right: 28.w),
+                padding: EdgeInsets.only(left: 28.w, right: 28.w, bottom: 8.h),
                 child: TextField(
                   controller: _idController,
                   decoration: InputDecoration(
                     labelText: 'ID',
-                    enabledBorder: error
+                    enabledBorder: isEmpty
                         ? const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.red, width: 1),
                           )
                         : const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
                           ),
-                    focusedBorder: error
+                    focusedBorder: isEmpty
                         ? const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.red, width: 1),
                           )
@@ -108,6 +139,10 @@ class _IDState extends State<ID> {
                           ),
                   ),
                 ),
+              ),
+              Text(
+                isEmpty ? "아이디를 입력해주세요" : "",
+                style: TextStyle(fontSize: 12.sp, color: Colors.red),
               ),
               SizedBox(
                 height: 490.h,
