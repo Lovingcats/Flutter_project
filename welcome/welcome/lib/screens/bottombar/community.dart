@@ -21,7 +21,6 @@ class _CommunityState extends State<Community> {
 
   var firstOpacity = 1.0;
 
-
   @override
   void initState() {
     super.initState();
@@ -39,114 +38,41 @@ class _CommunityState extends State<Community> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: CommonColor.blue,
+        backgroundColor: CommonColor.background,
         body: Center(
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 27.w, top: 25.h),
-                child: Stack(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 9.w, right: 9.w, top: 9.h, bottom: 9.h),
-                              child: Image.asset("images/community.png")),
-                          width: 70.w,
-                          height: 65.h,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.r))),
-                        ),
-                        SizedBox(
-                          width: 15.w,
-                        ),
-                        Text(
-                          "커뮤니티",
-                          style: TextStyle(
-                              fontSize: 24.sp,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                    Positioned(
-                      left: 276.w,
-                      bottom: 30.h,
-                      child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.transparent, elevation: 0),
-                          child: Row(
-                            children: [
-                              Image.asset("images/buttonIcon/pen.png"),
-                              SizedBox(
-                                width: 3.w,
-                              ),
-                              Text(
-                                "글쓰기",
-                                style: TextStyle(
-                                    fontSize: 16.sp,
-                                    color: Colors.black,
-                                    decoration: TextDecoration.underline),
-                              )
-                            ],
-                          )),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 25.h,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 16.w, right: 16.w),
+                padding: EdgeInsets.only(left: 21.w, top: 20.h),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        "일반",
-                        style: TextStyle(fontSize: 16.sp, color: Colors.black),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          minimumSize: Size(103.w, 40.h)),
+                    Container(
+                      child: Padding(
+                          padding: EdgeInsets.only(
+                              left: 9.w, right: 9.w, top: 9.h, bottom: 9.h),
+                          child: Image.asset("images/community.png")),
+                      width: 70.w,
+                      height: 65.h,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.r))),
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        "익명",
-                        style: TextStyle(fontSize: 16.sp, color: Colors.black),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          minimumSize: Size(103.w, 40.h)),
+                    SizedBox(
+                      width: 15.w,
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        "뜨끈조언",
-                        style: TextStyle(fontSize: 16.sp, color: Colors.black),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          minimumSize: Size(103.w, 40.h)),
+                    Text(
+                      "커뮤니티",
+                      style: TextStyle(
+                          fontSize: 28.sp,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 15.h,
-              ),
-              Post_widget(posts: normalPosts)
-            
-              ],
+            ],
           ),
         ));
   }
