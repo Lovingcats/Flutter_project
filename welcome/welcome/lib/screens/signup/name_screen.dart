@@ -140,7 +140,7 @@ class _NameState extends State<Name> {
                           ? const UnderlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.red, width: 1),
-                            )
+                           )
                           : error
                               ? const UnderlineInputBorder(
                                   borderSide:
@@ -152,6 +152,10 @@ class _NameState extends State<Name> {
                                 ),
                     ),
                   ),
+                ),
+                Text(
+                  isempty ? "이름을 입력해주세요" : "",
+                  style: TextStyle(fontSize: 12.sp, color: Colors.red),
                 ),
                 SizedBox(
                   height: 490.h,
