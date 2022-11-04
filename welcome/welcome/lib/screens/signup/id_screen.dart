@@ -23,7 +23,7 @@ class _IDState extends State<ID> {
 
   void toastmessage() {
     Fluttertoast.showToast(
-        msg: "이름이 중복입니다. 다시 입력해주세요",
+        msg: "아이디가 중복입니다. 다시 입력해주세요",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
@@ -38,7 +38,6 @@ class _IDState extends State<ID> {
     http.Response response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
-      print(parsingData);
       setState(() {
         error = !parsingData["success"];
         print(error);
