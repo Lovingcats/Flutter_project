@@ -5,6 +5,8 @@ import 'package:welcome/common/common.dart';
 import 'package:welcome/provider/signupproivder.dart';
 import 'package:welcome/screens/signup/emailConfirm_screen.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Email extends StatefulWidget {
   const Email({Key? key}) : super(key: key);
@@ -18,7 +20,17 @@ class _EmailState extends State<Email> {
       TextEditingController(); //textfield를 이용하기 위한 controller
   String email = '';
   bool error = false;
-  late bool isValid;
+
+  void toastmessage() {
+    Fluttertoast.showToast(
+        msg: "이메일이 잘못되었습니다. 다시 입력해주세요",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.sp);
+  }
 
   void postrequest(String email) async {
     print("실행됨");
@@ -27,12 +39,16 @@ class _EmailState extends State<Email> {
         await http.post(Uri.parse(url), body: <String, String>{
       "email": email,
     });
-    print(response.body);
-    print('실행되었습ㄴ디ㅏ');
-    print(response.statusCode);
     if (response.statusCode == 200) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const EmailConfirm()));
+      var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+      if (parsingData['success'] == true) {
+        
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => const EmailConfirm()));
+      } else {
+        
+        toastmessage();
+      }
     }
   }
 
@@ -63,6 +79,7 @@ class _EmailState extends State<Email> {
                       print("에러발생");
                     } else {
                       signupData.inputId(email);
+
                       postrequest(email);
                     }
                   });
@@ -127,6 +144,10 @@ class _EmailState extends State<Email> {
                     ),
                   ),
                 ),
+              ),
+              Text(
+                error ? "이메일을 입력해주세요" : "",
+                style: TextStyle(fontSize: 12.sp, color: Colors.red),
               ),
               SizedBox(
                 height: 490.h,
