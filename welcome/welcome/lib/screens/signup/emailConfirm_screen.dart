@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:welcome/common/common.dart';
 import 'package:welcome/screens/signup/status_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EmailConfirm extends StatefulWidget {
   const EmailConfirm({Key? key}) : super(key: key);
@@ -17,6 +18,19 @@ class _EmailConfirmState extends State<EmailConfirm> {
   final _confirmController = TextEditingController();
   //textfield를 위한 컨트롤러
   String confirm = '';
+  bool error = false;
+  bool isEmpty = false;
+
+  void toastmessage() {
+    Fluttertoast.showToast(
+        msg: "인증코드가 올바르지않습니다. 다시 입력해주세요",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.sp);
+  }
 
   void getrequest(String confirm1) async {
     print("실행됨");
@@ -25,8 +39,13 @@ class _EmailConfirmState extends State<EmailConfirm> {
     if (response.statusCode == 200) {
       var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
       print(parsingData);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const Status()));
+      error = !parsingData["success"];
+      if (error == false) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => const Status()));
+      } else {
+        toastmessage();
+      }
     }
   }
 
@@ -34,7 +53,6 @@ class _EmailConfirmState extends State<EmailConfirm> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
@@ -44,10 +62,20 @@ class _EmailConfirmState extends State<EmailConfirm> {
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom),
               child: ElevatedButton(
-                onPressed: () {setState(() {
-          confirm = _confirmController.text;
-        });
-                  getrequest(confirm);
+                onPressed: () {
+                  setState(() {
+                    confirm = _confirmController.text;
+                    if (confirm == "") {
+                      isEmpty = true;
+                    } else {
+                      isEmpty = false;
+                    }
+                    if (isEmpty) {
+                      print("에러발생");
+                    } else {
+                      getrequest(confirm);
+                    }
+                  });
                 },
                 child: Text("다음", style: TextStyle(fontSize: 24.sp)),
                 style: ElevatedButton.styleFrom(
@@ -84,22 +112,35 @@ class _EmailConfirmState extends State<EmailConfirm> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 28.w, right: 28.w),
+                padding: EdgeInsets.only(left: 28.w, right: 28.w, bottom: 8.h),
                 child: TextField(
                   controller: _confirmController,
                   decoration: InputDecoration(
-                    labelText: 'Email',
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: CommonColor.blue, width: 1),
-                    ),
+                    labelText: '인증코드',
+                    enabledBorder: isEmpty
+                        ? const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 1),
+                          )
+                        : const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                    focusedBorder: isEmpty
+                        ? const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 1),
+                          )
+                        : UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: CommonColor.blue, width: 1),
+                          ),
                     focusedErrorBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.red, width: 5),
                     ),
                   ),
                 ),
+              ),
+              Text(
+                isEmpty ? "아이디를 입력해주세요" : "",
+                style: TextStyle(fontSize: 12.sp, color: Colors.red),
               ),
               SizedBox(
                 height: 490.h,
