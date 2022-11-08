@@ -32,9 +32,32 @@ class _EmailState extends State<Email> {
         fontSize: 16.sp);
   }
 
+  void _onLoading() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          insetPadding: const EdgeInsets.all(5),
+          child: Container(
+            height: 140.h,
+            width: 60.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                CircularProgressIndicator(),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   void postrequest(String email) async {
     print("실행됨");
     String url = 'http://13.125.225.199:8003/login/mail';
+    _onLoading();
     http.Response response =
         await http.post(Uri.parse(url), body: <String, String>{
       "email": email,
@@ -42,11 +65,11 @@ class _EmailState extends State<Email> {
     if (response.statusCode == 200) {
       var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
       if (parsingData['success'] == true) {
-        
+        Navigator.pop(context);
         Navigator.push(
             context, MaterialPageRoute(builder: (_) => const EmailConfirm()));
       } else {
-        
+        Navigator.pop(context);
         toastmessage();
       }
     }
@@ -78,7 +101,8 @@ class _EmailState extends State<Email> {
                     if (error) {
                       print("에러발생");
                     } else {
-                      signupData.inputId(email);
+                      print(email);
+                      signupData.inputEmail(email);
 
                       postrequest(email);
                     }
