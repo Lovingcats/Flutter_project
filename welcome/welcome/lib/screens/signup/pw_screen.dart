@@ -42,7 +42,8 @@ class _PWState extends State<PW> {
                     if (error) {
                       print("에러발생");
                     } else {
-                      signupData.inputId(pwd);
+                      print(pwd);
+                      signupData.inputPw(pwd);
                       Navigator.push(context,
                           MaterialPageRoute(builder: (_) => const Name()));
                     }
