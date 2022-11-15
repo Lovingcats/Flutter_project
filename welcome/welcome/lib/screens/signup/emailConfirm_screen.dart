@@ -73,6 +73,7 @@ class _EmailConfirmState extends State<EmailConfirm> {
                     if (isEmpty) {
                       print("에러발생");
                     } else {
+                      print(confirm);
                       getrequest(confirm);
                     }
                   });
