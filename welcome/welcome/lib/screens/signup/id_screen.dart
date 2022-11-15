@@ -75,6 +75,7 @@ class _IDState extends State<ID> {
                     if (isEmpty) {
                       print("에러발생");
                     } else {
+                      print(id);
                       signupData.inputId(id);
                       getrequest(id);
                     }
