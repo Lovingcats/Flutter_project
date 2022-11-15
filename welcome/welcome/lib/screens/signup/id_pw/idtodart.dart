@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:welcome/common/common.dart';
-import 'package:welcome/screens/signup/id_pw/pageview/findid.dart';
+import 'package:welcome/screens/signup/id_pw/completeid.dart';
 
 class IdToEmail extends StatefulWidget {
   const IdToEmail({Key? key}) : super(key: key);
@@ -12,19 +12,31 @@ class IdToEmail extends StatefulWidget {
 
 //207
 class _IdToEmailState extends State<IdToEmail> {
-  
-  int currentindex = 0;
-  late PageController _controller;
-  bool ispressed1 = true;
-  bool ispressed2 = false;
-  bool ispressed3 = true;
-  bool ispressed4 = false;
-
+  bool idpressed = true;
+  bool pwpressed = false;
+  bool idEmpty = false;
+  bool emailEmpty = false;
+  bool confirmEmpty = false;
+  bool emailEmpty1 = false;
+  bool confirmEmpty1 = false;
+  bool buttonNull = true;
+  String email = '';
+  String confirm = '';
+  String email1 = '';
+  String confirm1 = '';
+  String id = '';
+  int page = 0;
+  PageController pageController = PageController(
+    initialPage: 0,
+  );
+  final _idController = TextEditingController();
+  final _emailController1 = TextEditingController();
+  final _confirmController1 = TextEditingController();
+  final _emailController = TextEditingController();
+  final _confirmController = TextEditingController();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _controller = PageController(initialPage: currentindex);
   }
 
   @override
@@ -40,10 +52,14 @@ class _IdToEmailState extends State<IdToEmail> {
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom),
               child: ElevatedButton(
-                onPressed: () {
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (_) => const Status()));
-                },
+                onPressed: page == 0
+                    ? () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const CompleteId()));
+                      }
+                    : () {},
                 child: Text("다음", style: TextStyle(fontSize: 24.sp)),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: CommonColor.blue,
@@ -61,8 +77,16 @@ class _IdToEmailState extends State<IdToEmail> {
           ),
           centerTitle: true,
           backgroundColor: Colors.white,
-          leading: const Icon(null),
           elevation: 0.0,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+                size: 22.h,
+              )),
         ),
         body: Column(
           children: [
@@ -74,9 +98,9 @@ class _IdToEmailState extends State<IdToEmail> {
                   ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          ispressed1 = true;
-                          ispressed2 = false;
-                          currentindex = 0;
+                          idpressed = true;
+                          pwpressed = false;
+                          pageController.jumpToPage(0);
                         });
                       },
                       style: ElevatedButton.styleFrom(
@@ -85,17 +109,16 @@ class _IdToEmailState extends State<IdToEmail> {
                         "아이디",
                         style: TextStyle(
                             fontSize: 20.sp,
-                            color: ispressed1
-                                ? CommonColor.blue
-                                : CommonColor.gray,
+                            color:
+                                idpressed ? CommonColor.blue : CommonColor.gray,
                             fontWeight: FontWeight.w600),
                       )),
                   ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          ispressed1 = false;
-                          ispressed2 = true;
-                          currentindex = 1;
+                          idpressed = false;
+                          pwpressed = true;
+                          pageController.jumpToPage(1);
                         });
                       },
                       style: ElevatedButton.styleFrom(
@@ -104,9 +127,8 @@ class _IdToEmailState extends State<IdToEmail> {
                         "비밀번호",
                         style: TextStyle(
                             fontSize: 20.sp,
-                            color: ispressed2
-                                ? CommonColor.blue
-                                : CommonColor.gray,
+                            color:
+                                pwpressed ? CommonColor.blue : CommonColor.gray,
                             fontWeight: FontWeight.w600),
                       )),
                 ],
@@ -119,37 +141,396 @@ class _IdToEmailState extends State<IdToEmail> {
                   width: 207.w,
                   height: 2.h,
                   decoration: BoxDecoration(
-                      color: ispressed1 ? CommonColor.blue : CommonColor.gray),
+                      color: idpressed ? CommonColor.blue : CommonColor.gray),
                 ),
                 Container(
                   width: 207.w,
                   height: 2.h,
                   decoration: BoxDecoration(
-                      color: ispressed2 ? CommonColor.blue : CommonColor.gray),
+                      color: pwpressed ? CommonColor.blue : CommonColor.gray),
                 ),
               ],
             ),
             Expanded(
-              child: PageView(
-                controller: _controller,
-                children: [
-                    
+                child: PageView(
+              controller: pageController,
+              onPageChanged: ((value) {
+                setState(() {
+                  page = value;
+                });
+                if (value == 0) {
+                  setState(() {
+                    idpressed = true;
+                    pwpressed = false;
+                  });
+                } else {
+                  setState(() {
+                    idpressed = false;
+                    pwpressed = true;
+                  });
+                }
+              }),
+              children: [
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 30.w),
+                          child: SizedBox(
+                            width: 240.w,
+                            child: TextField(
+                              controller: _emailController,
+                              decoration: InputDecoration(
+                                labelText: '이메일',
+                                enabledBorder: emailEmpty
+                                    ? const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.red, width: 1),
+                                      )
+                                    : const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      ),
+                                focusedBorder: emailEmpty
+                                    ? const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.red, width: 1),
+                                      )
+                                    : UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: CommonColor.blue, width: 1),
+                                      ),
+                                focusedErrorBorder: const UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 15.w, top: 20.h),
+                          child: ElevatedButton(
+                              onPressed: () {
+                                email = _emailController.text;
 
-                    //111111111111111111111111111111111111111111111111111111111
+                                if (email == "") {
+                                  setState(() {
+                                    emailEmpty = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    emailEmpty = false;
+                                  });
+                                }
 
-                ],
-              ),
-            ),
+                                if (emailEmpty) {
+                                  print("에러발생");
+                                } else {
+                                  //http 요청
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                backgroundColor: Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        width: 1.0, color: CommonColor.blue),
+                                    borderRadius: BorderRadius.circular(20.h)),
+                              ),
+                              child: Text(
+                                "인증번호 전송",
+                                style: TextStyle(
+                                    fontSize: 15.sp, color: CommonColor.blue),
+                              )),
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 30.w),
+                          child: SizedBox(
+                            width: 240.w,
+                            child: TextField(
+                              controller: _confirmController,
+                              decoration: InputDecoration(
+                                labelText: '인증번호 확인',
+                                enabledBorder: confirmEmpty
+                                    ? const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.red, width: 1),
+                                      )
+                                    : const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      ),
+                                focusedBorder: confirmEmpty
+                                    ? const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.red, width: 1),
+                                      )
+                                    : UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: CommonColor.blue, width: 1),
+                                      ),
+                                focusedErrorBorder: const UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 15.w, top: 20.h),
+                          child: ElevatedButton(
+                              onPressed: () {
+                                confirm = _confirmController.text;
+                                if (confirm == "") {
+                                  setState(() {
+                                    confirmEmpty = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    confirmEmpty = false;
+                                  });
+                                }
+
+                                if (confirmEmpty) {
+                                  print("에러발생");
+                                } else {
+                                  //http 요청
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                backgroundColor: Colors.transparent,
+                                minimumSize: Size(120.w, 37.h),
+                                shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        width: 1.0, color: CommonColor.blue),
+                                    borderRadius: BorderRadius.circular(20.h)),
+                              ),
+                              child: Text(
+                                "확인",
+                                style: TextStyle(
+                                    fontSize: 15.sp, color: CommonColor.blue),
+                              )),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 30.w, right: 30.w),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: TextField(
+                          controller: _idController,
+                          decoration: InputDecoration(
+                            labelText: '아이디',
+                            enabledBorder: idEmpty
+                                ? const UnderlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.red, width: 1),
+                                  )
+                                : const UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey),
+                                  ),
+                            focusedBorder: idEmpty
+                                ? const UnderlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.red, width: 1),
+                                  )
+                                : UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: CommonColor.blue, width: 1),
+                                  ),
+                            focusedErrorBorder: const UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 5),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 30.w),
+                          child: SizedBox(
+                            width: 240.w,
+                            child: TextField(
+                              controller: _emailController1,
+                              decoration: InputDecoration(
+                                labelText: '이메일',
+                                enabledBorder: emailEmpty1
+                                    ? const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.red, width: 1),
+                                      )
+                                    : const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      ),
+                                focusedBorder: emailEmpty1
+                                    ? const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.red, width: 1),
+                                      )
+                                    : UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: CommonColor.blue, width: 1),
+                                      ),
+                                focusedErrorBorder: const UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 15.w, top: 20.h),
+                          child: ElevatedButton(
+                              onPressed: () {
+                                email1 = _emailController1.text;
+                                id = _idController.text;
+                                if (id == "") {
+                                  setState(() {
+                                    idEmpty = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    idEmpty = false;
+                                  });
+                                }
+
+                                if (idEmpty) {
+                                  print("에러발생");
+                                } else {
+                                  //http 요청
+                                }
+                                if (email1 == "") {
+                                  setState(() {
+                                    emailEmpty1 = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    emailEmpty1 = false;
+                                  });
+                                }
+
+                                if (emailEmpty1) {
+                                  print("에러발생");
+                                } else {
+                                  //http 요청
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                backgroundColor: Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        width: 1.0, color: CommonColor.blue),
+                                    borderRadius: BorderRadius.circular(20.h)),
+                              ),
+                              child: Text(
+                                "인증번호 전송",
+                                style: TextStyle(
+                                    fontSize: 15.sp, color: CommonColor.blue),
+                              )),
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 30.w),
+                          child: SizedBox(
+                            width: 240.w,
+                            child: TextField(
+                              controller: _confirmController1,
+                              decoration: InputDecoration(
+                                labelText: '인증번호 확인',
+                                enabledBorder: confirmEmpty1
+                                    ? const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.red, width: 1),
+                                      )
+                                    : const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      ),
+                                focusedBorder: confirmEmpty1
+                                    ? const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.red, width: 1),
+                                      )
+                                    : UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: CommonColor.blue, width: 1),
+                                      ),
+                                focusedErrorBorder: const UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 5),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 15.w, top: 20.h),
+                          child: ElevatedButton(
+                              onPressed: () {
+                                confirm1 = _confirmController1.text;
+                                if (confirm1 == "") {
+                                  setState(() {
+                                    confirmEmpty1 = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    confirmEmpty1 = false;
+                                  });
+                                }
+
+                                if (confirmEmpty1) {
+                                  print("에러발생");
+                                } else {
+                                  //http 요청
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                backgroundColor: Colors.transparent,
+                                minimumSize: Size(120.w, 37.h),
+                                shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        width: 1.0, color: CommonColor.blue),
+                                    borderRadius: BorderRadius.circular(20.h)),
+                              ),
+                              child: Text(
+                                "확인",
+                                style: TextStyle(
+                                    fontSize: 15.sp, color: CommonColor.blue),
+                              )),
+                        )
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            )),
           ],
         ),
-      ),
-    );
-  }
-  gotoSelectedPage(int selectedPage) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => FindId(initialPage: selectedPage),
       ),
     );
   }
