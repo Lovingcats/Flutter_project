@@ -76,7 +76,8 @@ class _NameState extends State<Name> {
                     if (isempty) {
                       print("에러발생");
                     } else {
-                      signupData.inputId(name);
+                      print(name);
+                      signupData.inputName(name);
                       getrequest(name);
                     }
                   });
@@ -140,7 +141,7 @@ class _NameState extends State<Name> {
                           ? const UnderlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.red, width: 1),
-                           )
+                            )
                           : error
                               ? const UnderlineInputBorder(
                                   borderSide:
