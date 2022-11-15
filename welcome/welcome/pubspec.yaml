@@ -47,6 +47,8 @@ dependencies:
   flutter_progress_hud: ^2.0.2
   email_validator: ^2.1.17
   flutter_swiper: ^1.1.6
+  flutter_spinkit: ^5.1.0
+  webview_flutter: ^3.0.4
 
 dev_dependencies:
   flutter_test:
@@ -87,7 +89,8 @@ flutter:
     - images/buttonIcon/eat.png
     - images/buttonIcon/meta.png
     - images/buttonIcon/time.png
-    - images/buttonIcon/pen.png
+    - images/buttonIcon/normal.png
+    - images/buttonIcon/noname.png
     - images/buttonIcon/fire.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
