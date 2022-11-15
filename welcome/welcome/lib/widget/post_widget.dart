@@ -5,11 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // ignore: camel_case_types
 class Post_widget extends StatefulWidget {
   final List<Post> posts;
-
-  const Post_widget({
-    Key? key,
-    required this.posts,
-  }) : super(key: key);
+  const Post_widget({Key? key, required this.posts}) : super(key: key);
 
   @override
   State<Post_widget> createState() => _Post_widgetState();
@@ -19,33 +15,58 @@ class Post_widget extends StatefulWidget {
 class _Post_widgetState extends State<Post_widget> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: widget.posts.length,
-        itemBuilder: (context, index) {
-          return Container(
-            height: 80.w,
-            child: Padding(
-              padding: EdgeInsets.only(left: 27.w, right: 27.w, bottom: 15.h),
-              child: ListTile(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.r),
+    return Column(
+      children: makePost(context, widget.posts),
+    );
+  }
+}
+
+List<Widget> makePost(BuildContext context, List<Post> posts) {
+  List<Widget> results = [];
+
+  for (var i = 0; i < posts.length; i++) {
+    results.add(
+      Padding(
+        padding: EdgeInsets.only(left: 27.w, right: 27.w, top: 19.h),
+        child: GestureDetector(
+          onTap: () {
+            print("hello");
+          },
+          child: Container(
+            padding: EdgeInsets.only(left: 9.w, right: 11.w),
+            width: 360.w,
+            height: 47.h,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: const Color(0xffDADADA)),
+                borderRadius: BorderRadius.all(Radius.circular(10.r))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 188.w,
+                  child: Text(
+                    posts[i].title,
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black),
+                  ),
                 ),
-                visualDensity: VisualDensity(vertical: -4),
-                leading: Image.asset("images/buttonIcon/fire.png"),
-                tileColor: Colors.white,
-                title: Text(widget.posts[index].title),
-                subtitle: Padding(
-                    padding: EdgeInsets.only(left: 200.w),
-                    child: Text(
-                      "조회수 ${widget.posts[index].views}",
-                      style: TextStyle(fontSize: 12.sp),
-                    )),
-              ),
+                Text(
+                  "조회수·${posts[i].views}",
+                  style: TextStyle(
+                      fontSize: 9.sp,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500),
+                )
+              ],
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }
+  return results;
 }
