@@ -32,6 +32,17 @@ class _EmailConfirmState extends State<EmailConfirm> {
         fontSize: 16.sp);
   }
 
+  void confirmmessage() {
+    Fluttertoast.showToast(
+        msg: "인증이 완료되었습니다",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.sp);
+  }
+
   void getrequest(String confirm1) async {
     print("실행됨");
     String url = 'http://13.125.225.199:8003/login/checkCode?code=$confirm1';
@@ -140,7 +151,7 @@ class _EmailConfirmState extends State<EmailConfirm> {
                 ),
               ),
               Text(
-                isEmpty ? "아이디를 입력해주세요" : "",
+                isEmpty ? "인증번호를 입력해주세요" : "",
                 style: TextStyle(fontSize: 12.sp, color: Colors.red),
               ),
               SizedBox(
