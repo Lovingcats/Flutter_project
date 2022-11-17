@@ -42,6 +42,7 @@ class _CommunityState extends State<Community> {
       postData = Provider.of<PostProviderData>(context, listen: false);
     });
     //db랑 연동해서 데이터 값 넣기
+
     getrequest();
   }
 
@@ -55,7 +56,7 @@ class _CommunityState extends State<Community> {
     if (response.statusCode == 200) {
       if (parsingData["success"] == true) {
         count = parsingData['length'];
-
+        postData.clearly();
         for (int i = 0; i < count; i++) {
           String title = "";
           int views = 0;
