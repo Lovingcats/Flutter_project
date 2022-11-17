@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:welcome/common/common.dart';
+import 'package:welcome/main.dart';
+import 'package:welcome/screens/signup/id_pw/idtodart.dart';
 
 class CompleteId extends StatefulWidget {
-  const CompleteId({Key? key}) : super(key: key);
+  final String findid;
+  final String findemail;
+  const CompleteId({Key? key, required this.findid, required this.findemail})
+      : super(key: key);
 
   @override
   State<CompleteId> createState() => _CompleteIdState();
 }
 
 class _CompleteIdState extends State<CompleteId> {
-  bool idpressed = true;
-  bool pwpressed = false;
-  String id = 'soo5289';
-  String email = '202110306@bssm.hs.kr';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,65 +45,6 @@ class _CompleteIdState extends State<CompleteId> {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 55.w, right: 55.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        idpressed = true;
-                        pwpressed = false;
-                      });
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent, elevation: 0),
-                    child: Text(
-                      "아이디",
-                      style: TextStyle(
-                          fontSize: 20.sp,
-                          color:
-                              idpressed ? CommonColor.blue : CommonColor.gray,
-                          fontWeight: FontWeight.w600),
-                    )),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        idpressed = false;
-                        pwpressed = true;
-                      });
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent, elevation: 0),
-                    child: Text(
-                      "비밀번호",
-                      style: TextStyle(
-                          fontSize: 20.sp,
-                          color:
-                              pwpressed ? CommonColor.blue : CommonColor.gray,
-                          fontWeight: FontWeight.w600),
-                    )),
-              ],
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: 207.w,
-                height: 2.h,
-                decoration: BoxDecoration(
-                    color: idpressed ? CommonColor.blue : CommonColor.gray),
-              ),
-              Container(
-                width: 207.w,
-                height: 2.h,
-                decoration: BoxDecoration(
-                    color: pwpressed ? CommonColor.blue : CommonColor.gray),
-              ),
-            ],
-          ),
-          Padding(
             padding: EdgeInsets.only(top: 26.h, bottom: 35.h),
             child: Text(
               "아이디 찾기가 완료되었습니다",
@@ -126,7 +67,7 @@ class _CompleteIdState extends State<CompleteId> {
                       color: const Color(0xff5B5A5A)),
                 ),
                 Text(
-                  id,
+                  widget.findid,
                   style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w600,
@@ -148,7 +89,7 @@ class _CompleteIdState extends State<CompleteId> {
                       color: const Color(0xff5B5A5A)),
                 ),
                 Text(
-                  email,
+                  widget.findemail,
                   style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w600,
@@ -158,7 +99,7 @@ class _CompleteIdState extends State<CompleteId> {
             ),
           ),
           SizedBox(
-            height: 400.h,
+            height: 410.h,
           ),
           Padding(
             padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -168,7 +109,7 @@ class _CompleteIdState extends State<CompleteId> {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const CompleteId()));
+                        MaterialPageRoute(builder: (_) => const Login()));
                   },
                   child: Text("로그인", style: TextStyle(fontSize: 24.sp)),
                   style: ElevatedButton.styleFrom(
@@ -183,9 +124,9 @@ class _CompleteIdState extends State<CompleteId> {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const CompleteId()));
+                        MaterialPageRoute(builder: (_) => const IdToEmail()));
                   },
-                  child: Text("회원가입",
+                  child: Text("비밀번호 찾기",
                       style:
                           TextStyle(fontSize: 24.sp, color: CommonColor.blue)),
                   style: ElevatedButton.styleFrom(
