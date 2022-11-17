@@ -33,7 +33,7 @@ class _IDState extends State<ID> {
   }
 
   void getrequest(var id) async {
-    print("실행됨");
+    
     String url = 'http://13.125.225.199:8003/login/idCheck?userId=$id';
     http.Response response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
