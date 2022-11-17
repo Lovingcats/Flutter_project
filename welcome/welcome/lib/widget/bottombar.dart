@@ -12,7 +12,8 @@ class Bottom {
           labelColor: CommonColor.blue,
           unselectedLabelColor: Colors.black,
           indicatorColor: Colors.transparent,
-          tabs: [ //tab 5개
+          tabs: [
+            //tab 5개
             Tab(
               icon: Icon(
                 Icons.home,
@@ -21,22 +22,16 @@ class Bottom {
             ),
             Tab(
               icon: Icon(
-                Icons.groups,
-                size: 25.h,
-              ),
-            ),
-            Tab(
-              icon: Icon(
                 Icons.school,
                 size: 25.h,
               ),
-            ),
+            ),  
             Tab(
               icon: Icon(
-                Icons.chat_bubble,
+                Icons.groups,
                 size: 25.h,
               ),
-            ),
+            ),                                                                                                             
             Tab(
               icon: Icon(
                 Icons.account_circle_rounded,
