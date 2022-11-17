@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:welcome/common/common.dart';
 import 'package:welcome/screens/signup/id_pw/completeid.dart';
+import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
 
 class IdToEmail extends StatefulWidget {
   const IdToEmail({Key? key}) : super(key: key);
@@ -20,11 +24,18 @@ class _IdToEmailState extends State<IdToEmail> {
   bool emailEmpty1 = false;
   bool confirmEmpty1 = false;
   bool buttonNull = true;
+  bool buttonNull1 = true;
+
+  bool pwbuttonNull = true;
+  bool pwbuttonNull1 = true;
+  
   String email = '';
   String confirm = '';
   String email1 = '';
   String confirm1 = '';
   String id = '';
+  String findid = '';
+  String findemail = '';
   int page = 0;
   PageController pageController = PageController(
     initialPage: 0,
@@ -37,6 +48,142 @@ class _IdToEmailState extends State<IdToEmail> {
   @override
   void initState() {
     super.initState();
+  }
+
+  void emailtrue() {
+    Fluttertoast.showToast(
+        msg: "인증번호가 전송되었습니다",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.sp);
+  }
+
+  void _onLoading() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          insetPadding: const EdgeInsets.all(5),
+          child: Container(
+            height: 140.h,
+            width: 60.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                CircularProgressIndicator(),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void toastmessage() {
+    Fluttertoast.showToast(
+        msg: "인증코드가 올바르지않습니다. 다시 입력해주세요",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.sp);
+  }
+
+  void getrequest(String confirm5) async {
+    bool error = false;
+    print("실행됨");
+    String url = 'http://13.125.225.199:8003/login/checkCode?code=$confirm5';
+    http.Response response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+      print(parsingData);
+      error = !parsingData["success"];
+      if (error == false) {
+        confirmsuccess();
+        setState(() {
+          buttonNull = false;
+        });
+      } else {
+        toastmessage();
+      }
+    }
+  }
+
+  void emailfalse() {
+    Fluttertoast.showToast(
+        msg: "이메일이 잘못되었습니다",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.sp);
+  }
+
+  void confirmsuccess() {
+    Fluttertoast.showToast(
+        msg: "인증되었습니다",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.sp);
+  }
+
+  void postrequest1(String email3) async {
+    String url = 'http://13.125.225.199:8003/login/reserch_id';
+    _onLoading();
+    http.Response response = await http
+        .post(Uri.parse(url), body: <String, String>{"email": email3});
+    var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+    if (parsingData['success']) {
+      Navigator.pop(context);
+      findid = parsingData['name'];
+      findemail = parsingData['email'];
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) =>
+                  CompleteId(findid: findid, findemail: findemail)));
+    } else {
+      Navigator.pop(context);
+    }
+    print("1111111111");
+    print(parsingData);
+  }
+
+  void postrequest(String email) async {
+    String url = 'http://13.125.225.199:8003/login/mail';
+    _onLoading();
+    http.Response response =
+        await http.post(Uri.parse(url), body: <String, String>{"email": email});
+    var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+    if (parsingData['success']) {
+      Navigator.pop(context);
+      emailtrue();
+      setState(() {
+        buttonNull1 = false;
+      });
+    }
+  }
+
+  void postequest(String email) async {
+    String url = 'http://13.125.225.199:8003/login/email_check';
+    http.Response response =
+        await http.post(Uri.parse(url), body: <String, String>{"email": email});
+    var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+
+    if (parsingData['success']) {
+      postrequest(email);
+    } else {
+      emailfalse();
+    }
   }
 
   @override
@@ -53,12 +200,11 @@ class _IdToEmailState extends State<IdToEmail> {
                   bottom: MediaQuery.of(context).viewInsets.bottom),
               child: ElevatedButton(
                 onPressed: page == 0
-                    ? () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const CompleteId()));
-                      }
+                    ? buttonNull
+                        ? null
+                        : () {
+                            postrequest1(email);
+                          }
                     : () {},
                 child: Text("다음", style: TextStyle(fontSize: 24.sp)),
                 style: ElevatedButton.styleFrom(
@@ -229,7 +375,7 @@ class _IdToEmailState extends State<IdToEmail> {
                                 if (emailEmpty) {
                                   print("에러발생");
                                 } else {
-                                  //http 요청
+                                  postequest(email);
                                 }
                               },
                               style: ElevatedButton.styleFrom(
@@ -288,24 +434,26 @@ class _IdToEmailState extends State<IdToEmail> {
                         Padding(
                           padding: EdgeInsets.only(right: 15.w, top: 20.h),
                           child: ElevatedButton(
-                              onPressed: () {
-                                confirm = _confirmController.text;
-                                if (confirm == "") {
-                                  setState(() {
-                                    confirmEmpty = true;
-                                  });
-                                } else {
-                                  setState(() {
-                                    confirmEmpty = false;
-                                  });
-                                }
+                              onPressed: buttonNull1
+                                  ? null
+                                  : () {
+                                      confirm = _confirmController.text;
+                                      if (confirm == "") {
+                                        setState(() {
+                                          confirmEmpty = true;
+                                        });
+                                      } else {
+                                        setState(() {
+                                          confirmEmpty = false;
+                                        });
+                                      }
 
-                                if (confirmEmpty) {
-                                  print("에러발생");
-                                } else {
-                                  //http 요청
-                                }
-                              },
+                                      if (confirmEmpty) {
+                                        print("에러발생");
+                                      } else {
+                                        getrequest(confirm);
+                                      }
+                                    },
                               style: ElevatedButton.styleFrom(
                                 elevation: 0,
                                 backgroundColor: Colors.transparent,
