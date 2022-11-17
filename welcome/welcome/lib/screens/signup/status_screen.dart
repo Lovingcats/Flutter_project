@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:welcome/common/common.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:welcome/main.dart';
 import 'package:welcome/provider/signupproivder.dart';
-import 'package:welcome/screens/signup/login.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -17,13 +17,17 @@ class Status extends StatefulWidget {
 
 class _StatusState extends State<Status> {
   void postequest(var signupData) async {
-    print("이름 : " + signupData.name);
-    print("아이디 : " + signupData.id);
-    print("비밀번호 : " + signupData.pw);
-    print("이메일 : " + signupData.email);
-    print("상태 : " + signupData.status);
+    void toastmessage() {
+      Fluttertoast.showToast(
+          msg: "회원가입이 완료되었습니다",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+          fontSize: 16.sp);
+    }
 
-    print("실행됨");
     String url = 'http://13.125.225.199:8003/login/register';
     http.Response response =
         await http.post(Uri.parse(url), body: <String, String>{
@@ -34,24 +38,10 @@ class _StatusState extends State<Status> {
       "status": signupData.status,
       "grade": signupData.grade
     });
-    print(response.body);
-    print('실행되었습ㄴ디ㅏ');
-    print(response.statusCode);
     if (response.statusCode == 200) {
+      toastmessage();
       Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
     }
-  }
-
-  void LoginSuccess() {
-    //toast메세지 띄워주는 함수
-    Fluttertoast.showToast(
-        msg: "회원가입에 성공하셨습니다",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.white,
-        textColor: Colors.grey,
-        fontSize: 16.0);
   }
 
   int id = 0;
