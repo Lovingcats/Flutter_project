@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:welcome/screens/bottombar/chat.dart';
 import 'package:welcome/screens/bottombar/community.dart';
 import 'package:welcome/screens/bottombar/home.dart';
 import 'package:welcome/screens/bottombar/meta.dart';
@@ -19,15 +18,14 @@ class _BottombarState extends State<Bottombar> {
   Widget build(BuildContext context) {
     return DefaultTabController(
         //바텀바 코드
-        length: 5,
+        length: 4,
         child: Scaffold(
             body: const TabBarView(
               physics: NeverScrollableScrollPhysics(),
               children: [
                 Home(),
-                Community(),
                 Meta(),
-                Chat(),
+                Community(),
                 User()
               ], //각각 home, community, meta, chat, user로 이동할수 있게 함
             ),
