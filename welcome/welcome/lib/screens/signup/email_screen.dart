@@ -32,6 +32,17 @@ class _EmailState extends State<Email> {
         fontSize: 16.sp);
   }
 
+  void emailmessage() {
+    Fluttertoast.showToast(
+        msg: "이메일이 중복입니다. 다시 입력해주세요",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.sp);
+  }
+
   void _onLoading() {
     showDialog(
       context: context,
@@ -54,6 +65,22 @@ class _EmailState extends State<Email> {
     );
   }
 
+  void emailrequest(String email) async {
+    String url = 'http://13.125.225.199:8003/login/verify_email';
+    http.Response response =
+        await http.post(Uri.parse(url), body: <String, String>{
+      "email": email,
+    });
+    if (response.statusCode == 200) {
+      var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+      if (parsingData['success'] == true) {
+        postrequest(email);
+      } else {
+        emailmessage();
+      }
+    }
+  }
+
   void postrequest(String email) async {
     print("실행됨");
     String url = 'http://13.125.225.199:8003/login/mail';
@@ -66,6 +93,7 @@ class _EmailState extends State<Email> {
       var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
       if (parsingData['success'] == true) {
         Navigator.pop(context);
+
         Navigator.push(
             context, MaterialPageRoute(builder: (_) => const EmailConfirm()));
       } else {
@@ -103,8 +131,7 @@ class _EmailState extends State<Email> {
                     } else {
                       print(email);
                       signupData.inputEmail(email);
-
-                      postrequest(email);
+                      emailrequest(email);
                     }
                   });
                 },
