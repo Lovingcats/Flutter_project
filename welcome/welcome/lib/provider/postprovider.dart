@@ -9,18 +9,25 @@ class PostProviderData extends ChangeNotifier {
   List<Post> get blindPosts => _blindPosts;
   List<Post> get advicePosts => _advicePosts;
 
-  void inputNormalData(String title, int views, String contact, int heart,
-      String userName) {
+  void inputNormalData(
+      String title, int views, String contact, int heart, String userName) {
     normalPosts.add(Post(title, views, contact, heart, userName));
   }
 
-  void inputBlindData(String title, int views, String contact, int heart,
-      String userName) {
+  void inputBlindData(
+      String title, int views, String contact, int heart, String userName) {
     blindPosts.add(Post(title, views, contact, heart, userName));
   }
 
-  void inputAdviceData(String title, int views, String contact, int heart,
-      String userName) {
+  void inputAdviceData(
+      String title, int views, String contact, int heart, String userName) {
     advicePosts.add(Post(title, views, contact, heart, userName));
+  }
+
+  void clearly() {
+    normalPosts.clear();
+    blindPosts.clear();
+    advicePosts.clear();
+    notifyListeners();  
   }
 }
