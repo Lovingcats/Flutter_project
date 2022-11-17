@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:welcome/screens/signup/login.dart';
+import 'package:welcome/main.dart';
 
 class User extends StatefulWidget {
   const User({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class _UserState extends State<User> {
           TextButton(
               onPressed: () {
                 Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => const Login()));
+                    context, MaterialPageRoute(builder: (_) => const Login()));
               },
               child: Text(
                 "로그인 하러 가기",
