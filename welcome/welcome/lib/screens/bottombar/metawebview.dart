@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class MetaWebview extends StatefulWidget {
@@ -14,7 +11,6 @@ class MetaWebview extends StatefulWidget {
 }
 
 class _WebviewState extends State<MetaWebview> {
-  bool close = false;
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
 
@@ -30,16 +26,9 @@ class _WebviewState extends State<MetaWebview> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: WebView(
-        initialUrl: '',
+        initialUrl: 'http://13.125.225.199:8008',
         javascriptMode: JavascriptMode.unrestricted,
         navigationDelegate: (NavigationRequest request) {
-          if (request.url.contains("?code=")) {
-            setState(() {});
-
-            // do not navigate
-            return NavigationDecision.prevent;
-          }
-
           return NavigationDecision.navigate;
         },
         onWebViewCreated: (WebViewController webViewController) {
