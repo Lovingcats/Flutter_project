@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:welcome/common/common.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:welcome/provider/signupproivder.dart';
 
 class Write extends StatefulWidget {
   final String which;
@@ -25,21 +27,17 @@ class _WriteState extends State<Write> {
   void postequest(String title, String content) async {
     select();
     try {
-      String url = 'http://13.125.225.199:8003/create_contact';
-      http.Response response = await http.post(Uri.parse(url),
-          body: jsonEncode({
-            "imageFile": "",
-            "title": title,
-            "contact": content,
-            "isPrivate": private,
-            "isNotice": 0,
-            "isHot": hot
-          }));
-      print(response.statusCode);
+      String url = 'http://13.125.225.199:8003/test';
+      http.Response response =
+          await http.post(Uri.parse(url), body: <String, String>{
+        "title": title,
+        "contact": content,
+        "isPrivate": "$private",
+        "isNotice": "0",
+        "isHot": "$hot",
+        "userName": "조용제",
+      });
       print(response.bodyBytes);
-      if (response.statusCode == 200) {
-        Navigator.pop(context);
-      }
     } catch (e) {
       print(e);
     }
@@ -77,6 +75,7 @@ class _WriteState extends State<Write> {
 
   @override
   Widget build(BuildContext context) {
+    var signupData = Provider.of<SignupData>(context);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
