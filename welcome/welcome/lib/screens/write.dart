@@ -7,6 +7,7 @@ import 'package:welcome/common/common.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:welcome/provider/signupproivder.dart';
+import 'package:welcome/provider/userprovider.dart';
 
 class Write extends StatefulWidget {
   final String which;
@@ -24,7 +25,7 @@ class _WriteState extends State<Write> {
   int private = 0;
   int hot = 0;
 
-  void postequest(String title, String content) async {
+  void postequest(String title, String content, String name) async {
     select();
     try {
       String url = 'http://13.125.225.199:8003/test';
@@ -35,9 +36,14 @@ class _WriteState extends State<Write> {
         "isPrivate": "$private",
         "isNotice": "0",
         "isHot": "$hot",
-        "userName": "조용제",
+        "userName": name,
       });
-      print(response.bodyBytes);
+      var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+      print(parsingData);
+      if (parsingData['success']) {
+        Navigator.pop(context);
+        toastmessage("글이 등록되었습니다");
+      }
     } catch (e) {
       print(e);
     }
@@ -75,7 +81,7 @@ class _WriteState extends State<Write> {
 
   @override
   Widget build(BuildContext context) {
-    var signupData = Provider.of<SignupData>(context);
+    var userData = Provider.of<UserData>(context);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -96,7 +102,8 @@ class _WriteState extends State<Write> {
                     } else if (content == '') {
                       toastmessage("내용을 입력해주세요");
                     } else {
-                      postequest(title, content);
+                      print(userData.userName);
+                      postequest(title, content, userData.userName);
                       //post, get
                     }
                   });
