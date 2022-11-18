@@ -7,6 +7,7 @@ import 'package:welcome/provider/postprovider.dart';
 import 'package:welcome/provider/signupproivder.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:welcome/provider/userprovider.dart';
 import 'package:welcome/screens/bottombar/bottom.dart';
 import 'dart:convert';
 
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: PostProviderData(),
         ),
-        ChangeNotifierProvider.value(value: SignupData())
+        ChangeNotifierProvider.value(value: SignupData()),
+        ChangeNotifierProvider.value(value: UserData())
       ],
       child: ScreenUtilInit(
         //screenutil 라이브러리 (뒤에 .h, .w, .r, .sp등등 크기를 반응형으로 만들어줌)
@@ -58,7 +60,20 @@ class _MainPageState extends State<Login> {
   String id = '';
   String pwd = '';
 
-  void postrequest(String id1, String pw1) async {
+  void getrequest(String accessToken, var userData) async {
+    String url = 'http://13.125.225.199:8003/login/get_user?token=$accessToken';
+
+    http.Response response = await http.get(Uri.parse(url));
+    var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+    print(parsingData);
+    if (response.statusCode == 200) {
+      if (parsingData["success"]) {
+        userData.inputDatas(parsingData['userName'], parsingData['userId']);
+      }
+    }
+  }
+
+  void postrequest(String id1, String pw1, var userData) async {
     print("실행됨");
     String url = 'http://13.125.225.199:8003/login/signin';
     print("실행됨2");
@@ -69,6 +84,8 @@ class _MainPageState extends State<Login> {
     print(parsingData);
     if (response.statusCode == 200) {
       if (parsingData["success"] == true) {
+        userData.inputAccessToken("${parsingData["token"]}");
+        getrequest(parsingData['token'], userData);
         LoginSuccess();
         Navigator.push(
             context, MaterialPageRoute(builder: (_) => const Bottombar()));
@@ -106,6 +123,7 @@ class _MainPageState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    var userData = Provider.of<UserData>(context);
     return Scaffold(
         backgroundColor: CommonColor.blue,
         appBar: null,
@@ -201,7 +219,7 @@ class _MainPageState extends State<Login> {
                                 id = _idController.text;
                                 pwd = _pwdController.text;
                               });
-                              postrequest(id, pwd);
+                              postrequest(id, pwd, userData);
                             },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
