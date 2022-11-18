@@ -19,7 +19,7 @@ class _UserState extends State<User> {
             height: 76.h,
           ),
           Icon(
-            Icons.circle,
+            Icons.account_circle,
             color: const Color(0xffD9D9D9),
             size: 97.h,
           ),
