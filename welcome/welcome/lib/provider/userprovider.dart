@@ -16,7 +16,7 @@ class UserData extends ChangeNotifier {
 
   void inputDatas(String userName1, String userId1) {
     _userName = userName1;
-    _userId = userId1;
+     _userId = userId1;
     notifyListeners();
   }
 }
