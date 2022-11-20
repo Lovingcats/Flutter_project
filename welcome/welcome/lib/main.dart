@@ -85,6 +85,8 @@ class _MainPageState extends State<Login> {
     if (response.statusCode == 200) {
       if (parsingData["success"] == true) {
         userData.inputAccessToken("${parsingData["token"]}");
+        userData.inputDatas(
+            "${parsingData["userName"]}", "${parsingData["userId"]}");
         getrequest(parsingData['token'], userData);
         LoginSuccess();
         Navigator.push(
