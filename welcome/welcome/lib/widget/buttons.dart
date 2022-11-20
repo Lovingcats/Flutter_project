@@ -43,7 +43,7 @@ class _ButtonsState extends State<Buttons> {
               fontSize: 13.sp,
               color: Colors.black,
               fontWeight: FontWeight.w500),
-        )
+        ),
       ],
     );
   }
