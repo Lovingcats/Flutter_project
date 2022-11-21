@@ -52,6 +52,7 @@ dependencies:
   dio: ^4.0.6
   file_picker: ^5.2.2
   intl: ^0.17.0
+  ntp: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -98,6 +99,7 @@ flutter:
     - images/haks.png
     - images/Cal.png
     - images/Eat.png
+    - images/time.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
