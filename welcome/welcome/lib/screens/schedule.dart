@@ -129,7 +129,7 @@ class _MyHomePageState extends State<Schedule> {
                       Container(
                         margin: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                         height: 75.h,
-                        child: Image.asset('images/haks.png'),
+                        child: Image.asset('images/time.png'),
                         decoration: BoxDecoration(
                             color: const Color(0xffF9F9F9), //테두리
                             borderRadius: BorderRadius.circular(22),
@@ -516,7 +516,7 @@ class _MyHomePageState extends State<Schedule> {
                   decoration: BoxDecoration(
                     image: const DecorationImage(
                       fit: BoxFit.fill,
-                      image: AssetImage('assets/images/Cal.png'),
+                      image: AssetImage('images/Cal.png'),
                     ),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
