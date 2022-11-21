@@ -1,4 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 import 'package:welcome/common/common.dart';
+import 'package:ntp/ntp.dart';
 
 class Eat extends StatefulWidget {
   const Eat({Key? key}) : super(key: key);
@@ -25,9 +25,9 @@ class _MyHomePageState extends State<Eat> {
   String breakfast = "";
   String lunch = "";
   String dinner = "";
-  String Month = DateFormat('M').format(now);
-  String Day = DateFormat('d').format(now);
-  String days = DateFormat('d').format(now);
+  var month = DateFormat('M').format(now);
+  var day = DateFormat('d').format(now);
+  var days = DateFormat('d').format(now);
   var theDay;
   @override
   void initState() {
@@ -35,11 +35,12 @@ class _MyHomePageState extends State<Eat> {
     super.initState();
     fetchPostm();
     theDay = int.parse(days) - 1;
+    print("$month $day $days");
   }
 
   Future<void> fetchPostm() async {
     final response = await http.get(Uri.parse(
-        'http://13.125.225.199:8000/api/school/neisAPI/meal?year=2022&month=$Month'));
+        'http://13.125.225.199:8000/api/school/neisAPI/meal?year=2022&month=$month'));
     var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
     setState(() {
       breakfast = parsingData['School_Meal'][theDay]['day'][0]['조식'];
@@ -99,8 +100,8 @@ class _MyHomePageState extends State<Eat> {
                         margin: const EdgeInsets.fromLTRB(20, 30, 0, 0),
                         child: Text(
                           '급식 \n'
-                          '$Month월 '
-                          '$Day일',
+                          '$month월 '
+                          '$day일',
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
