@@ -6,6 +6,7 @@ import 'package:welcome/common/common.dart';
 import 'package:welcome/screens/signup/id_pw/completeid.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:welcome/screens/signup/id_pw/completepw.dart';
 
 class IdToEmail extends StatefulWidget {
   const IdToEmail({Key? key}) : super(key: key);
@@ -25,10 +26,12 @@ class _IdToEmailState extends State<IdToEmail> {
   bool confirmEmpty1 = false;
   bool buttonNull = true;
   bool buttonNull1 = true;
+  bool buttonNull2 = true;
+  bool buttonNull3 = true;
 
   bool pwbuttonNull = true;
   bool pwbuttonNull1 = true;
-  
+
   String email = '';
   String confirm = '';
   String email1 = '';
@@ -40,7 +43,6 @@ class _IdToEmailState extends State<IdToEmail> {
   PageController pageController = PageController(
     initialPage: 0,
   );
-  final _idController = TextEditingController();
   final _emailController1 = TextEditingController();
   final _confirmController1 = TextEditingController();
   final _emailController = TextEditingController();
@@ -114,6 +116,26 @@ class _IdToEmailState extends State<IdToEmail> {
     }
   }
 
+  void getrequest1(String confirm5) async {
+    bool error = false;
+    print("실행됨");
+    String url = 'http://13.125.225.199:8003/login/checkCode?code=$confirm5';
+    http.Response response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+      print(parsingData);
+      error = !parsingData["success"];
+      if (error == false) {
+        confirmsuccess();
+        setState(() {
+          buttonNull3 = false;
+        });
+      } else {
+        toastmessage();
+      }
+    }
+  }
+
   void emailfalse() {
     Fluttertoast.showToast(
         msg: "이메일이 잘못되었습니다",
@@ -173,6 +195,34 @@ class _IdToEmailState extends State<IdToEmail> {
     }
   }
 
+  void postrequest2(String email) async {
+    String url = 'http://13.125.225.199:8003/login/mail';
+    _onLoading();
+    http.Response response =
+        await http.post(Uri.parse(url), body: <String, String>{"email": email});
+    var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+    if (parsingData['success']) {
+      Navigator.pop(context);
+      emailtrue();
+      setState(() {
+        buttonNull2 = false;
+      });
+    }
+  }
+
+  void postequest1(String email) async {
+    String url = 'http://13.125.225.199:8003/login/email_check';
+    http.Response response =
+        await http.post(Uri.parse(url), body: <String, String>{"email": email});
+    var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+
+    if (parsingData['success']) {
+      postrequest2(email);
+    } else {
+      emailfalse();
+    }
+  }
+
   void postequest(String email) async {
     String url = 'http://13.125.225.199:8003/login/email_check';
     http.Response response =
@@ -205,7 +255,14 @@ class _IdToEmailState extends State<IdToEmail> {
                         : () {
                             postrequest1(email);
                           }
-                    : () {},
+                    : buttonNull3
+                        ? null
+                        : () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const CompletePw()));
+                          },
                 child: Text("다음", style: TextStyle(fontSize: 24.sp)),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: CommonColor.blue,
@@ -456,6 +513,7 @@ class _IdToEmailState extends State<IdToEmail> {
                                     },
                               style: ElevatedButton.styleFrom(
                                 elevation: 0,
+                                
                                 backgroundColor: Colors.transparent,
                                 minimumSize: Size(120.w, 37.h),
                                 shape: RoundedRectangleBorder(
@@ -475,39 +533,6 @@ class _IdToEmailState extends State<IdToEmail> {
                 ),
                 Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 30.w, right: 30.w),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: TextField(
-                          controller: _idController,
-                          decoration: InputDecoration(
-                            labelText: '아이디',
-                            enabledBorder: idEmpty
-                                ? const UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.red, width: 1),
-                                  )
-                                : const UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey),
-                                  ),
-                            focusedBorder: idEmpty
-                                ? const UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.red, width: 1),
-                                  )
-                                : UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: CommonColor.blue, width: 1),
-                                  ),
-                            focusedErrorBorder: const UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.red, width: 5),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -550,22 +575,7 @@ class _IdToEmailState extends State<IdToEmail> {
                           child: ElevatedButton(
                               onPressed: () {
                                 email1 = _emailController1.text;
-                                id = _idController.text;
-                                if (id == "") {
-                                  setState(() {
-                                    idEmpty = true;
-                                  });
-                                } else {
-                                  setState(() {
-                                    idEmpty = false;
-                                  });
-                                }
 
-                                if (idEmpty) {
-                                  print("에러발생");
-                                } else {
-                                  //http 요청
-                                }
                                 if (email1 == "") {
                                   setState(() {
                                     emailEmpty1 = true;
@@ -579,7 +589,7 @@ class _IdToEmailState extends State<IdToEmail> {
                                 if (emailEmpty1) {
                                   print("에러발생");
                                 } else {
-                                  //http 요청
+                                  postequest1(email1);
                                 }
                               },
                               style: ElevatedButton.styleFrom(
@@ -638,24 +648,26 @@ class _IdToEmailState extends State<IdToEmail> {
                         Padding(
                           padding: EdgeInsets.only(right: 15.w, top: 20.h),
                           child: ElevatedButton(
-                              onPressed: () {
-                                confirm1 = _confirmController1.text;
-                                if (confirm1 == "") {
-                                  setState(() {
-                                    confirmEmpty1 = true;
-                                  });
-                                } else {
-                                  setState(() {
-                                    confirmEmpty1 = false;
-                                  });
-                                }
+                              onPressed: buttonNull2
+                                  ? null
+                                  : () {
+                                      confirm1 = _confirmController1.text;
+                                      if (confirm1 == "") {
+                                        setState(() {
+                                          confirmEmpty1 = true;
+                                        });
+                                      } else {
+                                        setState(() {
+                                          confirmEmpty1 = false;
+                                        });
+                                      }
 
-                                if (confirmEmpty1) {
-                                  print("에러발생");
-                                } else {
-                                  //http 요청
-                                }
-                              },
+                                      if (confirmEmpty1) {
+                                        print("에러발생");
+                                      } else {
+                                        getrequest1(confirm1);
+                                      }
+                                    },
                               style: ElevatedButton.styleFrom(
                                 elevation: 0,
                                 backgroundColor: Colors.transparent,
@@ -683,3 +695,5 @@ class _IdToEmailState extends State<IdToEmail> {
     );
   }
 }
+
+
