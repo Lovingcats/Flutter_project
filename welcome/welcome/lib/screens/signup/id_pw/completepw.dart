@@ -1,10 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:welcome/common/common.dart';
+import 'package:http/http.dart' as http;
+import 'package:welcome/main.dart';
 
 class CompletePw extends StatefulWidget {
-  const CompletePw({Key? key}) : super(key: key);
+  final String email;
+  const CompletePw({Key? key, required this.email}) : super(key: key);
 
   @override
   State<CompletePw> createState() => _CompletePwState();
@@ -34,29 +39,70 @@ class _CompletePwState extends State<CompletePw> {
         fontSize: 16.sp);
   }
 
-  void postrequest() async {
-    String url = 'http://13.125.225.199:8003/login/reserch_id';
+  void confirmsuccess() {
+    Fluttertoast.showToast(
+        msg: "변경되었습니다",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.sp);
+  }
+
+  void confirmsuccess1() {
+    Fluttertoast.showToast(
+        msg: "다시시도해주세요",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.sp);
+  }
+
+  void _onLoading() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          insetPadding: const EdgeInsets.all(5),
+          child: Container(
+            height: 140.h,
+            width: 60.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                CircularProgressIndicator(),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void postrequest(String pw1) async {
+    print("실행됨");
+    String url = 'http://13.125.225.199:8003/login/update_pwd';
     _onLoading();
-    http.Response response = await http
-        .post(Uri.parse(url), body: <String, String>{"email": email3});
+    http.Response response = await http.post(Uri.parse(url),
+        body: <String, String>{"email": widget.email, "pwd": pw1});
     var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+    
     if (parsingData['success']) {
       Navigator.pop(context);
-      findid = parsingData['name'];
-      findemail = parsingData['email'];
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) =>
-                  CompleteId(findid: findid, findemail: findemail)));
+      confirmsuccess();
+      Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
     } else {
       Navigator.pop(context);
+      confirmsuccess1();
     }
     print("1111111111");
     print(parsingData);
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,11 +139,11 @@ class _CompletePwState extends State<CompletePw> {
                     ischeck = true;
                   });
                 } else if (_pwController.text == _pwController1.text) {
+                  postrequest(_pwController.text);
+                } else {
                   setState(() {
                     ischeck1 = true;
                   });
-                } else {
-                  po
                 }
               },
               child: Text("다음", style: TextStyle(fontSize: 24.sp)),
@@ -190,12 +236,12 @@ class _CompletePwState extends State<CompletePw> {
                     style: TextStyle(fontSize: 15.sp, color: Colors.red),
                   )
                 : ischeck1
-                    ? Text(
+                    ? Text("비밀번호가 일치하지 않습니다. 다시 시도해주세요",
+                        style: TextStyle(fontSize: 15.sp, color: Colors.red))
+                    : Text(
                         "data",
                         style: TextStyle(fontSize: 0.1.sp, color: Colors.white),
                       )
-                    : Text("비밀번호가 일치하지 않습니다. 다시 시도해주세요",
-                        style: TextStyle(fontSize: 15.sp, color: Colors.red))
           ],
         ),
       ),
