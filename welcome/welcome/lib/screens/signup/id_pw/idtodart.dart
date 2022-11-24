@@ -261,7 +261,7 @@ class _IdToEmailState extends State<IdToEmail> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => const CompletePw()));
+                                    builder: (_) => CompletePw(email: email1,)));
                           },
                 child: Text("다음", style: TextStyle(fontSize: 24.sp)),
                 style: ElevatedButton.styleFrom(
