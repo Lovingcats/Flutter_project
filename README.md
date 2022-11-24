@@ -6,19 +6,21 @@
 </h1>
 
 <h3 align="center">
-	Flutter_projects
+flutter를 공부하면서 개발한 Project들💫
 </h3>
 
 <br>
+<p align="center">
 
-## 프로젝트들
+## Side_Project
 
 - [**Custom room**](https://github.com/Lovingcats/Flutter_project/tree/master/Custom%20room)
-- [**Login**](https://github.com/Lovingcats/Flutter_project/tree/master/Login/login))
+- [**Login**](https://github.com/Lovingcats/Flutter_project/tree/master/Login/login)
 - [**dicegame**](https://github.com/Lovingcats/Flutter_project/tree/master/license/license)
 - [**license**](https://github.com/Lovingcats/Flutter_project/tree/master/license/license)
 - [**netflix**](https://github.com/Lovingcats/Flutter_project/tree/master/netflix/netflix)
 - [**shopping**](https://github.com/Lovingcats/Flutter_project/tree/master/shopping/shopping)
 - [**weather**](https://github.com/Lovingcats/Flutter_project/tree/master/weather)
 - [**welcome**](https://github.com/Lovingcats/Flutter_project/tree/master/welcome/welcome)
+</p>
 <br>
