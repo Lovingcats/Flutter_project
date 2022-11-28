@@ -54,13 +54,13 @@ List<Widget> makePost(BuildContext context, List<Post> posts) {
                         color: Colors.black),
                   ),
                 ),
-                Text(
-                  "조회수·${posts[i].views}",
-                  style: TextStyle(
-                      fontSize: 9.sp,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500),
-                )
+                // Text(
+                //   "조회수·${posts[i].views}",
+                //   style: TextStyle(
+                //       fontSize: 9.sp,
+                //       color: Colors.black,
+                //       fontWeight: FontWeight.w500),
+                // )
               ],
             ),
           ),
