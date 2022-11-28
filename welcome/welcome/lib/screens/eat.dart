@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 import 'package:welcome/common/common.dart';
-import 'package:ntp/ntp.dart';
 
 class Eat extends StatefulWidget {
   const Eat({Key? key}) : super(key: key);
@@ -81,7 +80,6 @@ class _MyHomePageState extends State<Eat> {
                             border: Border.all(
                                 color: const Color(0xffF9F9F9), width: 7),
                             boxShadow: [
-                              // ignore: prefer_const_constructors
                               BoxShadow(
                                 color: Colors.grey.shade500,
                                 offset: const Offset(0, 5.0),
@@ -111,8 +109,8 @@ class _MyHomePageState extends State<Eat> {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 20.h,
                 ),
                 Container(
                   width: 380.w,
