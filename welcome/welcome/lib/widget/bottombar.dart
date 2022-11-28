@@ -20,12 +20,7 @@ class Bottom {
                 size: 25.h,
               ),
             ),
-            Tab(
-              icon: Icon(
-                Icons.school,
-                size: 25.h,
-              ),
-            ),  
+             
             Tab(
               icon: Icon(
                 Icons.groups,
