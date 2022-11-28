@@ -124,11 +124,11 @@ class _CommunityState extends State<Community> {
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Flexible(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 27.w, top: 25.h),
-                      child: Stack(
+                      padding: EdgeInsets.only(top: 25.h, left: 27.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
                                 child: Padding(
@@ -157,59 +157,54 @@ class _CommunityState extends State<Community> {
                               ),
                             ],
                           ),
-                          Positioned(
-                            left: 290.w,
-                            bottom: 30.h,
-                            child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.transparent,
-                                    elevation: 0),
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 5.w,
+                          ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 0),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      if (ispressed1 == true) {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => const Write(
+                                                      which: "일반",
+                                                    )));
+                                      } else if (ispressed2 == true) {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => const Write(
+                                                      which: "익명",
+                                                    )));
+                                      } else {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => const Write(
+                                                      which: "뜨끈조언",
+                                                    )));
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent,
+                                        elevation: 0.0),
+                                    child: Text(
+                                      "글쓰기",
+                                      style: TextStyle(
+                                          fontSize: 16.sp,
+                                          color: Colors.black,
+                                          decoration: TextDecoration.underline),
                                     ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        if (ispressed1 == true) {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (_) => const Write(
-                                                        which: "일반",
-                                                      )));
-                                        } else if (ispressed2 == true) {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (_) => const Write(
-                                                        which: "익명",
-                                                      )));
-                                        } else {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (_) => const Write(
-                                                        which: "뜨끈조언",
-                                                      )));
-                                        }
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.transparent,
-                                          elevation: 0.0),
-                                      child: Text(
-                                        "글쓰기",
-                                        style: TextStyle(
-                                            fontSize: 16.sp,
-                                            color: Colors.black,
-                                            decoration:
-                                                TextDecoration.underline),
-                                      ),
-                                    )
-                                  ],
-                                )),
-                          )
+                                  )
+                                ],
+                              ))
                         ],
                       ),
                     ),
