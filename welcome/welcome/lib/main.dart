@@ -89,6 +89,7 @@ class _MainPageState extends State<Login> {
             "${parsingData["userName"]}", "${parsingData["userId"]}");
         getrequest(parsingData['token'], userData);
         LoginSuccess();
+        userData.loginChange(true);
         Navigator.push(
             context, MaterialPageRoute(builder: (_) => const Bottombar()));
       } else {
