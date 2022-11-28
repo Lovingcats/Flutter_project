@@ -53,6 +53,7 @@ dependencies:
   file_picker: ^5.2.2
   intl: ^0.17.0
   ntp: ^2.0.0
+  flutter_svg: ^1.1.6
 
 dev_dependencies:
   flutter_test:
@@ -100,6 +101,7 @@ flutter:
     - images/Cal.png
     - images/Eat.png
     - images/time.png
+    - images/WELBATO.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
