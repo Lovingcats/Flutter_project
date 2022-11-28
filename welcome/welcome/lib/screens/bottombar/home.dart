@@ -6,7 +6,7 @@ import 'package:welcome/screens/bottombar/metawebview.dart';
 import 'package:welcome/screens/eat.dart';
 import 'package:welcome/screens/schedule.dart';
 import 'package:welcome/screens/time.dart';
-import 'package:welcome/widget/Buttons.dart';
+import 'package:welcome/widget/buttons.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -129,9 +129,10 @@ class _HomeState extends State<Home> {
                 child: Text(
                   "WELBATO",
                   style: TextStyle(
-                      fontSize: 20.sp,
+                      fontSize: 30.sp,
                       color: CommonColor.blue,
-                      fontWeight: FontWeight.w500),
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Gaegu"),
                 ),
               )
             ],
@@ -199,29 +200,49 @@ class _HomeState extends State<Home> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(left: 23.w, right: 23.w, top: 21.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Buttons(
-                  url: "images/buttonIcon/eat.png",
-                  name: "급식",
-                  where: Eat(),
+            padding: EdgeInsets.only(left: 23.w, right: 23.w, top: 25.h),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Buttonss(
+                      url: "images/buttonIcon/meta.png",
+                      name: "메타버스",
+                      content1: "학교의 다양한",
+                      content2: "시설을 확인해보세요!",
+                      where: MetaWebview(),
+                    ),
+                    Buttonss(
+                      url: "images/buttonIcon/eat.png",
+                      name: "급식",
+                      where: Eat(),
+                      content1: "오늘의 급식을",
+                      content2: "확인해보세요!",
+                    ),
+                  ],
                 ),
-                Buttons(
-                  url: "images/buttonIcon/time.png",
-                  name: "시간표",
-                  where: Time(),
-                ),
-                Buttons(
-                  url: "images/buttonIcon/calender.png",
-                  name: "학사일정",
-                  where: Schedule(),
-                ),
-                Buttons(
-                  url: "images/buttonIcon/meta.png",
-                  name: "VR",
-                  where: MetaWebview(),
+                Padding(
+                  padding: EdgeInsets.only(top: 12.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Buttonss(
+                        url: "images/buttonIcon/time.png",
+                        name: "시간표",
+                        where: Time(),
+                        content1: "오늘의 시간표를",
+                        content2: "확인해보세요!",
+                      ),
+                      Buttonss(
+                        url: "images/buttonIcon/calender.png",
+                        name: "학사일정",
+                        where: Schedule(),
+                        content1: "학교 일정에 대해",
+                        content2: "확인해보세요!",
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
