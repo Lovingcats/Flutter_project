@@ -25,7 +25,7 @@ Flutter를 공부하면서 개발한 Project들💫
 </p>
 <br>
 
-## Team_Project
+## Team_Project(organiztion)
 
 - [**Studying Timer**](https://github.com/orgs/StudyingTimer/repositories)
 - [**BSSM-BGIT**](https://github.com/orgs/BSSM-BGIT/repositories)
