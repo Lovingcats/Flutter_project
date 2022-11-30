@@ -32,4 +32,3 @@ Flutter를 공부하면서 개발한 Project들💫
 - [**JJOK_PROJECT(WELVATO)**](https://github.com/JJOK-PROJECT/App)
 - [**BSSMflat**](https://github.com/BSSMflat/BSSMflat-App)
 - [**she-s-thema**](https://github.com/she-s-thema/kkm_android)
-- [**코드코치(CodeCoach)**](https://github.com/Code-Coach-org/Code-Coach-Front-end)
