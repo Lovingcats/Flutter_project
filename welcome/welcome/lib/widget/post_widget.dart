@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:welcome/model/post.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:welcome/screens/read.dart';
 
 // ignore: camel_case_types
 class Post_widget extends StatefulWidget {
@@ -30,7 +31,16 @@ List<Widget> makePost(BuildContext context, List<Post> posts) {
         padding: EdgeInsets.only(left: 27.w, right: 27.w, top: 19.h),
         child: GestureDetector(
           onTap: () {
-            print("hello");
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => Read(
+                          content: posts[i].contact,
+                          heart: posts[i].heart,
+                          writer: posts[i].userName,
+                          title: posts[i].title,
+                          id: posts[i].views,
+                        )));
           },
           child: Container(
             padding: EdgeInsets.only(left: 9.w, right: 11.w),
