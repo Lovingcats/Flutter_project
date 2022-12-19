@@ -7,10 +7,13 @@ import 'package:provider/provider.dart';
 import 'package:welcome/common/common.dart';
 import 'package:welcome/model/post.dart';
 import 'package:welcome/provider/postprovider.dart';
+import 'package:welcome/provider/userprovider.dart';
+import 'package:welcome/screens/login.dart';
 import 'package:welcome/screens/write.dart';
 import 'package:welcome/widget/post_widget.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:quickalert/quickalert.dart';
 
 class Community extends StatefulWidget {
   const Community({Key? key}) : super(key: key);
@@ -46,6 +49,19 @@ class _CommunityState extends State<Community> {
     getrequest();
   }
 
+  void showAlert() {
+    QuickAlert.show(
+        context: context,
+        type: QuickAlertType.error,
+        title: 'JJOK 로그인',
+        text: '기능을 사용하기전에 로그인을 해주세요',
+        confirmBtnText: '확인',
+        onConfirmBtnTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => const Login()));
+        });
+  }
+
   void getrequest() async {
     String url = 'http://13.125.225.199:8003/all_contect';
     http.Response response = await http.get(Uri.parse(url));
@@ -57,37 +73,44 @@ class _CommunityState extends State<Community> {
       if (parsingData["success"] == true) {
         count = parsingData['length'];
         postData.clearly();
-        for (int i = 0; i < count; i++) {
-          String title = "";
-          int views = 0;
-          String contact = "";
-          int heart = 0;
-          int isNotice = 0;
-          int isPrivate = 0;
-          int isHot = 0;
-          String userName = "";
-          try {
-            title = parsingData['data'][i]['title'];
-            views = parsingData['data'][i]['isNotice'];
-            contact = parsingData['data'][i]['contact'];
-            heart = parsingData['data'][i]['heart'];
-            //1회성 확인
-            isNotice = parsingData['data'][i]['isNotice'];
-            isPrivate = parsingData['data'][i]['isPrivate'];
-            isHot = parsingData['data'][i]['isHot'];
-            userName = parsingData['data'][i]['userName'];
-            if (isPrivate == 0 && isHot == 0) {
-              postData.inputNormalData(title, views, contact, heart, userName);
-            } else if (isPrivate == 1) {
-              postData.inputBlindData(title, views, contact, heart, userName);
-            } else {
-              postData.inputAdviceData(title, views, contact, heart, userName);
+        if (count == 0) {
+          setState(() {
+            isLoading = false;
+          });
+        } else {
+          for (int i = 0; i < count; i++) {
+            String title = "";
+            int views = 0;
+            String contact = "";
+            int heart = 0;
+            int isNotice = 0;
+            int isPrivate = 0;
+            int isHot = 0;
+            String userName = "";
+            try {
+              title = parsingData['data'][i]['title'];
+              views = parsingData['data'][i]['id'];
+              contact = parsingData['data'][i]['contact'];
+              heart = parsingData['data'][i]['heart'];
+              isNotice = parsingData['data'][i]['isNotice'];
+              isPrivate = parsingData['data'][i]['isPrivate'];
+              isHot = parsingData['data'][i]['isHot'];
+              userName = parsingData['data'][i]['userName'];
+              if (isPrivate == 0 && isHot == 0) {
+                postData.inputNormalData(
+                    title, views, contact, heart, userName);
+              } else if (isPrivate == 1) {
+                postData.inputBlindData(title, views, contact, heart, userName);
+              } else {
+                postData.inputAdviceData(
+                    title, views, contact, heart, userName);
+              }
+              setState(() {
+                isLoading = false;
+              });
+            } catch (e) {
+              print(e.toString());
             }
-            setState(() {
-              isLoading = false;
-            });
-          } catch (e) {
-            print(e.toString());
           }
         }
       } else {
@@ -113,6 +136,7 @@ class _CommunityState extends State<Community> {
   @override
   Widget build(BuildContext context) {
     var postProviderData = Provider.of<PostProviderData>(context);
+    var userData = Provider.of<UserData>(context);
     return Scaffold(
         backgroundColor: CommonColor.background,
         body: isLoading
@@ -168,30 +192,37 @@ class _CommunityState extends State<Community> {
                                     width: 5.w,
                                   ),
                                   ElevatedButton(
-                                    onPressed: () {
-                                      if (ispressed1 == true) {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => const Write(
-                                                      which: "일반",
-                                                    )));
-                                      } else if (ispressed2 == true) {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => const Write(
-                                                      which: "익명",
-                                                    )));
-                                      } else {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => const Write(
-                                                      which: "뜨끈조언",
-                                                    )));
-                                      }
-                                    },
+                                    onPressed: userData.login
+                                        ? () {
+                                            if (ispressed1 == true) {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          const Write(
+                                                            which: "일반",
+                                                          )));
+                                            } else if (ispressed2 == true) {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          const Write(
+                                                            which: "익명",
+                                                          )));
+                                            } else {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          const Write(
+                                                            which: "뜨끈조언",
+                                                          )));
+                                            }
+                                          }
+                                        : () {
+                                            showAlert();
+                                          },
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.transparent,
                                         elevation: 0.0),
