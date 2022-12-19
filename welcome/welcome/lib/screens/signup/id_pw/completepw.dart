@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:welcome/common/common.dart';
 import 'package:http/http.dart' as http;
 import 'package:welcome/main.dart';
+import 'package:welcome/screens/login.dart';
 
 class CompletePw extends StatefulWidget {
   final String email;
