@@ -29,6 +29,11 @@ class _WriteState extends State<Write> {
     select();
     try {
       String url = 'http://13.125.225.199:8003/test';
+      print("제목 : " + title);
+      print("내용 : " + content);
+      print("private : " + "$private");
+      print("hot : " + "$hot");
+      print("name : " + name);
       http.Response response =
           await http.post(Uri.parse(url), body: <String, String>{
         "title": title,
@@ -82,7 +87,7 @@ class _WriteState extends State<Write> {
   @override
   Widget build(BuildContext context) {
     var userData = Provider.of<UserData>(context);
-    return GestureDetector(
+    return GestureDetector(    
       onTap: () {
         FocusScope.of(context).unfocus();
       },
