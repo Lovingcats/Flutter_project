@@ -12,7 +12,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("profile 입니다")
+        child: Text("")
       ),
     );
   }

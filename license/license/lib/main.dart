@@ -31,6 +31,7 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Home(),
                 Profile(),
+                
                 Search(),
               ],
             ),
