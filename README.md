@@ -6,7 +6,7 @@
 </h1>
 
 <h3 align="center">
-Flutter를 공부하면서 개발한 Project들💫
+Flutter를 공부하면서 개발한 Projects💫
 </h3>
 
 <br>
