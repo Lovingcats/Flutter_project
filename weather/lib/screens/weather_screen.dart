@@ -14,11 +14,6 @@ class Weather extends StatefulWidget {
 }
 
 class _WeatherState extends State<Weather> {
-  late String cityName;
-  late int temp;
-  late String description;
-  var weatherIcon;
-
   bool pressed1 = false;
   bool pressed2 = true;
   bool pressed3 = false;
@@ -72,58 +67,6 @@ class _WeatherState extends State<Weather> {
     weatherInformaitons.add(TimeWeaterWidget(timeweather: yesterdayWeather));
     weatherInformaitons.add(TimeWeaterWidget(timeweather: todayWeather));
     weatherInformaitons.add(TimeWeaterWidget(timeweather: tomorrowWeather));
-
-    updateData(widget.parseWeatherData);
-    updateIcon(widget.parseWeatherData);
-
-    print("${widget.parseWeatherData['weather'][0]['icon']}");
-  }
-
-  void updateData(dynamic weatherData) {
-    double temp2 = weatherData['main']['temp'];
-    temp = temp2.toInt();
-    cityName = weatherData['name'];
-    description = weatherData['weather'][0]['description'];
-  }
-
-  void updateIcon(dynamic weatherData) {
-    if (weatherData['weather'][0]['icon'] == "01d") {
-      weatherIcon = Icons.wb_sunny_outlined;
-    } else if (weatherData['weather'][0]['icon'] == "02d") {
-      weatherIcon = LineIcons.cloudWithSun;
-    } else if (weatherData['weather'][0]['icon'] == "03d") {
-      weatherIcon = LineIcons.cloud;
-    } else if (weatherData['weather'][0]['icon'] == "04d") {
-      weatherIcon = Icons.filter_drama_outlined;
-    } else if (weatherData['weather'][0]['icon'] == "09d") {
-      weatherIcon = LineIcons.cloudWithRain;
-    } else if (weatherData['weather'][0]['icon'] == "10d") {
-      weatherIcon = LineIcons.cloudWithSunAndRain;
-    } else if (weatherData['weather'][0]['icon'] == "11d") {
-      weatherIcon = Icons.thunderstorm_outlined;
-    } else if (weatherData['weather'][0]['icon'] == "13d") {
-      weatherIcon = Icons.ac_unit_outlined;
-    } else if (weatherData['weather'][0]['icon'] == "50d") {
-      weatherIcon = Icons.format_align_center_outlined;
-    } else if (weatherData['weather'][0]['icon'] == "02n") {
-      weatherIcon = LineIcons.cloudWithMoon;
-    } else if (weatherData['weather'][0]['icon'] == "03n") {
-      weatherIcon = LineIcons.cloud;
-    } else if (weatherData['weather'][0]['icon'] == "04n") {
-      weatherIcon = Icons.filter_drama_outlined;
-    } else if (weatherData['weather'][0]['icon'] == "09n") {
-      weatherIcon = LineIcons.cloudWithRain;
-    } else if (weatherData['weather'][0]['icon'] == "10n") {
-      weatherIcon = LineIcons.cloudWithMoonAndRain;
-    } else if (weatherData['weather'][0]['icon'] == "11n") {
-      weatherIcon = Icons.thunderstorm_outlined;
-    } else if (weatherData['weather'][0]['icon'] == "13n") {
-      weatherIcon = Icons.ac_unit_outlined;
-    } else if (weatherData['weather'][0]['icon'] == "50n") {
-      weatherIcon = Icons.format_align_center_outlined;
-    } else {
-      weatherIcon = LineIcons.moon;
-    }
   }
 
   @override
@@ -166,26 +109,26 @@ class _WeatherState extends State<Weather> {
                 height: 15.h,
               ),
               Text(
-                "${formatDate1}nd${formatDate2}",
+                "${formatDate1}th",
                 style: TextStyle(
                     fontSize: 20.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.w300),
               ),
               SizedBox(
-                height: 40.h,
+                height: 30.h,
               ),
               Text(
-                cityName,
+                "부산 강서구",
                 style: TextStyle(
-                    fontSize: 40.sp,
+                    fontSize: 30.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.w400),
               ),
               Text(
-                description,
+                "맑음",
                 style: TextStyle(
-                    fontSize: 23.sp,
+                    fontSize: 19.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.w300),
               ),
@@ -193,19 +136,22 @@ class _WeatherState extends State<Weather> {
                 height: 50.h,
               ),
               Icon(
-                weatherIcon,
+                Icons.sunny,
                 color: Colors.white,
-                size: 130.h,
+                size: 100.h,
+              ),
+              SizedBox(
+                height: 7.h,
               ),
               Text(
-                "$temp°",
+                "37°",
                 style: TextStyle(
                     fontSize: 45.h,
                     color: Colors.white,
                     fontWeight: FontWeight.w400),
               ),
               SizedBox(
-                height: 30.h,
+                height: 20.h,
               ),
               Padding(
                 padding: EdgeInsets.only(left: 25.w, right: 25.w),
@@ -221,7 +167,7 @@ class _WeatherState extends State<Weather> {
                             textSize1 = 24;
                             textSize2 = 18;
                             textSize3 = 18;
-                            leftPadding = 35;
+                            leftPadding = 25;
                             boxSize = 136;
                             yesterdayOpacity = 1.0;
                             todayOpacity = 0.0;
@@ -282,7 +228,7 @@ class _WeatherState extends State<Weather> {
                             textSize1 = 18;
                             textSize2 = 18;
                             textSize3 = 24;
-                            leftPadding = 226;
+                            leftPadding = 235;
                             boxSize = 138;
 
                             yesterdayOpacity = 0.0;
