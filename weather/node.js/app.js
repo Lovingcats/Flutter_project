@@ -3,8 +3,12 @@ const axios = require('axios');
 const app = express();
 const apiKey = '3cd8222bc129c20f5da108a12ea5556a';
 
-app.get('/weather', async (req, res) => {
-  const { latitude, longitude } = req.query;
+app.use(express.json());
+
+app.post('/weather', async (req, res) => {
+  const { latitude, longitude } = req.body;
+  console.log(latitude + longitude);
+
 
   try {
     const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`);
@@ -16,12 +20,12 @@ app.get('/weather', async (req, res) => {
     };
     res.json(weatherData);
   } catch (error) {
-    console.error(error);
+    console.log('123');
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
-const port = process.env.PORT || 3000;
+const port = 3000;
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
 });
