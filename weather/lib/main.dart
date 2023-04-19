@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const Weather(),
+        home: const Loading(),
       ),
     );
   }
