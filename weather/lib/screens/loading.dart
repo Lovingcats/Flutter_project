@@ -25,19 +25,26 @@ class _LoadingState extends State<Loading> {
     getLocation();
   }
 
-  Future<void> _getRequest() async {
-    print("gitstart");
-
-    String url = 'https://10.0.0.2:3000/weather?lat=$latitude3&lng=$longitude3';
-    http.Response response = await http.get(Uri.parse(url));
-    print(response.body);
-    print(response.statusCode);
-    if (response.statusCode == 200) {
+  void postrequest() async {
+    try {
+      String url = 'http://10.0.2.2:3000/weather';
+      http.Response response = await http.post(Uri.parse(url),
+          body: <String, String>{
+            "latitude": "${latitude3}",
+            "longitude": "${longitude3}"
+          });
       var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
-      print(parsingData);
-    } else {
-      print("오류남");
-      //오류 발생 코드
+      print(response.body);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+        print(parsingData);
+      } else {
+        print("오류남");
+        //오류 발생 코드
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
@@ -46,7 +53,8 @@ class _LoadingState extends State<Loading> {
     await myLocation.getMyCurrentLocation();
     latitude3 = myLocation.latitude2;
     longitude3 = myLocation.longitude2;
-
+    print(latitude3);
+    print(longitude3);
     // ignore: use_build_context_synchronously
   }
 
@@ -54,11 +62,7 @@ class _LoadingState extends State<Loading> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(
-            onPressed: () {
-              _getRequest();
-            },
-            child: Text("눌러")),
+        child: ElevatedButton(onPressed: () {}, child: Text("눌러")),
         // child: SpinKitWave(color: Colors.yellow)
       ),
     );
