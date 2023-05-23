@@ -19,6 +19,7 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
   late double latitude1 = 0.0;
   late double longitude1 = 0.0;
+  bool isloading = true;
 
   @override
   void initState() {
@@ -31,8 +32,6 @@ class _LoadingState extends State<Loading> {
       Geolocator.requestPermission();
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      print(position.latitude);
-      print(position.longitude);
       latitude1 = position.latitude;
       longitude1 = position.longitude;
     } catch (e) {
@@ -42,46 +41,46 @@ class _LoadingState extends State<Loading> {
 
   Future postrequest() async {
     try {
-      print('실행됨');
       String url = 'http://10.150.149.170:3000/weather';
-      print('실행됨1');
       http.Response response = await http.post(Uri.parse(url),
           body: <String, String>{
-            "latitude": "${latitude1}",
-            "longitude": "${longitude1}"
+            "latitude": "$latitude1",
+            "longitude": "$longitude1"
           });
-      print('실행됨2');
+      // ignore: unused_local_variable
       var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
-      print(response.body);
-      print(response.statusCode);
       if (response.statusCode == 200) {
+        // ignore: unused_local_variable
         var parsingData = jsonDecode(utf8.decode(response.bodyBytes));
+        // ignore: avoid_print
         print(parsingData);
+        // ignore: use_build_context_synchronously
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => const Weather()));
+        setState(() {
+          isloading = false;
+        });
       } else {
+        // ignore: avoid_print
         print("오류남");
         //오류 발생 코드
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
 
   void getLocation() async {
     await getMyCurrentLocation();
-    // ignore: use_build_context_synchronously
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-            onPressed: () async {
-              await postrequest();
-            },
-            child: Text("눌러")),
-        // child: SpinKitWave(color: Colors.yellow)
-      ),
+      body: isloading
+          ? const Center(child: SpinKitWave(color: Color(0xffD57E76)))
+          : const Center(),
     );
   }
 }
