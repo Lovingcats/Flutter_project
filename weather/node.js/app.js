@@ -4,10 +4,13 @@ const app = express();
 const apiKey = '3cd8222bc129c20f5da108a12ea5556a';
 
 app.use(express.json());
+app.use(express.urlencoded());
 
 app.post('/weather', async (req, res) => {
   const { latitude, longitude } = req.body;
-  console.log(latitude + longitude);
+
+  // console.log(latitude + longitude);
+  console.log(req.body);
 
 
   try {
@@ -20,7 +23,6 @@ app.post('/weather', async (req, res) => {
     };
     res.json(weatherData);
   } catch (error) {
-    console.log('123');
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
