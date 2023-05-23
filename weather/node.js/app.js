@@ -9,10 +9,6 @@ app.use(express.urlencoded());
 app.post('/weather', async (req, res) => {
   const { latitude, longitude } = req.body;
 
-  // console.log(latitude + longitude);
-  console.log(req.body);
-
-
   try {
     const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`);
     const weatherData = {
