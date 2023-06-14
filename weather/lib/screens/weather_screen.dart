@@ -126,7 +126,7 @@ class _WeatherState extends State<Weather> {
                     fontWeight: FontWeight.w400),
               ),
               Text(
-                "맑음",
+                "broken clouds",
                 style: TextStyle(
                     fontSize: 19.sp,
                     color: Colors.white,
@@ -136,7 +136,7 @@ class _WeatherState extends State<Weather> {
                 height: 50.h,
               ),
               Icon(
-                Icons.sunny,
+                Icons.cloud,
                 color: Colors.white,
                 size: 100.h,
               ),
@@ -144,7 +144,7 @@ class _WeatherState extends State<Weather> {
                 height: 7.h,
               ),
               Text(
-                "37°",
+                "23°",
                 style: TextStyle(
                     fontSize: 45.h,
                     color: Colors.white,
