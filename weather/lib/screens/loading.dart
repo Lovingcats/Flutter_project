@@ -34,6 +34,7 @@ class _LoadingState extends State<Loading> {
           desiredAccuracy: LocationAccuracy.high);
       latitude1 = position.latitude;
       longitude1 = position.longitude;
+      await postrequest();
     } catch (e) {
       print(e);
     }
@@ -42,6 +43,9 @@ class _LoadingState extends State<Loading> {
   Future postrequest() async {
     try {
       String url = 'http://10.150.149.170:3000/weather';
+      print("실행");
+      print("${latitude1}");
+      print("${longitude1}");
       http.Response response = await http.post(Uri.parse(url),
           body: <String, String>{
             "latitude": "$latitude1",
