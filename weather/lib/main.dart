@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/services.dart';
 import 'package:weather/screens/loading.dart';
+import 'package:weather/screens/weather.dart';
 import 'package:weather/screens/weather_screen.dart';
 
 void main() {
